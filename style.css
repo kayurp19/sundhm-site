@@ -705,3 +705,166 @@ h4 { font-size: clamp(18px, 1.6vw, 22px); }
 @media (max-width: 700px) {
   .hire-card { padding: 28px; }
 }
+
+/* ============ Multi-page additions ============ */
+
+/* Solid header for inner pages (no hero overlap) */
+.sd-header--solid {
+  position: sticky;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: saturate(140%) blur(8px);
+  border-bottom: 1px solid rgba(15,30,60,.06);
+  box-shadow: 0 1px 0 rgba(15,30,60,.04);
+}
+.sd-header--solid .sd-header__nav a { color: var(--ink); }
+.sd-header--solid .sd-header__menu-btn { color: var(--ink); }
+.sd-header--solid .sd-header__logo img { filter: none; }
+
+/* Active nav link */
+.sd-header__nav a.is-active {
+  color: var(--gold-deep);
+  position: relative;
+}
+.sd-header__nav a.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -6px;
+  height: 2px;
+  background: var(--gold-bright);
+  border-radius: 2px;
+}
+
+/* Page hero banner for inner pages */
+.page-hero {
+  background: linear-gradient(180deg, var(--cream) 0%, #fff 100%);
+  padding: 120px 0 64px;
+  border-bottom: 1px solid rgba(15,30,60,.06);
+}
+.page-hero h1 {
+  font-size: clamp(38px, 5vw, 56px);
+  margin: 12px 0 0;
+  color: var(--navy);
+  line-height: 1.1;
+}
+.page-hero .eyebrow { color: var(--gold-deep); }
+
+/* Bulleted services list on home */
+.svc-bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 1px 3px rgba(15,30,60,.06), 0 6px 18px rgba(15,30,60,.05);
+  overflow: hidden;
+}
+.svc-bullets li { border-bottom: 1px solid rgba(15,30,60,.06); }
+.svc-bullets li:last-child { border-bottom: 0; }
+.svc-bullets a {
+  display: flex; align-items: center;
+  padding: 18px 24px;
+  color: var(--navy);
+  text-decoration: none;
+  transition: background .2s ease, padding .2s ease;
+}
+.svc-bullets a:hover {
+  background: linear-gradient(90deg, rgba(243,146,0,.06), rgba(243,146,0,0));
+  padding-left: 30px;
+}
+.svc-bullets__name {
+  font: 600 17px/1.2 var(--font-sans, Inter, sans-serif);
+  color: var(--navy);
+}
+.svc-bullets__sub {
+  display: block;
+  margin-top: 4px;
+  font: 400 13px/1.4 var(--font-sans, Inter, sans-serif);
+  color: var(--ink-soft, #475569);
+}
+.svc-bullets a > .arrow {
+  margin-left: auto;
+  color: var(--gold-deep);
+  flex-shrink: 0;
+  transition: transform .2s ease;
+}
+.svc-bullets a:hover > .arrow { transform: translateX(4px); }
+.svc-bullets a > span:first-child + span { /* second span (sub) wraps under name */ }
+.svc-bullets li a { flex-wrap: wrap; }
+.svc-bullets__name, .svc-bullets__sub { flex-basis: 100%; }
+.svc-bullets a > .arrow { flex-basis: auto; align-self: center; margin-left: auto; }
+/* better: use grid */
+.svc-bullets a {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "name arrow" "sub arrow";
+  align-items: center;
+  column-gap: 16px;
+}
+.svc-bullets__name { grid-area: name; }
+.svc-bullets__sub { grid-area: sub; }
+.svc-bullets a > .arrow { grid-area: arrow; }
+
+/* Hire Us teaser bullet rows on home */
+.hire-three { display: flex; flex-direction: column; gap: 16px; }
+.hire-three__row {
+  display: flex;
+  gap: 16px;
+  background: var(--cream);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  border-left: 3px solid var(--gold-bright);
+}
+.hire-three__bullet {
+  font-size: 28px; line-height: 1;
+  color: var(--gold-bright);
+  flex-shrink: 0;
+}
+.hire-three__row strong { color: var(--navy); font-weight: 600; }
+.hire-three__row { color: var(--ink-soft, #475569); font-size: 15px; line-height: 1.55; }
+
+/* hire-card h4 inside Hire Us page */
+.hire-card__h4 {
+  font: 600 14px/1.3 var(--font-sans, Inter, sans-serif);
+  letter-spacing: .06em; text-transform: uppercase;
+  color: var(--navy);
+  margin: 24px 0 12px;
+}
+
+/* Footer nav row */
+.sd-footer__nav {
+  display: flex; gap: 24px; flex-wrap: wrap;
+  margin: 16px 0;
+}
+.sd-footer__nav a {
+  color: rgba(255,255,255,.85);
+  font-size: 14px;
+  text-decoration: none;
+  transition: color .15s ease;
+}
+.sd-footer__nav a:hover { color: var(--gold-bright); }
+.sd-footer__meta a { color: rgba(255,255,255,.85); text-decoration: none; }
+.sd-footer__meta a:hover { color: var(--gold-bright); }
+
+/* Contact page map iframe */
+.contact-map {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(15,30,60,.1), 0 8px 24px rgba(15,30,60,.12);
+  background: #1B3A6B;
+  height: 100%;
+  min-height: 400px;
+}
+.contact-map iframe { display: block; }
+
+@media (max-width: 800px) {
+  .services-teaser { gap: 32px; }
+  .page-hero { padding: 96px 0 48px; }
+}
+
+/* ghost (light bg) variant */
+.btn--ghost {
+  background: transparent;
+  border: 1px solid rgba(15,30,60,.2);
+  color: var(--navy);
+}
+.btn--ghost:hover { background: var(--cream); border-color: var(--navy); }
