@@ -52,6 +52,7 @@
 </script>
 </head>
 <body class="sundhm">
+<a class="skip-link" href="#main">Skip to main content</a>
 <header class="sd-header sd-header--solid" id="top">
   <div class="container sd-header__inner">
     <a href="./index.html" class="sd-header__logo" aria-label="SUNdhm home">
@@ -78,6 +79,7 @@
     <a href="./contact.html">Contact</a>
   </nav>
 </header>
+<main id="main" tabindex="-1">
 
 <section class="page-hero">
   <div class="container">
@@ -139,26 +141,63 @@
       <li>Limit the use of sensitive personal information.</li>
       <li>Not be discriminated against for exercising these rights.</li>
     </ul>
-    <p><strong>Do Not Sell or Share My Personal Information:</strong> SUNdhm does not sell personal information for monetary value. To opt out of any sharing for cross-context behavioral advertising or to exercise any of the above rights, email <a href="mailto:hello@sundhm.com?subject=Privacy%20Rights%20Request">hello@sundhm.com</a> with the subject line "Privacy Rights Request" and tell us which right you would like to exercise. We will verify your identity before responding and will respond within 45 days.</p>
-    <p>You may also designate an authorized agent to make a request on your behalf.</p>
+    <p><strong>Do Not Sell or Share My Personal Information:</strong> SUNdhm does not sell personal information for monetary value and does not currently share personal information for cross-context behavioral advertising. You can submit a request below or email <a href="mailto:privacy@sundhm.com?subject=Privacy%20Rights%20Request">privacy@sundhm.com</a>.</p>
+    <p>You may designate an authorized agent to make a request on your behalf. We will verify your identity (and your agent's authorization) before responding and will respond within 45 days, with one 45-day extension if reasonably necessary.</p>
 
-    <h2>6. Children's Privacy</h2>
+    <h2 id="privacy-requests">6. Submit a Privacy Request</h2>
+    <p>Use this form to exercise any of your rights above — Access, Correct, Delete, Opt out of sale/share, Limit sensitive data use, or Authorized agent request. You may also email <a href="mailto:privacy@sundhm.com?subject=Privacy%20Rights%20Request">privacy@sundhm.com</a> directly.</p>
+    <form class="apply-form" action="https://formsubmit.co/privacy@sundhm.com" method="POST" novalidate style="margin-top: 18px;">
+      <input type="hidden" name="_subject" value="Privacy Rights Request — sundhm.com" />
+      <input type="hidden" name="_captcha" value="true" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_next" value="https://www.sundhm.com/privacy.html?submitted=1#privacy-requests" />
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+      <div class="form-grid">
+        <label class="form-field"><span>Full name <em>*</em></span><input type="text" name="Full Name" required autocomplete="name" /></label>
+        <label class="form-field"><span>Email <em>*</em></span><input type="email" name="Email" required autocomplete="email" /></label>
+        <label class="form-field"><span>State of residence</span><input type="text" name="State" placeholder="e.g., California, New York" /></label>
+        <label class="form-field"><span>Request type <em>*</em></span>
+          <select name="Request Type" required>
+            <option value="">Select…</option>
+            <option>Access — copy of my personal information</option>
+            <option>Correct — fix inaccurate information</option>
+            <option>Delete — erase my personal information</option>
+            <option>Opt out of Sale or Share</option>
+            <option>Limit use of Sensitive Personal Information</option>
+            <option>Authorized agent request</option>
+            <option>Other / general privacy question</option>
+          </select>
+        </label>
+        <label class="form-field form-field--wide"><span>Details (optional)</span><textarea name="Details" rows="4" placeholder="Tell us anything that helps us identify you in our records or fulfill the request."></textarea></label>
+        <label class="form-field form-field--wide" style="flex-direction: row; align-items: flex-start; gap: 10px;">
+          <input type="checkbox" name="Verification Acknowledged" value="yes" required style="width: auto; margin-top: 4px;" />
+          <span style="font-size: 14px; color: var(--ink-soft);">I confirm I am the person whose information is the subject of this request, or an authorized agent. I understand SUNdhm will verify my identity before responding.</span>
+        </label>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn--gold">Submit privacy request</button>
+      </div>
+      <p class="form-note">We respond within 45 days. Verification may require additional information.</p>
+    </form>
+
+    <h2>7. Children's Privacy</h2>
     <p>The Site is not directed to children under 13, and we do not knowingly collect personal information from them. If you believe a child has provided us personal information, please contact us and we will delete it.</p>
 
-    <h2>7. Data Security &amp; Retention</h2>
-    <p>We use reasonable administrative, technical, and physical safeguards to protect personal information. We retain personal information only as long as necessary to fulfill the purposes described in this Policy or as required by law.</p>
+    <h2>8. Data Security &amp; Retention</h2>
+    <p>We use reasonable administrative, technical, and physical safeguards consistent with the New York SHIELD Act to protect personal information. We retain personal information only as long as necessary to fulfill the purposes described in this Policy or as required by law.</p>
 
-    <h2>8. Third-Party Links</h2>
+    <h2>9. Third-Party Links</h2>
     <p>The Site may contain links to third-party websites. We are not responsible for the privacy practices of those sites and encourage you to review their privacy policies.</p>
 
-    <h2>9. Changes to This Policy</h2>
+    <h2>10. Changes to This Policy</h2>
     <p>We may update this Privacy Policy from time to time. The "Last updated" date at the top of this page reflects the latest revision.</p>
 
-    <h2>10. Contact Us</h2>
-    <p>SUNdhm<br/>250 Commerce Blvd<br/>Liverpool, NY 13088<br/>Phone: <a href="tel:+13157520155">(315) 752-0155</a><br/>Email: <a href="mailto:hello@sundhm.com">hello@sundhm.com</a></p>
+    <h2>11. Contact Us</h2>
+    <p>SUNdhm<br/>250 Commerce Blvd<br/>Liverpool, NY 13088<br/>Phone: <a href="tel:+13157520155">(315) 752-0155</a><br/>Privacy email: <a href="mailto:privacy@sundhm.com">privacy@sundhm.com</a><br/>General email: <a href="mailto:hello@sundhm.com">hello@sundhm.com</a></p>
   </div>
 </section>
 
+</main>
 <footer class="sd-footer">
   <div class="container">
     <div class="sd-footer__inner">
@@ -181,7 +220,7 @@
       <a href="./privacy.html">Privacy Policy</a>
       <a href="./terms.html">Terms of Use</a>
       <a href="./accessibility.html">Accessibility</a>
-      <a href="./privacy.html#ccpa">Do Not Sell or Share My Personal Information</a>
+      <a href="./privacy.html#privacy-requests">Do Not Sell or Share My Personal Information</a>
       <a href="#" id="cookieReopen">Cookie Preferences</a>
     </div>
   </div>
@@ -345,6 +384,26 @@
       write({ necessary:true, analytics:false, marketing:false, choice:'reject-all' });
       hideModal(); hideBanner();
     });
+
+    // Public consent helper for future analytics/pixels.
+    // Usage: SundhmConsent.onAnalytics(function(){ /* load GA */ });
+    //        SundhmConsent.onMarketing(function(){ /* load Meta pixel */ });
+    window.SundhmConsent = {
+      get: read,
+      has: function(cat){ var s = read(); return !!(s && s[cat]); },
+      onAnalytics: function(cb){
+        if (this.has('analytics')) { try { cb(); } catch(e){} return; }
+        window.addEventListener('cookieconsent', function once(e){
+          if (e.detail && e.detail.analytics) { window.removeEventListener('cookieconsent', once); try { cb(); } catch(err){} }
+        });
+      },
+      onMarketing: function(cb){
+        if (this.has('marketing')) { try { cb(); } catch(e){} return; }
+        window.addEventListener('cookieconsent', function once(e){
+          if (e.detail && e.detail.marketing) { window.removeEventListener('cookieconsent', once); try { cb(); } catch(err){} }
+        });
+      }
+    };
   })();
 </script>
 </body>

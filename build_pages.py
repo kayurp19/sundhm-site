@@ -66,6 +66,7 @@ def header(active, hero_overlap=False):
         a = ' class="is-active"' if active == key else ''
         return f'      <a href="./{slug}"{a}>{label}</a>'
     return f'''<body class="sundhm">
+<a class="skip-link" href="#main">Skip to main content</a>
 <header class="{cls}" id="top">
   <div class="container sd-header__inner">
     <a href="./index.html" class="sd-header__logo" aria-label="SUNdhm home">
@@ -116,7 +117,7 @@ FOOTER = '''<footer class="sd-footer">
       <a href="./privacy.html">Privacy Policy</a>
       <a href="./terms.html">Terms of Use</a>
       <a href="./accessibility.html">Accessibility</a>
-      <a href="./privacy.html#ccpa">Do Not Sell or Share My Personal Information</a>
+      <a href="./privacy.html#privacy-requests">Do Not Sell or Share My Personal Information</a>
       <a href="#" id="cookieReopen">Cookie Preferences</a>
     </div>
   </div>
@@ -280,6 +281,26 @@ FOOTER = '''<footer class="sd-footer">
       write({ necessary:true, analytics:false, marketing:false, choice:'reject-all' });
       hideModal(); hideBanner();
     });
+
+    // Public consent helper for future analytics/pixels.
+    // Usage: SundhmConsent.onAnalytics(function(){ /* load GA */ });
+    //        SundhmConsent.onMarketing(function(){ /* load Meta pixel */ });
+    window.SundhmConsent = {
+      get: read,
+      has: function(cat){ var s = read(); return !!(s && s[cat]); },
+      onAnalytics: function(cb){
+        if (this.has('analytics')) { try { cb(); } catch(e){} return; }
+        window.addEventListener('cookieconsent', function once(e){
+          if (e.detail && e.detail.analytics) { window.removeEventListener('cookieconsent', once); try { cb(); } catch(err){} }
+        });
+      },
+      onMarketing: function(cb){
+        if (this.has('marketing')) { try { cb(); } catch(e){} return; }
+        window.addEventListener('cookieconsent', function once(e){
+          if (e.detail && e.detail.marketing) { window.removeEventListener('cookieconsent', once); try { cb(); } catch(err){} }
+        });
+      }
+    };
   })();
 </script>
 </body>
@@ -287,7 +308,7 @@ FOOTER = '''<footer class="sd-footer">
 
 
 def write_page(path, title, desc, canonical, body_html, hero_overlap=False, active=""):
-    html = head(title, desc, canonical) + "\n" + header(active, hero_overlap=hero_overlap) + body_html + "\n" + FOOTER
+    html = head(title, desc, canonical) + "\n" + header(active, hero_overlap=hero_overlap) + '<main id="main" tabindex="-1">\n' + body_html + "\n</main>\n" + FOOTER
     (ROOT / path).write_text(html)
     print(f"  wrote {path}  ({len(html):,} bytes)")
 
@@ -546,7 +567,7 @@ SERVICES_BODY = '''
             <li>Two-week closings, tops</li>
             <li>No agent fees, no repairs needed on your end</li>
           </ul>
-          <p style="margin-top: 16px;"><a href="mailto:hello@sundhm.com?subject=Sell%20My%20House%20to%20SUNdhm" style="color: var(--gold-deep); font-weight: 600;">Email us about your property →</a></p>
+          <p style="margin-top: 16px;"><a href="mailto:hello@sundhm.com?subject=Sell%20My%20House%20to%20SUNdhm" style="color: var(--gold-text); font-weight: 700;">Email us about your property →</a></p>
         </div>
       </article>
 
@@ -609,7 +630,7 @@ SERVICES_BODY = '''
           <li>Coordinate with counsel, brokers, and special servicers</li>
           <li>Sale, disposition, and turnover support</li>
         </ul>
-        <p style="margin-top: 16px;"><a href="mailto:hello@sundhm.com?subject=Receivership%20Engagement%20Inquiry" style="color: var(--gold-deep); font-weight: 600;">Inquire about a receivership engagement →</a></p>
+        <p style="margin-top: 16px;"><a href="mailto:hello@sundhm.com?subject=Receivership%20Engagement%20Inquiry" style="color: var(--gold-text); font-weight: 700;">Inquire about a receivership engagement →</a></p>
       </div>
     </article>
 
@@ -637,7 +658,7 @@ SERVICES_BODY = '''
           <li>Quietly market or refinance when that's the right path</li>
           <li>Step in as a manager or receiver if the situation calls for it</li>
         </ul>
-        <p style="margin-top: 16px;"><a href="mailto:hello@sundhm.com?subject=Mortgage%20Dispute%20Help%20%E2%80%94%20Confidential" style="color: var(--gold-deep); font-weight: 600;">Email a confidential summary →</a></p>
+        <p style="margin-top: 16px;"><a href="mailto:hello@sundhm.com?subject=Mortgage%20Dispute%20Help%20%E2%80%94%20Confidential" style="color: var(--gold-text); font-weight: 700;">Email a confidential summary →</a></p>
       </div>
     </article>
   </div>
@@ -852,6 +873,23 @@ CAREERS_BODY = '''
       </div>
     </form>
 
+    <div class="applicant-notice reveal" id="applicant-notice">
+      <h3 class="serif">Equal Opportunity &amp; Applicant Notice</h3>
+      <p><strong>Equal opportunity employer.</strong> SUNdhm is an equal opportunity employer. We consider all qualified applicants without regard to race, color, religion, sex (including pregnancy, sexual orientation, or gender identity), national origin, age, disability, genetic information, marital status, military or veteran status, citizenship, or any other status protected by federal, New York State, or local law. We comply with the New York State Human Rights Law and the New York City Human Rights Law where applicable.</p>
+      <p><strong>Reasonable accommodations.</strong> If you need an accommodation to apply or to participate in our hiring process, contact <a href="mailto:hello@sundhm.com?subject=Hiring%20Accommodation%20Request">hello@sundhm.com</a> and we will work with you.</p>
+      <p><strong>Pay transparency.</strong> Where required by law, we include a good-faith pay range in each job posting.</p>
+      <h4 style="margin-top: 22px;">How we handle your application data</h4>
+      <ul class="spec-list">
+        <li><strong>What we collect:</strong> the information you submit on this form (name, contact details, position of interest, work authorization status, message, and résumé), plus any references or background-check results we obtain with your authorization later in the process.</li>
+        <li><strong>How we use it:</strong> only to evaluate you for employment, communicate with you about the role, and meet legal/recordkeeping obligations. We do not sell applicant data and do not use it for advertising.</li>
+        <li><strong>Who sees it:</strong> SUNdhm hiring staff, and service providers (email, form processor, background-check vendors if applicable) under contract.</li>
+        <li><strong>How long we keep it:</strong> typically up to 2 years after your application, then we delete or de-identify it, unless a longer period is required by law.</li>
+        <li><strong>Your rights:</strong> you may request access, correction, or deletion of your applicant data at any time by emailing <a href="mailto:privacy@sundhm.com?subject=Applicant%20Privacy%20Request">privacy@sundhm.com</a>. See our <a href="./privacy.html">Privacy Policy</a> for details.</li>
+        <li><strong>California residents:</strong> additional rights apply under the CCPA/CPRA, including the right to know, correct, delete, and limit the use of sensitive information. Submit a request at <a href="./privacy.html#privacy-requests">privacy requests</a>.</li>
+      </ul>
+      <p style="font-size: 13px; color: var(--ink-soft); margin-top: 14px;">Please do not include sensitive personal information (such as Social Security number, driver's license, or financial account numbers) in this form. We will request that information through a secure channel only if and when it becomes necessary later in the process.</p>
+    </div>
+
     <div id="applySuccess" class="apply-success" hidden>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="40" height="40"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
       <h3 class="serif">Thanks — we got it.</h3>
@@ -1040,23 +1078,59 @@ PRIVACY_BODY = f'''
       <li>Limit the use of sensitive personal information.</li>
       <li>Not be discriminated against for exercising these rights.</li>
     </ul>
-    <p><strong>Do Not Sell or Share My Personal Information:</strong> SUNdhm does not sell personal information for monetary value. To opt out of any sharing for cross-context behavioral advertising or to exercise any of the above rights, email <a href="mailto:hello@sundhm.com?subject=Privacy%20Rights%20Request">hello@sundhm.com</a> with the subject line "Privacy Rights Request" and tell us which right you would like to exercise. We will verify your identity before responding and will respond within 45 days.</p>
-    <p>You may also designate an authorized agent to make a request on your behalf.</p>
+    <p><strong>Do Not Sell or Share My Personal Information:</strong> SUNdhm does not sell personal information for monetary value and does not currently share personal information for cross-context behavioral advertising. You can submit a request below or email <a href="mailto:privacy@sundhm.com?subject=Privacy%20Rights%20Request">privacy@sundhm.com</a>.</p>
+    <p>You may designate an authorized agent to make a request on your behalf. We will verify your identity (and your agent's authorization) before responding and will respond within 45 days, with one 45-day extension if reasonably necessary.</p>
 
-    <h2>6. Children's Privacy</h2>
+    <h2 id="privacy-requests">6. Submit a Privacy Request</h2>
+    <p>Use this form to exercise any of your rights above — Access, Correct, Delete, Opt out of sale/share, Limit sensitive data use, or Authorized agent request. You may also email <a href="mailto:privacy@sundhm.com?subject=Privacy%20Rights%20Request">privacy@sundhm.com</a> directly.</p>
+    <form class="apply-form" action="https://formsubmit.co/privacy@sundhm.com" method="POST" novalidate style="margin-top: 18px;">
+      <input type="hidden" name="_subject" value="Privacy Rights Request — sundhm.com" />
+      <input type="hidden" name="_captcha" value="true" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_next" value="https://www.sundhm.com/privacy.html?submitted=1#privacy-requests" />
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+      <div class="form-grid">
+        <label class="form-field"><span>Full name <em>*</em></span><input type="text" name="Full Name" required autocomplete="name" /></label>
+        <label class="form-field"><span>Email <em>*</em></span><input type="email" name="Email" required autocomplete="email" /></label>
+        <label class="form-field"><span>State of residence</span><input type="text" name="State" placeholder="e.g., California, New York" /></label>
+        <label class="form-field"><span>Request type <em>*</em></span>
+          <select name="Request Type" required>
+            <option value="">Select…</option>
+            <option>Access — copy of my personal information</option>
+            <option>Correct — fix inaccurate information</option>
+            <option>Delete — erase my personal information</option>
+            <option>Opt out of Sale or Share</option>
+            <option>Limit use of Sensitive Personal Information</option>
+            <option>Authorized agent request</option>
+            <option>Other / general privacy question</option>
+          </select>
+        </label>
+        <label class="form-field form-field--wide"><span>Details (optional)</span><textarea name="Details" rows="4" placeholder="Tell us anything that helps us identify you in our records or fulfill the request."></textarea></label>
+        <label class="form-field form-field--wide" style="flex-direction: row; align-items: flex-start; gap: 10px;">
+          <input type="checkbox" name="Verification Acknowledged" value="yes" required style="width: auto; margin-top: 4px;" />
+          <span style="font-size: 14px; color: var(--ink-soft);">I confirm I am the person whose information is the subject of this request, or an authorized agent. I understand SUNdhm will verify my identity before responding.</span>
+        </label>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn--gold">Submit privacy request</button>
+      </div>
+      <p class="form-note">We respond within 45 days. Verification may require additional information.</p>
+    </form>
+
+    <h2>7. Children's Privacy</h2>
     <p>The Site is not directed to children under 13, and we do not knowingly collect personal information from them. If you believe a child has provided us personal information, please contact us and we will delete it.</p>
 
-    <h2>7. Data Security &amp; Retention</h2>
-    <p>We use reasonable administrative, technical, and physical safeguards to protect personal information. We retain personal information only as long as necessary to fulfill the purposes described in this Policy or as required by law.</p>
+    <h2>8. Data Security &amp; Retention</h2>
+    <p>We use reasonable administrative, technical, and physical safeguards consistent with the New York SHIELD Act to protect personal information. We retain personal information only as long as necessary to fulfill the purposes described in this Policy or as required by law.</p>
 
-    <h2>8. Third-Party Links</h2>
+    <h2>9. Third-Party Links</h2>
     <p>The Site may contain links to third-party websites. We are not responsible for the privacy practices of those sites and encourage you to review their privacy policies.</p>
 
-    <h2>9. Changes to This Policy</h2>
+    <h2>10. Changes to This Policy</h2>
     <p>We may update this Privacy Policy from time to time. The "Last updated" date at the top of this page reflects the latest revision.</p>
 
-    <h2>10. Contact Us</h2>
-    <p>SUNdhm<br/>250 Commerce Blvd<br/>Liverpool, NY 13088<br/>Phone: <a href="tel:+13157520155">(315) 752-0155</a><br/>Email: <a href="mailto:hello@sundhm.com">hello@sundhm.com</a></p>
+    <h2>11. Contact Us</h2>
+    <p>SUNdhm<br/>250 Commerce Blvd<br/>Liverpool, NY 13088<br/>Phone: <a href="tel:+13157520155">(315) 752-0155</a><br/>Privacy email: <a href="mailto:privacy@sundhm.com">privacy@sundhm.com</a><br/>General email: <a href="mailto:hello@sundhm.com">hello@sundhm.com</a></p>
   </div>
 </section>
 '''

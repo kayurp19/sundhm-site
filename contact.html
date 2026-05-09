@@ -52,6 +52,7 @@
 </script>
 </head>
 <body class="sundhm">
+<a class="skip-link" href="#main">Skip to main content</a>
 <header class="sd-header sd-header--solid" id="top">
   <div class="container sd-header__inner">
     <a href="./index.html" class="sd-header__logo" aria-label="SUNdhm home">
@@ -78,6 +79,7 @@
     <a href="./contact.html">Contact</a>
   </nav>
 </header>
+<main id="main" tabindex="-1">
 
 <section class="page-hero">
   <div class="container">
@@ -135,6 +137,7 @@
   </div>
 </section>
 
+</main>
 <footer class="sd-footer">
   <div class="container">
     <div class="sd-footer__inner">
@@ -157,7 +160,7 @@
       <a href="./privacy.html">Privacy Policy</a>
       <a href="./terms.html">Terms of Use</a>
       <a href="./accessibility.html">Accessibility</a>
-      <a href="./privacy.html#ccpa">Do Not Sell or Share My Personal Information</a>
+      <a href="./privacy.html#privacy-requests">Do Not Sell or Share My Personal Information</a>
       <a href="#" id="cookieReopen">Cookie Preferences</a>
     </div>
   </div>
@@ -321,6 +324,26 @@
       write({ necessary:true, analytics:false, marketing:false, choice:'reject-all' });
       hideModal(); hideBanner();
     });
+
+    // Public consent helper for future analytics/pixels.
+    // Usage: SundhmConsent.onAnalytics(function(){ /* load GA */ });
+    //        SundhmConsent.onMarketing(function(){ /* load Meta pixel */ });
+    window.SundhmConsent = {
+      get: read,
+      has: function(cat){ var s = read(); return !!(s && s[cat]); },
+      onAnalytics: function(cb){
+        if (this.has('analytics')) { try { cb(); } catch(e){} return; }
+        window.addEventListener('cookieconsent', function once(e){
+          if (e.detail && e.detail.analytics) { window.removeEventListener('cookieconsent', once); try { cb(); } catch(err){} }
+        });
+      },
+      onMarketing: function(cb){
+        if (this.has('marketing')) { try { cb(); } catch(e){} return; }
+        window.addEventListener('cookieconsent', function once(e){
+          if (e.detail && e.detail.marketing) { window.removeEventListener('cookieconsent', once); try { cb(); } catch(err){} }
+        });
+      }
+    };
   })();
 </script>
 </body>

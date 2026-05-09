@@ -52,6 +52,7 @@
 </script>
 </head>
 <body class="sundhm">
+<a class="skip-link" href="#main">Skip to main content</a>
 <header class="sd-header sd-header--solid" id="top">
   <div class="container sd-header__inner">
     <a href="./index.html" class="sd-header__logo" aria-label="SUNdhm home">
@@ -78,6 +79,7 @@
     <a href="./contact.html">Contact</a>
   </nav>
 </header>
+<main id="main" tabindex="-1">
 
 <section class="page-hero">
   <div class="container">
@@ -206,6 +208,23 @@
       </div>
     </form>
 
+    <div class="applicant-notice reveal" id="applicant-notice">
+      <h3 class="serif">Equal Opportunity &amp; Applicant Notice</h3>
+      <p><strong>Equal opportunity employer.</strong> SUNdhm is an equal opportunity employer. We consider all qualified applicants without regard to race, color, religion, sex (including pregnancy, sexual orientation, or gender identity), national origin, age, disability, genetic information, marital status, military or veteran status, citizenship, or any other status protected by federal, New York State, or local law. We comply with the New York State Human Rights Law and the New York City Human Rights Law where applicable.</p>
+      <p><strong>Reasonable accommodations.</strong> If you need an accommodation to apply or to participate in our hiring process, contact <a href="mailto:hello@sundhm.com?subject=Hiring%20Accommodation%20Request">hello@sundhm.com</a> and we will work with you.</p>
+      <p><strong>Pay transparency.</strong> Where required by law, we include a good-faith pay range in each job posting.</p>
+      <h4 style="margin-top: 22px;">How we handle your application data</h4>
+      <ul class="spec-list">
+        <li><strong>What we collect:</strong> the information you submit on this form (name, contact details, position of interest, work authorization status, message, and résumé), plus any references or background-check results we obtain with your authorization later in the process.</li>
+        <li><strong>How we use it:</strong> only to evaluate you for employment, communicate with you about the role, and meet legal/recordkeeping obligations. We do not sell applicant data and do not use it for advertising.</li>
+        <li><strong>Who sees it:</strong> SUNdhm hiring staff, and service providers (email, form processor, background-check vendors if applicable) under contract.</li>
+        <li><strong>How long we keep it:</strong> typically up to 2 years after your application, then we delete or de-identify it, unless a longer period is required by law.</li>
+        <li><strong>Your rights:</strong> you may request access, correction, or deletion of your applicant data at any time by emailing <a href="mailto:privacy@sundhm.com?subject=Applicant%20Privacy%20Request">privacy@sundhm.com</a>. See our <a href="./privacy.html">Privacy Policy</a> for details.</li>
+        <li><strong>California residents:</strong> additional rights apply under the CCPA/CPRA, including the right to know, correct, delete, and limit the use of sensitive information. Submit a request at <a href="./privacy.html#privacy-requests">privacy requests</a>.</li>
+      </ul>
+      <p style="font-size: 13px; color: var(--ink-soft); margin-top: 14px;">Please do not include sensitive personal information (such as Social Security number, driver's license, or financial account numbers) in this form. We will request that information through a secure channel only if and when it becomes necessary later in the process.</p>
+    </div>
+
     <div id="applySuccess" class="apply-success" hidden>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="40" height="40"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
       <h3 class="serif">Thanks — we got it.</h3>
@@ -247,6 +266,7 @@
   })();
 </script>
 
+</main>
 <footer class="sd-footer">
   <div class="container">
     <div class="sd-footer__inner">
@@ -269,7 +289,7 @@
       <a href="./privacy.html">Privacy Policy</a>
       <a href="./terms.html">Terms of Use</a>
       <a href="./accessibility.html">Accessibility</a>
-      <a href="./privacy.html#ccpa">Do Not Sell or Share My Personal Information</a>
+      <a href="./privacy.html#privacy-requests">Do Not Sell or Share My Personal Information</a>
       <a href="#" id="cookieReopen">Cookie Preferences</a>
     </div>
   </div>
@@ -433,6 +453,26 @@
       write({ necessary:true, analytics:false, marketing:false, choice:'reject-all' });
       hideModal(); hideBanner();
     });
+
+    // Public consent helper for future analytics/pixels.
+    // Usage: SundhmConsent.onAnalytics(function(){ /* load GA */ });
+    //        SundhmConsent.onMarketing(function(){ /* load Meta pixel */ });
+    window.SundhmConsent = {
+      get: read,
+      has: function(cat){ var s = read(); return !!(s && s[cat]); },
+      onAnalytics: function(cb){
+        if (this.has('analytics')) { try { cb(); } catch(e){} return; }
+        window.addEventListener('cookieconsent', function once(e){
+          if (e.detail && e.detail.analytics) { window.removeEventListener('cookieconsent', once); try { cb(); } catch(err){} }
+        });
+      },
+      onMarketing: function(cb){
+        if (this.has('marketing')) { try { cb(); } catch(e){} return; }
+        window.addEventListener('cookieconsent', function once(e){
+          if (e.detail && e.detail.marketing) { window.removeEventListener('cookieconsent', once); try { cb(); } catch(err){} }
+        });
+      }
+    };
   })();
 </script>
 </body>
