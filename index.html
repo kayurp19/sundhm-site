@@ -65,10 +65,11 @@
     <nav class="sd-header__nav" aria-label="Primary">
       <a href="#about">About</a>
       <a href="#services">Services</a>
+      <a href="#hire-us">Hire Us</a>
       <a href="#careers">Careers</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a class="btn btn--gold sd-header__cta" href="#contact">Contact Us</a>
+    <a class="btn btn--gold sd-header__cta" href="#hire-us">Hire SUNdhm</a>
     <button class="sd-header__menu-btn" aria-label="Open menu" id="menuBtn">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
@@ -79,6 +80,7 @@
     </button>
     <a href="#about">About</a>
     <a href="#services">Services</a>
+    <a href="#hire-us">Hire Us</a>
     <a href="#careers">Careers</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -135,75 +137,288 @@
       <h2 class="serif" style="margin-top: 16px;">One operating philosophy. Seven lines of business.</h2>
     </div>
 
+    <p class="reveal" style="text-align:center; max-width: 720px; margin: -32px auto 56px; color: var(--ink-soft);">Tap any service to see how we deliver it.</p>
+
     <div class="grid grid-3">
-      <article class="card reveal">
-        <div class="card__media"><img src="./assets/images/service-hotel.jpg" alt="Modern hotel guest room" loading="lazy" /></div>
-        <div class="card__body">
-          <p class="card__meta">Hospitality</p>
-          <h3 class="card__title">Hotel Management</h3>
-          <p class="card__desc">Full-service hotel operations — revenue management, brand compliance, OTA strategy, and on-property leadership for franchised and independent hotels.</p>
+      <article class="svc-card reveal">
+        <button class="svc-card__head" type="button" aria-expanded="false">
+          <div class="svc-card__media"><img src="./assets/images/service-hotel.jpg" alt="Modern hotel guest room" loading="lazy" /></div>
+          <div class="svc-card__intro">
+            <p class="card__meta">Hospitality</p>
+            <h3 class="card__title">Hotel Management</h3>
+            <p class="card__desc">Full-service hotel operations — revenue, brand compliance, OTA strategy, and on-property leadership for franchised and independent hotels.</p>
+            <span class="svc-card__more"><span class="lbl-more">Learn more</span><span class="lbl-less">Show less</span> <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+          </div>
+        </button>
+        <div class="svc-card__detail">
+          <h4>Revenue Management &amp; Distribution</h4>
+          <ul class="spec-list">
+            <li>Dynamic pricing and yield management</li>
+            <li>Channel management and OTA strategy</li>
+            <li>Inventory control and distribution strategy</li>
+            <li>Group and transient segmentation optimization</li>
+            <li>Franchise and GDS channel management</li>
+            <li>E-commerce strategy and booking optimization</li>
+          </ul>
+          <h4>Sales &amp; Marketing</h4>
+          <ul class="spec-list">
+            <li>Strategic sales planning and competitive analysis</li>
+            <li>Local and regional market penetration</li>
+            <li>Corporate and government account development</li>
+            <li>Group and meeting sales strategy</li>
+            <li>Digital marketing, brand positioning, and online visibility</li>
+          </ul>
+          <h4>Food &amp; Beverage</h4>
+          <p>Strategic oversight of all F&amp;B operations — menu development, purchasing and inventory controls, catering and banquet management, and operational performance analysis. We focus on group events, weddings, and local dining demand to strengthen the program and overall financial performance.</p>
+          <h4>Facilities &amp; Engineering</h4>
+          <ul class="spec-list">
+            <li>Property maintenance &amp; preventative programs</li>
+            <li>Property Improvement Plan (PIP) management</li>
+            <li>Renovation and conversion project coordination</li>
+            <li>Vendor and contractor management</li>
+          </ul>
+          <h4>Human Resources &amp; Training</h4>
+          <p>Recruiting, onboarding, leadership development, payroll &amp; HR compliance, and retention programs — built around a service-focused culture that drives both employee engagement and guest satisfaction.</p>
+          <h4>Information Technology</h4>
+          <p>Property management systems, network infrastructure, reservation systems, and data security — properly integrated to streamline operations and support online bookings.</p>
         </div>
       </article>
 
-      <article class="card reveal">
-        <div class="card__media"><img src="./assets/images/service-apartments.jpg" alt="Multi-family apartment building" loading="lazy" /></div>
-        <div class="card__body">
-          <p class="card__meta">Residential</p>
-          <h3 class="card__title">Apartments &amp; Multi-Family</h3>
-          <p class="card__desc">Long-term rentals across single- and multi-family properties — leasing, maintenance, tenant relations, and steady asset growth.</p>
+      <article class="svc-card reveal">
+        <button class="svc-card__head" type="button" aria-expanded="false">
+          <div class="svc-card__media"><img src="./assets/images/service-apartments.jpg" alt="Multi-family apartment building" loading="lazy" /></div>
+          <div class="svc-card__intro">
+            <p class="card__meta">Residential</p>
+            <h3 class="card__title">Apartments &amp; Multi-Family</h3>
+            <p class="card__desc">Long-term rentals across single- and multi-family properties — leasing, maintenance, tenant relations, and steady asset growth.</p>
+            <span class="svc-card__more"><span class="lbl-more">Learn more</span><span class="lbl-less">Show less</span> <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+          </div>
+        </button>
+        <div class="svc-card__detail">
+          <p>We manage multifamily apartments, residential rentals, and condominiums with the same hands-on discipline we bring to our hotel portfolio. Our focus is on maintaining asset performance, tenant satisfaction, and operational efficiency.</p>
+          <h4>What's included</h4>
+          <ul class="spec-list">
+            <li>Day-to-day operations and on-site staff oversight</li>
+            <li>Leasing, tenant relations, and occupancy management</li>
+            <li>Maintenance coordination and vendor management</li>
+            <li>Financial reporting, budgeting, and cost control</li>
+            <li>Capital improvements and project oversight</li>
+            <li>Compliance with local and regulatory requirements</li>
+          </ul>
         </div>
       </article>
 
-      <article class="card reveal">
-        <div class="card__media"><img src="./assets/images/service-strrental.jpg" alt="Modern short-term rental living room" loading="lazy" /></div>
-        <div class="card__body">
-          <p class="card__meta">Short-Term Rentals</p>
-          <h3 class="card__title">Airbnb &amp; STR Operations</h3>
-          <p class="card__desc">Furnished short-term and corporate rentals with hotel-grade standards — listing optimization, dynamic pricing, professional cleaning, and guest support.</p>
+      <article class="svc-card reveal">
+        <button class="svc-card__head" type="button" aria-expanded="false">
+          <div class="svc-card__media"><img src="./assets/images/service-strrental.jpg" alt="Modern short-term rental living room" loading="lazy" /></div>
+          <div class="svc-card__intro">
+            <p class="card__meta">Short-Term Rentals</p>
+            <h3 class="card__title">Airbnb &amp; STR Operations</h3>
+            <p class="card__desc">Furnished short-term and corporate rentals with hotel-grade standards — listing optimization, dynamic pricing, and guest support.</p>
+            <span class="svc-card__more"><span class="lbl-more">Learn more</span><span class="lbl-less">Show less</span> <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+          </div>
+        </button>
+        <div class="svc-card__detail">
+          <p>We bring a hotel operator's playbook to short-term rentals — dynamic pricing, professional cleaning standards, and 24/7 guest response. Whether it's a single Airbnb unit or a portfolio of corporate-housing apartments, we maximize occupancy without sacrificing review scores.</p>
+          <h4>What's included</h4>
+          <ul class="spec-list">
+            <li>Multi-channel listing setup (Airbnb, Vrbo, Booking.com, Furnished Finder)</li>
+            <li>Dynamic pricing and revenue optimization</li>
+            <li>Professional turnover cleaning and inventory restocking</li>
+            <li>Guest screening, communication, and 24/7 support</li>
+            <li>Maintenance dispatch and damage protection</li>
+            <li>Monthly owner statements and tax-ready reporting</li>
+          </ul>
         </div>
       </article>
 
-      <article class="card reveal">
-        <div class="card__media"><img src="./assets/images/service-property.jpg" alt="Apartment building exterior" loading="lazy" /></div>
-        <div class="card__body">
-          <p class="card__meta">Third-Party</p>
-          <h3 class="card__title">Property Management</h3>
-          <p class="card__desc">Third-party management for hotel, residential, and commercial owners — financial reporting, vendor oversight, and capital project planning.</p>
+      <article class="svc-card reveal">
+        <button class="svc-card__head" type="button" aria-expanded="false">
+          <div class="svc-card__media"><img src="./assets/images/service-property.jpg" alt="Apartment building exterior" loading="lazy" /></div>
+          <div class="svc-card__intro">
+            <p class="card__meta">Third-Party</p>
+            <h3 class="card__title">Property Management</h3>
+            <p class="card__desc">Full-service third-party management for hotel, residential, and commercial owners — we run it like we own it.</p>
+            <span class="svc-card__more"><span class="lbl-more">Learn more</span><span class="lbl-less">Show less</span> <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+          </div>
+        </button>
+        <div class="svc-card__detail">
+          <p>SUNdhm provides full-service management for branded and non-branded hotels, multifamily apartments, residential rentals, condominiums, and short-term rental properties. Our approach is hands-on and detail-oriented, with an emphasis on maintaining property condition, improving performance, and aligning operations with ownership objectives.</p>
+          <h4>Operations</h4>
+          <ul class="spec-list">
+            <li>Day-to-day operations and staff oversight</li>
+            <li>Leasing, tenant relations, and occupancy management</li>
+            <li>Maintenance coordination and vendor management</li>
+            <li>Capital improvements and project oversight</li>
+            <li>Compliance with brand, local, and regulatory requirements</li>
+          </ul>
+          <h4>Accounting &amp; Financial Reporting</h4>
+          <p>Accounts payable, accounts receivable, payroll coordination, and monthly financial reporting. Detailed financial statements, operational reports, and performance analysis give owners clear visibility into revenue trends, expenses, and overall profitability.</p>
+          <h4>Legal &amp; Finance</h4>
+          <p>Budgeting, forecasting, financial reporting, and operational expense control — plus contract management, regulatory compliance, insurance coordination, and risk management to protect the interests of the property and its ownership group.</p>
         </div>
       </article>
 
-      <article class="card reveal">
-        <div class="card__media"><img src="./assets/images/service-flip.jpg" alt="Renovated modern kitchen" loading="lazy" /></div>
-        <div class="card__body">
-          <p class="card__meta">Development</p>
-          <h3 class="card__title">House Flipping &amp; Renovation</h3>
-          <p class="card__desc">Acquiring, renovating, and repositioning single-family homes and small multi-family properties across Central New York.</p>
+      <article class="svc-card reveal">
+        <button class="svc-card__head" type="button" aria-expanded="false">
+          <div class="svc-card__media"><img src="./assets/images/service-flip.jpg" alt="Renovated modern kitchen" loading="lazy" /></div>
+          <div class="svc-card__intro">
+            <p class="card__meta">Development</p>
+            <h3 class="card__title">House Flipping &amp; Development</h3>
+            <p class="card__desc">We buy homes — any condition, any size — and reposition them. Cash offers, fast closings.</p>
+            <span class="svc-card__more"><span class="lbl-more">Learn more</span><span class="lbl-less">Show less</span> <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+          </div>
+        </button>
+        <div class="svc-card__detail">
+          <p>Since SUNdhm's founding, we've taken a dynamic and entrepreneurial approach to acquiring real estate — whether operating hotels, purchasing hotels, or providing asset management services. As an owner of hospitality and residential real estate, we know the countless details that make a property successful, and we apply that same discipline to acquisitions.</p>
+          <p>Market understanding, competition, demographic and economic trends, and analysis from each department within the organization are combined into our acquisition strategies.</p>
+          <h4>We buy houses</h4>
+          <ul class="spec-list">
+            <li>Any look, any size, any condition</li>
+            <li>Cash offers based on the deal</li>
+            <li>Two-week closings, tops</li>
+            <li>No agent fees, no repairs needed on your end</li>
+          </ul>
+          <p style="margin-top: 16px;"><a href="mailto:hello@sundhm.com?subject=Sell%20My%20House%20to%20SUNdhm" style="color: var(--gold-deep); font-weight: 600;">Email us about your property →</a></p>
         </div>
       </article>
 
-      <article class="card reveal">
-        <div class="card__media"><img src="./assets/images/service-banquet.jpg" alt="Elegant banquet table setting" loading="lazy" /></div>
-        <div class="card__body">
-          <p class="card__meta">Events</p>
-          <h3 class="card__title">Banquet &amp; Catering</h3>
-          <p class="card__desc">On-site banquet facilities and catering for weddings, corporate events, and private functions — flexible spaces with full-service support.</p>
+      <article class="svc-card reveal">
+        <button class="svc-card__head" type="button" aria-expanded="false">
+          <div class="svc-card__media"><img src="./assets/images/service-banquet.jpg" alt="Elegant banquet table setting" loading="lazy" /></div>
+          <div class="svc-card__intro">
+            <p class="card__meta">Events</p>
+            <h3 class="card__title">Banquet &amp; Catering</h3>
+            <p class="card__desc">On-site banquet facilities and catering for weddings, corporate events, and private functions.</p>
+            <span class="svc-card__more"><span class="lbl-more">Learn more</span><span class="lbl-less">Show less</span> <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+          </div>
+        </button>
+        <div class="svc-card__detail">
+          <p>Flexible event spaces and full-service catering at our Central New York hotels — built on the same operational discipline that runs our hotel F&amp;B programs.</p>
+          <h4>What we host</h4>
+          <ul class="spec-list">
+            <li>Weddings &amp; receptions</li>
+            <li>Corporate meetings, conferences, and training</li>
+            <li>Holiday parties and private functions</li>
+            <li>Group room blocks paired with on-site catering</li>
+          </ul>
+          <h4>Behind the scenes</h4>
+          <ul class="spec-list">
+            <li>Menu development with executive culinary teams</li>
+            <li>Purchasing &amp; inventory controls for consistent margins</li>
+            <li>On-site banquet management and event coordination</li>
+          </ul>
         </div>
       </article>
     </div>
 
-    <!-- Receivership: full-width feature row -->
-    <div class="reveal" style="margin-top: 48px;">
-      <article class="feature-row">
-        <div class="feature-row__body">
+    <!-- Receivership: full-width expandable feature row -->
+    <article class="svc-card svc-card--wide reveal" style="margin-top: 48px;">
+      <button class="svc-card__head" type="button" aria-expanded="false">
+        <div class="svc-card__intro svc-card__intro--wide">
           <p class="card__meta">Distressed Assets</p>
           <h3 class="card__title" style="font-size: 28px;">Receivership Services</h3>
-          <p class="card__desc">Court-appointed and lender-engaged receivership for distressed hospitality and commercial assets across New York State. We stabilize operations, restore financial controls, protect collateral value, and report transparently to courts and lenders.</p>
-          <a class="card__link" href="#contact" style="margin-top: 12px;">Engage SUNdhm <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          <p class="card__desc">Court-appointed and lender-engaged receivership for distressed hospitality and commercial assets across New York State.</p>
+          <span class="svc-card__more"><span class="lbl-more">Learn more</span><span class="lbl-less">Show less</span> <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
         </div>
-        <div class="feature-row__icon">
+        <div class="svc-card__shield">
           <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M40 8L12 22v18c0 16 12 30 28 38 16-8 28-22 28-38V22L40 8z M30 40l7 7 14-17"/></svg>
         </div>
+      </button>
+      <div class="svc-card__detail">
+        <p>When a hospitality, multi-family, or commercial asset is in distress, lenders and courts hire SUNdhm to take control quickly, secure the property, restore financial discipline, and protect collateral value. We've been on the operating side of distressed assets for decades — we know what to look for and how to fix it.</p>
+        <h4>What we do as receiver</h4>
+        <ul class="spec-list">
+          <li>Take immediate possession and secure the property</li>
+          <li>Stabilize operations, payroll, and vendor relationships</li>
+          <li>Restore financial controls and clean up books</li>
+          <li>Implement cash management and reporting protocols</li>
+          <li>Court-ready monthly reporting and lender updates</li>
+          <li>Coordinate with counsel, brokers, and special servicers</li>
+          <li>Sale, disposition, and turnover support</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- Mortgage Disputes -->
+    <article class="svc-card svc-card--wide reveal" style="margin-top: 24px;">
+      <button class="svc-card__head" type="button" aria-expanded="false">
+        <div class="svc-card__intro svc-card__intro--wide">
+          <p class="card__meta">Owner Advocacy</p>
+          <h3 class="card__title" style="font-size: 28px;">Mortgage Dispute &amp; Workout Guidance</h3>
+          <p class="card__desc">Hands-on experience navigating mortgage disputes, workouts, and lender negotiations — we've been through it ourselves.</p>
+          <span class="svc-card__more"><span class="lbl-more">Learn more</span><span class="lbl-less">Show less</span> <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </div>
+        <div class="svc-card__shield">
+          <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 32h48v32H16z M24 32V20a16 16 0 0 1 32 0v12 M40 44v8"/></svg>
+        </div>
+      </button>
+      <div class="svc-card__detail">
+        <p>If your hotel, apartment building, or commercial property is under lender pressure, we can help. SUNdhm has lived through mortgage disputes from the owner's side — restructurings, forbearance, default notices, special-asset transitions — and we use that experience to guide other property owners through the same situations.</p>
+        <p>We are not attorneys and we are not a substitute for legal counsel. We're operators who know how lenders and special servicers think, what they need to see, and how to put a credible operating plan in front of them.</p>
+        <h4>How we help owners</h4>
+        <ul class="spec-list">
+          <li>Translate lender notices and term sheets into plain English</li>
+          <li>Prepare credible operating plans, budgets, and turnaround narratives</li>
+          <li>Coordinate with counsel, accountants, and lenders on your behalf</li>
+          <li>Stabilize operations during workout or forbearance periods</li>
+          <li>Quietly market or refinance when that's the right path</li>
+          <li>Step in as a manager or receiver if the situation calls for it</li>
+        </ul>
+        <p style="margin-top: 16px;"><a href="mailto:hello@sundhm.com?subject=Mortgage%20Dispute%20Help" style="color: var(--gold-deep); font-weight: 600;">Email a confidential summary →</a></p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================ HIRE US ================ -->
+<section class="section section--soft" id="hire-us">
+  <div class="container">
+    <div class="reveal" style="text-align:center; max-width: 760px; margin: 0 auto 56px;">
+      <p class="eyebrow">Hire SUNdhm</p>
+      <h2 class="serif" style="margin-top: 16px;">Trusted by lenders. Chosen by owners.</h2>
+      <p class="lead" style="margin-top: 20px;">For more than 30 years, banks, special servicers, and individual property owners have hired SUNdhm to step in, stabilize operations, and protect asset value. Whether you need a court-appointed receiver or a hands-on property manager, we're ready to take the call.</p>
+    </div>
+
+    <div class="grid grid-2">
+      <article class="hire-card reveal">
+        <div class="hire-card__icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18h36 M10 18v22 M38 18v22 M14 18v22 M34 18v22 M22 18v22 M26 18v22 M4 42h40 M24 4l20 14H4L24 4z"/></svg>
+        </div>
+        <p class="card__meta">For Banks &amp; Lenders</p>
+        <h3 class="card__title" style="font-size: 26px;">Receivership &amp; Special-Asset Management</h3>
+        <p class="card__desc">Court-appointed and lender-engaged receivership for distressed hospitality, multi-family, and commercial assets across New York State. We take possession quickly, secure the property, restore financial controls, stabilize operations, and report transparently to the court and to you.</p>
+        <ul class="spec-list" style="margin-top: 20px;">
+          <li>Hotel, multi-family, and commercial receiverships</li>
+          <li>Operational turnaround &amp; cash-flow stabilization</li>
+          <li>Vendor &amp; payroll management, books cleaned up</li>
+          <li>Court-ready reporting and lender updates</li>
+          <li>Sale and disposition support</li>
+        </ul>
+        <a class="btn btn--gold" href="mailto:hello@sundhm.com?subject=Receivership%20Engagement%20Inquiry" style="margin-top: 28px;">Engage SUNdhm <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
       </article>
+
+      <article class="hire-card reveal">
+        <div class="hire-card__icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 42h36 M10 42V18l14-8 14 8v24 M18 42V28h12v14 M14 22h4 M30 22h4 M14 30h4"/></svg>
+        </div>
+        <p class="card__meta">For Property Owners</p>
+        <h3 class="card__title" style="font-size: 26px;">Third-Party Property Management</h3>
+        <p class="card__desc">Own a hotel, apartment building, short-term rental, or mixed-use property and tired of managing it yourself? We run it like we own it — full-service operations, transparent monthly reporting, and a single point of contact you can actually reach.</p>
+        <ul class="spec-list" style="margin-top: 20px;">
+          <li>Hotels — branded &amp; independent</li>
+          <li>Apartments &amp; multi-family rentals</li>
+          <li>Short-term rentals (Airbnb, Vrbo, corporate)</li>
+          <li>Banquet venues &amp; small commercial</li>
+          <li>Monthly P&amp;L, leasing, maintenance, vendor oversight</li>
+        </ul>
+        <a class="btn btn--gold" href="mailto:hello@sundhm.com?subject=Property%20Management%20Inquiry" style="margin-top: 28px;">Request a proposal <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      </article>
+    </div>
+
+    <div class="reveal hire-cta">
+      <p><strong>Owner under lender pressure?</strong> We've been there. Ask about our mortgage dispute &amp; workout guidance.</p>
+      <p style="margin-top: 12px;">Have an asset that needs immediate attention? Call <a href="tel:+13157520155">(315) 752-0155</a> or email <a href="mailto:hello@sundhm.com">hello@sundhm.com</a> — we respond same day.</p>
     </div>
   </div>
 </section>
@@ -301,6 +516,16 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Service card accordion
+  document.querySelectorAll('.svc-card').forEach(card => {
+    const head = card.querySelector('.svc-card__head');
+    if (!head) return;
+    head.addEventListener('click', () => {
+      const open = card.classList.toggle('is-open');
+      head.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
 </script>
 </body>
 </html>
