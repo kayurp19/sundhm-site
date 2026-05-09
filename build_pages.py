@@ -1014,8 +1014,10 @@ write_page("contact.html",
            "/contact.html", CONTACT_BODY, hero_overlap=False, active="contact")
 
 # ============ LEGAL PAGES ============
-import datetime as _dt
-LEGAL_LAST_UPDATED = _dt.datetime.now().strftime("%B %d, %Y")
+# Reviewed and approved by counsel: May 9, 2026.
+# When updating any of PRIVACY_BODY, TERMS_BODY, or ACCESSIBILITY_BODY,
+# bump LEGAL_LAST_UPDATED and re-circulate to counsel for review.
+LEGAL_LAST_UPDATED = "May 9, 2026"
 
 PRIVACY_BODY = f'''
 <section class="page-hero">
