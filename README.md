@@ -1,6 +1,6 @@
 # sundhm-site
 
-Modern static site for **Sun Development and Hospitality Management** (sundhm.com).
+Modern static site for **SUNdhm** (sundhm.com).
 
 ## Stack
 - Plain HTML/CSS/JS (no build step)
