@@ -1053,6 +1053,8 @@ h4 { font-size: clamp(18px, 1.6vw, 22px); }
   display: flex; align-items: center; justify-content: center;
   padding: 20px;
 }
+.cookie-modal[hidden],
+.cookie-banner[hidden] { display: none !important; }
 .cookie-modal__backdrop {
   position: absolute; inset: 0;
   background: rgba(15,30,60,.55);
