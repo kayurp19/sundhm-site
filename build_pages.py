@@ -74,11 +74,10 @@ def header(active, hero_overlap=False):
     <nav class="sd-header__nav" aria-label="Primary">
 {link("index.html","Home","home")}
 {link("services.html","Services","services")}
-{link("hire-us.html","Hire Us","hire")}
 {link("careers.html","Careers","careers")}
 {link("contact.html","Contact","contact")}
     </nav>
-    <a class="btn btn--gold sd-header__cta" href="./hire-us.html">Hire SUNdhm</a>
+    <a class="btn btn--gold sd-header__cta" href="./contact.html">Contact</a>
     <button class="sd-header__menu-btn" aria-label="Open menu" id="menuBtn">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
@@ -89,7 +88,6 @@ def header(active, hero_overlap=False):
     </button>
     <a href="./index.html">Home</a>
     <a href="./services.html">Services</a>
-    <a href="./hire-us.html">Hire Us</a>
     <a href="./careers.html">Careers</a>
     <a href="./contact.html">Contact</a>
   </nav>
@@ -105,7 +103,6 @@ FOOTER = '''<footer class="sd-footer">
       <nav class="sd-footer__nav" aria-label="Footer">
         <a href="./index.html">Home</a>
         <a href="./services.html">Services</a>
-        <a href="./hire-us.html">Hire Us</a>
         <a href="./careers.html">Careers</a>
         <a href="./contact.html">Contact</a>
       </nav>
@@ -174,7 +171,7 @@ HOME_BODY = '''
     <p class="sd-hero__lead">SUNdhm is a family-owned operator with deep roots in Central New York. We own and manage hotels, apartments, short-term rentals, and commercial properties — and we partner with owners and lenders who want disciplined, hands-on stewardship of their assets.</p>
     <div class="sd-hero__cta">
       <a class="btn btn--gold" href="./services.html">Our services <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
-      <a class="btn btn--ghost-light" href="./hire-us.html">Hire SUNdhm</a>
+      <a class="btn btn--ghost-light" href="./contact.html">Get in touch</a>
     </div>
   </div>
 </section>
@@ -222,25 +219,22 @@ HOME_BODY = '''
         <li><a href="./services.html#property-management"><span class="svc-bullets__name">Third-Party Property Management</span><span class="svc-bullets__sub">Hotels, residential, commercial</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></li>
         <li><a href="./services.html#flipping"><span class="svc-bullets__name">House Flipping &amp; Development</span><span class="svc-bullets__sub">Cash offers, two-week closings</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></li>
         <li><a href="./services.html#banquet"><span class="svc-bullets__name">Banquet &amp; Catering</span><span class="svc-bullets__sub">Weddings, corporate, private events</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></li>
-        <li><a href="./hire-us.html"><span class="svc-bullets__name">Receivership &amp; Special Assets</span><span class="svc-bullets__sub">For banks, lenders, and special servicers</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></li>
-        <li><a href="./hire-us.html"><span class="svc-bullets__name">Mortgage Dispute &amp; Workout Guidance</span><span class="svc-bullets__sub">For owners under lender pressure</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></li>
+        <li><a href="./services.html#receivership"><span class="svc-bullets__name">Receivership &amp; Special Assets</span><span class="svc-bullets__sub">For banks, lenders, and special servicers</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></li>
+        <li><a href="./services.html#mortgage-disputes"><span class="svc-bullets__name">Mortgage Dispute &amp; Workout Guidance</span><span class="svc-bullets__sub">For owners under lender pressure</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- HIRE US TEASER -->
+<!-- WHO WE WORK WITH -->
 <section class="section">
   <div class="container">
     <div class="grid grid-2" style="align-items: center;">
       <div class="reveal">
-        <p class="eyebrow">Hire SUNdhm</p>
+        <p class="eyebrow">Who we work with</p>
         <h2 class="serif" style="margin-top: 16px;">Trusted by lenders. Chosen by owners.</h2>
-        <p class="lead" style="margin-top: 20px;">For more than 30 years, banks, special servicers, and individual property owners have hired SUNdhm to step in, stabilize operations, and protect asset value. Whether you need a court-appointed receiver, a hands-on property manager, or guidance through a mortgage workout — we're ready to take the call.</p>
-        <div style="margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap;">
-          <a class="btn btn--gold" href="./hire-us.html">Hire SUNdhm <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
-          <a class="btn btn--ghost" href="./contact.html">Contact us</a>
-        </div>
+        <p class="lead" style="margin-top: 20px;">For more than 30 years, banks, special servicers, and individual property owners have engaged SUNdhm to step in, stabilize operations, and protect asset value. Whether you need a court-appointed receiver, a hands-on property manager, or guidance through a mortgage workout — we're ready to take the call.</p>
+        <a class="btn btn--gold" href="./contact.html" style="margin-top: 28px;">Get in touch <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
       </div>
       <div class="reveal hire-three">
         <div class="hire-three__row"><span class="hire-three__bullet">•</span><div><strong>Banks &amp; Lenders</strong><br/>Receivership &amp; special-asset management</div></div>
@@ -450,12 +444,67 @@ SERVICES_BODY = '''
       </article>
     </div>
 
-    <div class="reveal" style="margin-top: 56px; text-align: center;">
+    <div class="reveal" style="margin: 56px 0 32px; text-align: center;">
       <p class="eyebrow">Special Situations</p>
       <h2 class="serif" style="margin-top: 12px;">When a property needs a steady hand.</h2>
-      <p class="lead" style="max-width: 640px; margin: 16px auto 0;">Two specialized engagements for lenders, courts, and owners under pressure.</p>
-      <a class="btn btn--gold" style="margin-top: 24px;" href="./hire-us.html">Hire SUNdhm <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      <p class="lead" style="max-width: 640px; margin: 16px auto 0;">Specialized engagements for lenders, courts, and owners under pressure.</p>
     </div>
+
+    <article class="svc-card svc-card--wide reveal" id="receivership">
+      <button class="svc-card__head" type="button" aria-expanded="false">
+        <div class="svc-card__intro svc-card__intro--wide">
+          <p class="card__meta">Distressed Assets — For Banks &amp; Lenders</p>
+          <h3 class="card__title" style="font-size: 28px;">Receivership &amp; Special-Asset Management</h3>
+          <p class="card__desc">Court-appointed and lender-engaged receivership for distressed hospitality, multi-family, and commercial assets across New York State. We take possession quickly, secure the property, restore financial controls, stabilize operations, and report transparently to the court and to you.</p>
+          <span class="svc-card__more"><span class="lbl-more">Learn more</span><span class="lbl-less">Show less</span> <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </div>
+        <div class="svc-card__shield">
+          <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M40 8L12 22v18c0 16 12 30 28 38 16-8 28-22 28-38V22L40 8z M30 40l7 7 14-17"/></svg>
+        </div>
+      </button>
+      <div class="svc-card__detail">
+        <p>When a hospitality, multi-family, or commercial asset is in distress, lenders and courts engage SUNdhm to take control quickly, secure the property, restore financial discipline, and protect collateral value. We've been on the operating side of distressed assets for decades — we know what to look for and how to fix it.</p>
+        <h4>What we do as receiver</h4>
+        <ul class="spec-list">
+          <li>Take immediate possession and secure the property</li>
+          <li>Stabilize operations, payroll, and vendor relationships</li>
+          <li>Restore financial controls and clean up books</li>
+          <li>Implement cash management and reporting protocols</li>
+          <li>Court-ready monthly reporting and lender updates</li>
+          <li>Coordinate with counsel, brokers, and special servicers</li>
+          <li>Sale, disposition, and turnover support</li>
+        </ul>
+        <p style="margin-top: 16px;"><a href="mailto:hello@sundhm.com?subject=Receivership%20Engagement%20Inquiry" style="color: var(--gold-deep); font-weight: 600;">Inquire about a receivership engagement →</a></p>
+      </div>
+    </article>
+
+    <article class="svc-card svc-card--wide reveal" id="mortgage-disputes" style="margin-top: 24px;">
+      <button class="svc-card__head" type="button" aria-expanded="false">
+        <div class="svc-card__intro svc-card__intro--wide">
+          <p class="card__meta">Owner Advocacy — For Owners Under Pressure</p>
+          <h3 class="card__title" style="font-size: 28px;">Mortgage Dispute &amp; Workout Guidance</h3>
+          <p class="card__desc">Hands-on experience navigating mortgage disputes, workouts, and lender negotiations — we've been through it ourselves and we use that experience to guide other property owners through the same situations.</p>
+          <span class="svc-card__more"><span class="lbl-more">Learn more</span><span class="lbl-less">Show less</span> <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </div>
+        <div class="svc-card__shield">
+          <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 32h48v32H16z M24 32V20a16 16 0 0 1 32 0v12 M40 44v8"/></svg>
+        </div>
+      </button>
+      <div class="svc-card__detail">
+        <p>If your hotel, apartment building, or commercial property is under lender pressure, we can help. SUNdhm has lived through mortgage disputes from the owner's side — restructurings, forbearance, default notices, special-asset transitions — and we use that experience to guide other property owners through the same situations.</p>
+        <p><em>We are not attorneys and we are not a substitute for legal counsel. We're operators who know how lenders and special servicers think, what they need to see, and how to put a credible operating plan in front of them.</em></p>
+        <h4>How we help owners</h4>
+        <ul class="spec-list">
+          <li>Translate lender notices and term sheets into plain English</li>
+          <li>Prepare credible operating plans, budgets, and turnaround narratives</li>
+          <li>Coordinate with counsel, accountants, and lenders on your behalf</li>
+          <li>Stabilize operations during workout or forbearance periods</li>
+          <li>Quietly market or refinance when that's the right path</li>
+          <li>Step in as a manager or receiver if the situation calls for it</li>
+        </ul>
+        <p style="margin-top: 16px;"><a href="mailto:hello@sundhm.com?subject=Mortgage%20Dispute%20Help%20%E2%80%94%20Confidential" style="color: var(--gold-deep); font-weight: 600;">Email a confidential summary →</a></p>
+      </div>
+    </article>
   </div>
 </section>
 '''
@@ -556,8 +605,6 @@ CAREERS_BODY = '''
         <h2 class="serif" style="margin-bottom: 20px;">Why work with SUNdhm</h2>
         <p class="lead">We're a family-owned operator — decisions get made fast, your work matters, and your manager isn't five layers up at a corporate office in another state.</p>
         <p style="margin-top: 16px;">It is SUNdhm Management's objective to hire the best professionals for all its properties. Once a property is under management, SUNdhm searches for talented people who are the best match for the opportunities at the property. Through SUNdhm University and ongoing training, we encourage employees to gain or maintain certifications within their communities, hospitality network, or the brand they represent.</p>
-        <p style="margin-top: 16px;">Send a résumé and a few words about what you're looking for to <a href="mailto:hello@sundhm.com" style="color: var(--navy); font-weight: 600;">hello@sundhm.com</a> and we'll be in touch.</p>
-        <a class="btn btn--gold" href="mailto:hello@sundhm.com?subject=Careers%20at%20SUNdhm" style="margin-top: 28px;">Email your résumé</a>
       </div>
       <div class="reveal" style="background: var(--cream); border-radius: var(--radius-lg); padding: 40px;">
         <h3 class="serif" style="font-size: 24px; margin-bottom: 16px;">What we look for</h3>
@@ -580,6 +627,136 @@ CAREERS_BODY = '''
     </div>
   </div>
 </section>
+
+<section class="section section--soft" id="apply">
+  <div class="container" style="max-width: 820px;">
+    <div class="reveal" style="text-align: center; margin-bottom: 40px;">
+      <p class="eyebrow">Apply now</p>
+      <h2 class="serif" style="margin-top: 12px;">Apply for a position</h2>
+      <p class="lead" style="margin-top: 16px;">Tell us about yourself and attach a résumé — we read every application and respond personally.</p>
+    </div>
+
+    <form class="apply-form reveal" id="applyForm" action="https://formsubmit.co/hello@sundhm.com" method="POST" enctype="multipart/form-data" novalidate>
+      <input type="hidden" name="_subject" value="New job application — SUNdhm careers" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="true" />
+      <input type="hidden" name="_next" value="https://www.sundhm.com/careers.html?submitted=1" />
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+      <div class="form-grid">
+        <label class="form-field">
+          <span class="form-label">First name <span aria-hidden="true" style="color:var(--gold-deep)">*</span></span>
+          <input type="text" name="First Name" required autocomplete="given-name" />
+        </label>
+        <label class="form-field">
+          <span class="form-label">Last name <span aria-hidden="true" style="color:var(--gold-deep)">*</span></span>
+          <input type="text" name="Last Name" required autocomplete="family-name" />
+        </label>
+        <label class="form-field">
+          <span class="form-label">Email <span aria-hidden="true" style="color:var(--gold-deep)">*</span></span>
+          <input type="email" name="Email" required autocomplete="email" />
+        </label>
+        <label class="form-field">
+          <span class="form-label">Phone <span aria-hidden="true" style="color:var(--gold-deep)">*</span></span>
+          <input type="tel" name="Phone" required autocomplete="tel" placeholder="(315) 555-0123" />
+        </label>
+        <label class="form-field form-field--full">
+          <span class="form-label">City / town</span>
+          <input type="text" name="City" autocomplete="address-level2" />
+        </label>
+        <label class="form-field">
+          <span class="form-label">Position you're applying for <span aria-hidden="true" style="color:var(--gold-deep)">*</span></span>
+          <select name="Position" required>
+            <option value="">Select a role…</option>
+            <option>Front Desk / Guest Services</option>
+            <option>Housekeeping</option>
+            <option>Maintenance / Engineering</option>
+            <option>Sales &amp; Revenue</option>
+            <option>General Manager</option>
+            <option>Assistant Manager</option>
+            <option>Banquet / Catering</option>
+            <option>Corporate / Accounting</option>
+            <option>Other (note in message)</option>
+          </select>
+        </label>
+        <label class="form-field">
+          <span class="form-label">Earliest start date</span>
+          <input type="date" name="Start Date" />
+        </label>
+        <label class="form-field form-field--full">
+          <span class="form-label">Years of relevant experience</span>
+          <select name="Experience">
+            <option value="">Select…</option>
+            <option>None — willing to learn</option>
+            <option>Less than 1 year</option>
+            <option>1–3 years</option>
+            <option>3–5 years</option>
+            <option>5–10 years</option>
+            <option>10+ years</option>
+          </select>
+        </label>
+        <label class="form-field form-field--full">
+          <span class="form-label">Tell us about yourself</span>
+          <textarea name="Message" rows="5" placeholder="Briefly: where you've worked, what you're looking for, what hours you can do, and anything else we should know."></textarea>
+        </label>
+        <div class="form-field form-field--full">
+          <span class="form-label">Résumé (PDF, DOC, or DOCX)</span>
+          <label class="file-drop" id="fileDrop">
+            <input type="file" name="Resume" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" id="fileInput" />
+            <span class="file-drop__text" id="fileText">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              <span>Choose a file or drag it here</span>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn--gold">Submit application <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+        <p class="form-note">Or email a résumé directly to <a href="mailto:hello@sundhm.com?subject=Careers%20at%20SUNdhm">hello@sundhm.com</a>. We respond within one business day.</p>
+      </div>
+    </form>
+
+    <div id="applySuccess" class="apply-success" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="40" height="40"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+      <h3 class="serif">Thanks — we got it.</h3>
+      <p>Your application has been received. We read every one personally and will be in touch within one business day.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('submitted') === '1') {
+      const form = document.getElementById('applyForm');
+      const success = document.getElementById('applySuccess');
+      if (form) form.style.display = 'none';
+      if (success) {
+        success.hidden = false;
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+    const input = document.getElementById('fileInput');
+    const text = document.getElementById('fileText');
+    const drop = document.getElementById('fileDrop');
+    if (input && text && drop) {
+      input.addEventListener('change', () => {
+        const f = input.files && input.files[0];
+        if (f) {
+          text.querySelector('span').textContent = f.name + '  (' + Math.round(f.size/1024) + ' KB)';
+          drop.classList.add('has-file');
+        }
+      });
+      ['dragenter','dragover'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('is-drag'); }));
+      ['dragleave','drop'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('is-drag'); }));
+      drop.addEventListener('drop', e => {
+        const f = e.dataTransfer.files && e.dataTransfer.files[0];
+        if (f) { input.files = e.dataTransfer.files; input.dispatchEvent(new Event('change')); }
+      });
+    }
+  })();
+</script>
 '''
 
 # ============ CONTACT PAGE ============
@@ -652,11 +829,6 @@ write_page("services.html",
            "Services · SUNdhm",
            "SUNdhm services: hotel management, apartments &amp; multi-family, Airbnb &amp; STR, third-party property management, house flipping, banquet &amp; catering, and special situations.",
            "/services.html", SERVICES_BODY, hero_overlap=False, active="services")
-
-write_page("hire-us.html",
-           "Hire SUNdhm · Receivership, Property Management, Mortgage Disputes",
-           "Hire SUNdhm: court-appointed receivership and special-asset management for lenders; third-party property management for owners; mortgage dispute and workout guidance for owners under pressure.",
-           "/hire-us.html", HIRE_BODY, hero_overlap=False, active="hire")
 
 write_page("careers.html",
            "Careers · SUNdhm",
