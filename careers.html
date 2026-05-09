@@ -265,8 +265,69 @@
         <span><a href="tel:+13157520155">(315) 752-0155</a> · <a href="mailto:hello@sundhm.com">hello@sundhm.com</a></span>
       </div>
     </div>
+    <div class="sd-footer__legal">
+      <a href="./privacy.html">Privacy Policy</a>
+      <a href="./terms.html">Terms of Use</a>
+      <a href="./accessibility.html">Accessibility</a>
+      <a href="./privacy.html#ccpa">Do Not Sell or Share My Personal Information</a>
+      <a href="#" id="cookieReopen">Cookie Preferences</a>
+    </div>
   </div>
 </footer>
+
+<!-- Cookie consent banner (US compliance / CCPA-ready) -->
+<div id="cookieBanner" class="cookie-banner" hidden role="dialog" aria-label="Cookie consent" aria-live="polite">
+  <div class="cookie-banner__inner">
+    <div class="cookie-banner__body">
+      <h3 class="cookie-banner__title">We value your privacy</h3>
+      <p>This website uses cookies to enhance your experience and to analyze traffic. We may share information about your use of our site with our analytics partners. You can accept all cookies, decline non-essential cookies, or manage your preferences. See our <a href="./privacy.html">Privacy Policy</a> for details.</p>
+    </div>
+    <div class="cookie-banner__actions">
+      <button type="button" class="btn btn--ghost" id="cookieDecline">Decline</button>
+      <button type="button" class="btn btn--ghost" id="cookieManage">Manage</button>
+      <button type="button" class="btn btn--gold" id="cookieAccept">Accept all</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie preferences modal -->
+<div id="cookieModal" class="cookie-modal" hidden role="dialog" aria-modal="true" aria-labelledby="cookieModalTitle">
+  <div class="cookie-modal__backdrop" id="cookieModalBackdrop"></div>
+  <div class="cookie-modal__panel">
+    <button type="button" class="cookie-modal__close" id="cookieModalClose" aria-label="Close">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <h3 id="cookieModalTitle" class="serif">Cookie preferences</h3>
+    <p>Choose which cookies you allow. Your preferences are saved on this device and apply only to sundhm.com.</p>
+    <div class="cookie-row">
+      <div>
+        <strong>Strictly necessary</strong>
+        <p>Required for the site to function (security, navigation, form submission). Cannot be disabled.</p>
+      </div>
+      <span class="cookie-toggle cookie-toggle--locked">Always on</span>
+    </div>
+    <label class="cookie-row">
+      <div>
+        <strong>Analytics</strong>
+        <p>Helps us understand how visitors use our site so we can improve it. Anonymous and aggregated.</p>
+      </div>
+      <input type="checkbox" id="prefAnalytics" class="cookie-toggle__input" />
+      <span class="cookie-toggle"><span class="cookie-toggle__dot"></span></span>
+    </label>
+    <label class="cookie-row">
+      <div>
+        <strong>Marketing</strong>
+        <p>Used by our advertising partners to show relevant ads on other sites. Disabled by default.</p>
+      </div>
+      <input type="checkbox" id="prefMarketing" class="cookie-toggle__input" />
+      <span class="cookie-toggle"><span class="cookie-toggle__dot"></span></span>
+    </label>
+    <div class="cookie-modal__actions">
+      <button type="button" class="btn btn--ghost" id="cookieRejectAll">Reject non-essential</button>
+      <button type="button" class="btn btn--gold" id="cookieSavePrefs">Save preferences</button>
+    </div>
+  </div>
+</div>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
@@ -299,6 +360,67 @@
       head.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
   });
+
+  // ============ Cookie consent ============
+  (function(){
+    const KEY = 'sundhm_cookie_consent_v1';
+    const banner = document.getElementById('cookieBanner');
+    const modal  = document.getElementById('cookieModal');
+    const accept = document.getElementById('cookieAccept');
+    const decline= document.getElementById('cookieDecline');
+    const manage = document.getElementById('cookieManage');
+    const reopen = document.getElementById('cookieReopen');
+    const close  = document.getElementById('cookieModalClose');
+    const back   = document.getElementById('cookieModalBackdrop');
+    const save   = document.getElementById('cookieSavePrefs');
+    const reject = document.getElementById('cookieRejectAll');
+    const prefA  = document.getElementById('prefAnalytics');
+    const prefM  = document.getElementById('prefMarketing');
+    if (!banner) return;
+
+    function read() {
+      try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch(e) { return null; }
+    }
+    function write(state) {
+      state.timestamp = new Date().toISOString();
+      localStorage.setItem(KEY, JSON.stringify(state));
+      // Hook for analytics: gate any tracking scripts on state.analytics === true
+      window.dispatchEvent(new CustomEvent('cookieconsent', { detail: state }));
+    }
+    function showBanner(){ banner.hidden = false; }
+    function hideBanner(){ banner.hidden = true; }
+    function showModal(){
+      const cur = read() || { analytics:false, marketing:false };
+      if (prefA) prefA.checked = !!cur.analytics;
+      if (prefM) prefM.checked = !!cur.marketing;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+    function hideModal(){ modal.hidden = true; document.body.style.overflow = ''; }
+
+    if (!read()) showBanner();
+
+    accept && accept.addEventListener('click', () => {
+      write({ necessary:true, analytics:true, marketing:true, choice:'accept-all' });
+      hideBanner();
+    });
+    decline && decline.addEventListener('click', () => {
+      write({ necessary:true, analytics:false, marketing:false, choice:'decline' });
+      hideBanner();
+    });
+    manage && manage.addEventListener('click', showModal);
+    reopen && reopen.addEventListener('click', (e) => { e.preventDefault(); showModal(); });
+    close && close.addEventListener('click', hideModal);
+    back && back.addEventListener('click', hideModal);
+    save && save.addEventListener('click', () => {
+      write({ necessary:true, analytics: !!(prefA && prefA.checked), marketing: !!(prefM && prefM.checked), choice:'custom' });
+      hideModal(); hideBanner();
+    });
+    reject && reject.addEventListener('click', () => {
+      write({ necessary:true, analytics:false, marketing:false, choice:'reject-all' });
+      hideModal(); hideBanner();
+    });
+  })();
 </script>
 </body>
 </html>

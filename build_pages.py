@@ -112,8 +112,69 @@ FOOTER = '''<footer class="sd-footer">
         <span><a href="tel:+13157520155">(315) 752-0155</a> · <a href="mailto:hello@sundhm.com">hello@sundhm.com</a></span>
       </div>
     </div>
+    <div class="sd-footer__legal">
+      <a href="./privacy.html">Privacy Policy</a>
+      <a href="./terms.html">Terms of Use</a>
+      <a href="./accessibility.html">Accessibility</a>
+      <a href="./privacy.html#ccpa">Do Not Sell or Share My Personal Information</a>
+      <a href="#" id="cookieReopen">Cookie Preferences</a>
+    </div>
   </div>
 </footer>
+
+<!-- Cookie consent banner (US compliance / CCPA-ready) -->
+<div id="cookieBanner" class="cookie-banner" hidden role="dialog" aria-label="Cookie consent" aria-live="polite">
+  <div class="cookie-banner__inner">
+    <div class="cookie-banner__body">
+      <h3 class="cookie-banner__title">We value your privacy</h3>
+      <p>This website uses cookies to enhance your experience and to analyze traffic. We may share information about your use of our site with our analytics partners. You can accept all cookies, decline non-essential cookies, or manage your preferences. See our <a href="./privacy.html">Privacy Policy</a> for details.</p>
+    </div>
+    <div class="cookie-banner__actions">
+      <button type="button" class="btn btn--ghost" id="cookieDecline">Decline</button>
+      <button type="button" class="btn btn--ghost" id="cookieManage">Manage</button>
+      <button type="button" class="btn btn--gold" id="cookieAccept">Accept all</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie preferences modal -->
+<div id="cookieModal" class="cookie-modal" hidden role="dialog" aria-modal="true" aria-labelledby="cookieModalTitle">
+  <div class="cookie-modal__backdrop" id="cookieModalBackdrop"></div>
+  <div class="cookie-modal__panel">
+    <button type="button" class="cookie-modal__close" id="cookieModalClose" aria-label="Close">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <h3 id="cookieModalTitle" class="serif">Cookie preferences</h3>
+    <p>Choose which cookies you allow. Your preferences are saved on this device and apply only to sundhm.com.</p>
+    <div class="cookie-row">
+      <div>
+        <strong>Strictly necessary</strong>
+        <p>Required for the site to function (security, navigation, form submission). Cannot be disabled.</p>
+      </div>
+      <span class="cookie-toggle cookie-toggle--locked">Always on</span>
+    </div>
+    <label class="cookie-row">
+      <div>
+        <strong>Analytics</strong>
+        <p>Helps us understand how visitors use our site so we can improve it. Anonymous and aggregated.</p>
+      </div>
+      <input type="checkbox" id="prefAnalytics" class="cookie-toggle__input" />
+      <span class="cookie-toggle"><span class="cookie-toggle__dot"></span></span>
+    </label>
+    <label class="cookie-row">
+      <div>
+        <strong>Marketing</strong>
+        <p>Used by our advertising partners to show relevant ads on other sites. Disabled by default.</p>
+      </div>
+      <input type="checkbox" id="prefMarketing" class="cookie-toggle__input" />
+      <span class="cookie-toggle"><span class="cookie-toggle__dot"></span></span>
+    </label>
+    <div class="cookie-modal__actions">
+      <button type="button" class="btn btn--ghost" id="cookieRejectAll">Reject non-essential</button>
+      <button type="button" class="btn btn--gold" id="cookieSavePrefs">Save preferences</button>
+    </div>
+  </div>
+</div>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
@@ -146,6 +207,67 @@ FOOTER = '''<footer class="sd-footer">
       head.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
   });
+
+  // ============ Cookie consent ============
+  (function(){
+    const KEY = 'sundhm_cookie_consent_v1';
+    const banner = document.getElementById('cookieBanner');
+    const modal  = document.getElementById('cookieModal');
+    const accept = document.getElementById('cookieAccept');
+    const decline= document.getElementById('cookieDecline');
+    const manage = document.getElementById('cookieManage');
+    const reopen = document.getElementById('cookieReopen');
+    const close  = document.getElementById('cookieModalClose');
+    const back   = document.getElementById('cookieModalBackdrop');
+    const save   = document.getElementById('cookieSavePrefs');
+    const reject = document.getElementById('cookieRejectAll');
+    const prefA  = document.getElementById('prefAnalytics');
+    const prefM  = document.getElementById('prefMarketing');
+    if (!banner) return;
+
+    function read() {
+      try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch(e) { return null; }
+    }
+    function write(state) {
+      state.timestamp = new Date().toISOString();
+      localStorage.setItem(KEY, JSON.stringify(state));
+      // Hook for analytics: gate any tracking scripts on state.analytics === true
+      window.dispatchEvent(new CustomEvent('cookieconsent', { detail: state }));
+    }
+    function showBanner(){ banner.hidden = false; }
+    function hideBanner(){ banner.hidden = true; }
+    function showModal(){
+      const cur = read() || { analytics:false, marketing:false };
+      if (prefA) prefA.checked = !!cur.analytics;
+      if (prefM) prefM.checked = !!cur.marketing;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+    function hideModal(){ modal.hidden = true; document.body.style.overflow = ''; }
+
+    if (!read()) showBanner();
+
+    accept && accept.addEventListener('click', () => {
+      write({ necessary:true, analytics:true, marketing:true, choice:'accept-all' });
+      hideBanner();
+    });
+    decline && decline.addEventListener('click', () => {
+      write({ necessary:true, analytics:false, marketing:false, choice:'decline' });
+      hideBanner();
+    });
+    manage && manage.addEventListener('click', showModal);
+    reopen && reopen.addEventListener('click', (e) => { e.preventDefault(); showModal(); });
+    close && close.addEventListener('click', hideModal);
+    back && back.addEventListener('click', hideModal);
+    save && save.addEventListener('click', () => {
+      write({ necessary:true, analytics: !!(prefA && prefA.checked), marketing: !!(prefM && prefM.checked), choice:'custom' });
+      hideModal(); hideBanner();
+    });
+    reject && reject.addEventListener('click', () => {
+      write({ necessary:true, analytics:false, marketing:false, choice:'reject-all' });
+      hideModal(); hideBanner();
+    });
+  })();
 </script>
 </body>
 </html>'''
@@ -839,5 +961,204 @@ write_page("contact.html",
            "Contact · SUNdhm · Liverpool, NY",
            "Contact SUNdhm at 250 Commerce Blvd, Liverpool NY 13088. Phone (315) 752-0155 · hello@sundhm.com.",
            "/contact.html", CONTACT_BODY, hero_overlap=False, active="contact")
+
+# ============ LEGAL PAGES ============
+import datetime as _dt
+LEGAL_LAST_UPDATED = _dt.datetime.now().strftime("%B %d, %Y")
+
+PRIVACY_BODY = f'''
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Legal</p>
+    <h1 class="serif">Privacy Policy</h1>
+    <p class="lead" style="max-width: 720px; margin-top: 16px;">Last updated: {LEGAL_LAST_UPDATED}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container legal-doc">
+    <p>SUNdhm ("<strong>SUNdhm</strong>," "<strong>we</strong>," "<strong>us</strong>," or "<strong>our</strong>") respects your privacy. This Privacy Policy explains what information we collect through <a href="https://www.sundhm.com">www.sundhm.com</a> (the "Site"), how we use it, with whom we share it, and the rights you have under U.S. state privacy laws including the California Consumer Privacy Act ("CCPA") as amended by the California Privacy Rights Act ("CPRA"), the Virginia Consumer Data Protection Act, the Colorado Privacy Act, and similar laws.</p>
+
+    <h2>1. Information We Collect</h2>
+    <p>We collect the following categories of personal information:</p>
+    <ul class="spec-list">
+      <li><strong>Identifiers:</strong> name, email address, telephone number, mailing address, IP address.</li>
+      <li><strong>Professional information:</strong> résumé contents and employment history submitted through our Careers form.</li>
+      <li><strong>Commercial information:</strong> details about properties or services you inquire about.</li>
+      <li><strong>Internet activity:</strong> pages visited, links clicked, browser type, device information, and similar usage data collected via cookies and analytics.</li>
+      <li><strong>Inferences:</strong> drawn from the above to understand your interests in our services.</li>
+    </ul>
+
+    <h2>2. How We Use Your Information</h2>
+    <ul class="spec-list">
+      <li>Respond to your inquiries about property management, receivership, mortgage workouts, and other services.</li>
+      <li>Process and evaluate employment applications.</li>
+      <li>Operate, maintain, and improve the Site.</li>
+      <li>Send service-related communications and, where permitted, marketing communications you can opt out of.</li>
+      <li>Comply with legal obligations and enforce our Terms of Use.</li>
+    </ul>
+
+    <h2>3. Cookies &amp; Tracking Technologies</h2>
+    <p>We use cookies and similar technologies to operate the Site and analyze traffic. You can manage your preferences any time through the "Cookie Preferences" link in the footer. Cookie categories used on this Site:</p>
+    <ul class="spec-list">
+      <li><strong>Strictly necessary</strong> — always on; required for the Site to function.</li>
+      <li><strong>Analytics</strong> — optional; helps us understand aggregate Site usage.</li>
+      <li><strong>Marketing</strong> — optional; supports advertising on third-party platforms.</li>
+    </ul>
+    <p>You may also disable cookies through your browser settings; however, disabling strictly necessary cookies may impair Site functionality.</p>
+
+    <h2>4. How We Share Information</h2>
+    <p>We do not sell your personal information for money. We may share information with:</p>
+    <ul class="spec-list">
+      <li><strong>Service providers</strong> who host the Site, deliver email, process forms, or provide analytics under contract with us.</li>
+      <li><strong>Professional advisors</strong> such as attorneys, accountants, and insurers when reasonably necessary.</li>
+      <li><strong>Government authorities or courts</strong> when required by law, subpoena, or to protect our legal rights.</li>
+      <li><strong>Successors</strong> in the event of a merger, acquisition, or sale of assets.</li>
+    </ul>
+
+    <h2 id="ccpa">5. Your U.S. State Privacy Rights</h2>
+    <p>Depending on the state in which you live, you may have the right to:</p>
+    <ul class="spec-list">
+      <li>Know what personal information we collect, use, and disclose about you.</li>
+      <li>Access a copy of your personal information.</li>
+      <li>Correct inaccurate personal information.</li>
+      <li>Delete your personal information, subject to legal exceptions.</li>
+      <li>Opt out of the "sale" or "sharing" of personal information for cross-context behavioral advertising.</li>
+      <li>Limit the use of sensitive personal information.</li>
+      <li>Not be discriminated against for exercising these rights.</li>
+    </ul>
+    <p><strong>Do Not Sell or Share My Personal Information:</strong> SUNdhm does not sell personal information for monetary value. To opt out of any sharing for cross-context behavioral advertising or to exercise any of the above rights, email <a href="mailto:hello@sundhm.com?subject=Privacy%20Rights%20Request">hello@sundhm.com</a> with the subject line "Privacy Rights Request" and tell us which right you would like to exercise. We will verify your identity before responding and will respond within 45 days.</p>
+    <p>You may also designate an authorized agent to make a request on your behalf.</p>
+
+    <h2>6. Children's Privacy</h2>
+    <p>The Site is not directed to children under 13, and we do not knowingly collect personal information from them. If you believe a child has provided us personal information, please contact us and we will delete it.</p>
+
+    <h2>7. Data Security &amp; Retention</h2>
+    <p>We use reasonable administrative, technical, and physical safeguards to protect personal information. We retain personal information only as long as necessary to fulfill the purposes described in this Policy or as required by law.</p>
+
+    <h2>8. Third-Party Links</h2>
+    <p>The Site may contain links to third-party websites. We are not responsible for the privacy practices of those sites and encourage you to review their privacy policies.</p>
+
+    <h2>9. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. The "Last updated" date at the top of this page reflects the latest revision.</p>
+
+    <h2>10. Contact Us</h2>
+    <p>SUNdhm<br/>250 Commerce Blvd<br/>Liverpool, NY 13088<br/>Phone: <a href="tel:+13157520155">(315) 752-0155</a><br/>Email: <a href="mailto:hello@sundhm.com">hello@sundhm.com</a></p>
+  </div>
+</section>
+'''
+
+TERMS_BODY = f'''
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Legal</p>
+    <h1 class="serif">Terms of Use</h1>
+    <p class="lead" style="max-width: 720px; margin-top: 16px;">Last updated: {LEGAL_LAST_UPDATED}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container legal-doc">
+    <p>These Terms of Use ("Terms") govern your access to and use of <a href="https://www.sundhm.com">www.sundhm.com</a> (the "Site"), operated by SUNdhm. By accessing the Site you agree to these Terms. If you do not agree, do not use the Site.</p>
+
+    <h2>1. Use of the Site</h2>
+    <p>You may use the Site only for lawful purposes and in accordance with these Terms. You agree not to:</p>
+    <ul class="spec-list">
+      <li>Use the Site in any way that violates applicable federal, state, local, or international law.</li>
+      <li>Attempt to gain unauthorized access to any portion of the Site or our systems.</li>
+      <li>Use any robot, spider, or automated means to access the Site for any purpose.</li>
+      <li>Introduce viruses, trojans, or other malicious code.</li>
+      <li>Impersonate any person or entity, or misrepresent your affiliation.</li>
+    </ul>
+
+    <h2>2. Intellectual Property</h2>
+    <p>The Site and all content on it (including text, graphics, logos, photographs, and the SUNdhm name and marks) are owned by or licensed to SUNdhm and are protected by United States and international copyright, trademark, and other intellectual property laws. You may not reproduce, distribute, modify, or create derivative works without our prior written permission.</p>
+
+    <h2>3. No Professional Advice</h2>
+    <p>Information on the Site is provided for general informational purposes only and does not constitute legal, financial, accounting, investment, tax, or other professional advice. SUNdhm is not a law firm. Statements regarding mortgage disputes, workouts, receivership, or related services describe operational support and are not a substitute for advice from qualified counsel. You should consult licensed professionals before making decisions based on Site content.</p>
+
+    <h2>4. No Engagement Created</h2>
+    <p>Contacting SUNdhm through the Site, submitting a form, or sending an email does not create a management, agency, fiduciary, or attorney-client relationship. A formal engagement requires a written agreement signed by both parties.</p>
+
+    <h2>5. Forward-Looking Statements</h2>
+    <p>The Site may include statements about anticipated performance, services, or strategies. Those statements involve risks and uncertainties, and actual outcomes may differ materially. SUNdhm makes no guarantee of any specific outcome from any service described on the Site.</p>
+
+    <h2>6. Third-Party Links</h2>
+    <p>The Site may contain links to third-party websites for convenience. We do not endorse and are not responsible for the content of those sites.</p>
+
+    <h2>7. Disclaimers</h2>
+    <p>THE SITE IS PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE SITE WILL BE UNINTERRUPTED, SECURE, OR ERROR-FREE.</p>
+
+    <h2>8. Limitation of Liability</h2>
+    <p>TO THE FULLEST EXTENT PERMITTED BY LAW, SUNdhm AND ITS OWNERS, OFFICERS, EMPLOYEES, AND AGENTS WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF OR RELATING TO YOUR USE OF THE SITE.</p>
+
+    <h2>9. Indemnification</h2>
+    <p>You agree to defend, indemnify, and hold harmless SUNdhm and its affiliates from any claims, damages, or expenses (including reasonable attorneys' fees) arising from your use of the Site or your violation of these Terms.</p>
+
+    <h2>10. Governing Law &amp; Venue</h2>
+    <p>These Terms are governed by the laws of the State of New York without regard to its conflict-of-law principles. Any dispute will be resolved exclusively in the state or federal courts located in Onondaga County, New York, and you consent to that venue.</p>
+
+    <h2>11. Changes</h2>
+    <p>We may revise these Terms at any time by updating this page. Continued use of the Site after changes constitutes acceptance of the revised Terms.</p>
+
+    <h2>12. Contact</h2>
+    <p>Questions about these Terms? Email <a href="mailto:hello@sundhm.com">hello@sundhm.com</a>.</p>
+  </div>
+</section>
+'''
+
+ACCESSIBILITY_BODY = f'''
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Legal</p>
+    <h1 class="serif">Accessibility Statement</h1>
+    <p class="lead" style="max-width: 720px; margin-top: 16px;">Last updated: {LEGAL_LAST_UPDATED}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container legal-doc">
+    <p>SUNdhm is committed to ensuring digital accessibility for people with disabilities. We are continually improving the user experience for everyone and applying the relevant accessibility standards.</p>
+
+    <h2>Conformance Status</h2>
+    <p>The Web Content Accessibility Guidelines (WCAG) define requirements for designers and developers to improve accessibility for people with disabilities. We aim to conform to <strong>WCAG 2.1 Level AA</strong>.</p>
+
+    <h2>Measures Taken</h2>
+    <ul class="spec-list">
+      <li>Semantic HTML structure for assistive technologies.</li>
+      <li>Keyboard-navigable menus, forms, and interactive components.</li>
+      <li>Sufficient color contrast for body text and interactive elements.</li>
+      <li>Descriptive alt text on meaningful imagery.</li>
+      <li>Form fields with visible labels and accessible error messages.</li>
+    </ul>
+
+    <h2>Feedback</h2>
+    <p>We welcome your feedback on the accessibility of the SUNdhm website. If you encounter accessibility barriers or have suggestions, please contact us:</p>
+    <p>SUNdhm<br/>250 Commerce Blvd, Liverpool, NY 13088<br/>Phone: <a href="tel:+13157520155">(315) 752-0155</a><br/>Email: <a href="mailto:hello@sundhm.com?subject=Accessibility%20Feedback">hello@sundhm.com</a></p>
+    <p>We try to respond to accessibility feedback within five business days.</p>
+
+    <h2>Compatibility</h2>
+    <p>The Site is designed to be compatible with recent versions of major browsers (Chrome, Firefox, Safari, Edge) and with common assistive technologies including screen readers and operating-system magnification.</p>
+
+    <h2>Limitations</h2>
+    <p>Despite our efforts, some content may not yet be fully accessible. If you need information from a page in an alternative format, please contact us and we will provide it as soon as practicable.</p>
+  </div>
+</section>
+'''
+
+write_page("privacy.html",
+           "Privacy Policy · SUNdhm",
+           "SUNdhm Privacy Policy — how we collect, use, and protect your personal information, plus your rights under U.S. state privacy laws including CCPA/CPRA.",
+           "/privacy.html", PRIVACY_BODY, hero_overlap=False, active="")
+
+write_page("terms.html",
+           "Terms of Use · SUNdhm",
+           "Terms of Use governing your access to and use of www.sundhm.com.",
+           "/terms.html", TERMS_BODY, hero_overlap=False, active="")
+
+write_page("accessibility.html",
+           "Accessibility Statement · SUNdhm",
+           "SUNdhm's commitment to digital accessibility and conformance with WCAG 2.1 Level AA.",
+           "/accessibility.html", ACCESSIBILITY_BODY, hero_overlap=False, active="")
 
 print("Done.")
