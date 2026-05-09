@@ -352,7 +352,7 @@ HOME_BODY = '''
 <section class="section--navy" style="padding: 0;">
   <div class="stats">
     <div class="stat reveal"><div class="stat__num">30+</div><div class="stat__lab">Years Operating</div></div>
-    <div class="stat reveal"><div class="stat__num">300+</div><div class="stat__lab">Hotel Rooms</div></div>
+    <div class="stat reveal"><div class="stat__num">800+</div><div class="stat__lab">Hotel Rooms</div></div>
     <div class="stat reveal"><div class="stat__num">7</div><div class="stat__lab">Lines of Business</div></div>
     <div class="stat reveal"><div class="stat__num">Now</div><div class="stat__lab">Accepting New Properties</div></div>
   </div>
@@ -375,7 +375,8 @@ HOME_BODY = '''
         <li><a href="./services.html#property-management"><span class="svc-bullets__name">Third-Party Property Management</span><span class="svc-bullets__sub">Hotels, residential, commercial</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></li>
         <li><a href="./services.html#flipping"><span class="svc-bullets__name">House Flipping &amp; Development</span><span class="svc-bullets__sub">Cash offers, two-week closings</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></li>
         <li><a href="./services.html#banquet"><span class="svc-bullets__name">Banquet &amp; Catering</span><span class="svc-bullets__sub">Weddings, corporate, private events</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></li>
-        <li><a href="./services.html#receivership"><span class="svc-bullets__name">Receivership &amp; Special Assets</span><span class="svc-bullets__sub">For banks, lenders, and special servicers</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></li>
+        <li><a href="./services.html#restoration"><span class="svc-bullets__name">Restoration Services</span><span class="svc-bullets__sub">PuroClean of Syracuse North &mdash; water, fire, mold, biohazard</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></li>
+        <li><a href="./services.html#receivership"><span class="svc-bullets__name">Receivership &amp; Special Assets</span><span class="svc-bullets__sub">NY State approved receiver &amp; property manager</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></li>
         <li><a href="./services.html#mortgage-disputes"><span class="svc-bullets__name">Mortgage Dispute &amp; Workout Guidance</span><span class="svc-bullets__sub">For owners under lender pressure</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></li>
       </ul>
     </div>
@@ -598,6 +599,37 @@ SERVICES_BODY = '''
           </ul>
         </div>
       </article>
+
+      <article class="svc-card reveal" id="restoration">
+        <button class="svc-card__head" type="button" aria-expanded="false">
+          <div class="svc-card__media"><img src="./assets/images/service-property.jpg" alt="" loading="lazy" /></div>
+          <div class="svc-card__intro">
+            <p class="card__meta">Property Restoration &amp; Mitigation</p>
+            <h3 class="card__title">Restoration Services</h3>
+            <p class="card__desc">PuroClean of Syracuse North &mdash; 24/7 emergency property restoration for water damage, fire and smoke, mold remediation, and biohazard cleanup across Central New York.</p>
+            <span class="svc-card__more"><span class="lbl-more">Learn more</span><span class="lbl-less">Show less</span> <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+          </div>
+        </button>
+        <div class="svc-card__detail">
+          <p>Our family operates <strong>PuroClean of Syracuse North</strong>, a fully licensed and insured restoration franchise serving homeowners, businesses, property managers, and insurance carriers across the greater Syracuse region. Same operational discipline as our hospitality work — fast response, transparent communication, and clean execution.</p>
+          <h4>Services</h4>
+          <ul class="spec-list">
+            <li><strong>Water damage restoration</strong> &mdash; burst pipes, flooding, sewage backups, storm damage</li>
+            <li><strong>Fire &amp; smoke damage</strong> &mdash; structure cleanup, soot removal, odor neutralization, contents pack-out</li>
+            <li><strong>Mold remediation</strong> &mdash; inspection, containment, removal, and post-remediation testing</li>
+            <li><strong>Biohazard &amp; trauma cleanup</strong> &mdash; discreet, certified response for sensitive situations</li>
+            <li><strong>Reconstruction support</strong> &mdash; coordination with contractors and adjusters through full property recovery</li>
+          </ul>
+          <h4>Why owners and adjusters call us</h4>
+          <ul class="spec-list">
+            <li>24/7 emergency response across Onondaga County and surrounding areas</li>
+            <li>Direct insurance billing and adjuster-friendly documentation</li>
+            <li>IICRC-certified technicians and PuroClean's national QA standards</li>
+            <li>Local family-owned operation — you talk to a decision-maker, not a call center</li>
+          </ul>
+          <p style="margin-top: 16px;"><a href="https://www.purocleancny.com" target="_blank" rel="noopener" style="color: var(--gold-text); font-weight: 700;">Visit PuroClean of Syracuse North &rarr;</a></p>
+        </div>
+      </article>
     </div>
 
     <div class="reveal" style="margin: 56px 0 32px; text-align: center;">
@@ -611,7 +643,7 @@ SERVICES_BODY = '''
         <div class="svc-card__intro svc-card__intro--wide">
           <p class="card__meta">Distressed Assets — For Banks &amp; Lenders</p>
           <h3 class="card__title" style="font-size: 28px;">Receivership &amp; Special-Asset Management</h3>
-          <p class="card__desc">Court-appointed and lender-engaged receivership for distressed hospitality, multi-family, and commercial assets across New York State. We take possession quickly, secure the property, restore financial controls, stabilize operations, and report transparently to the court and to you.</p>
+          <p class="card__desc"><strong>SUNdhm is a New York State approved receiver and property manager.</strong> Court-appointed and lender-engaged receivership for distressed hospitality, multi-family, and commercial assets across New York State. We take possession quickly, secure the property, restore financial controls, stabilize operations, and report transparently to the court and to you.</p>
           <span class="svc-card__more"><span class="lbl-more">Learn more</span><span class="lbl-less">Show less</span> <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
         </div>
         <div class="svc-card__shield">
@@ -619,7 +651,7 @@ SERVICES_BODY = '''
         </div>
       </button>
       <div class="svc-card__detail">
-        <p>When a hospitality, multi-family, or commercial asset is in distress, lenders and courts engage SUNdhm to take control quickly, secure the property, restore financial discipline, and protect collateral value. We've been on the operating side of distressed assets for decades — we know what to look for and how to fix it.</p>
+        <p><strong>SUNdhm is approved by New York State as a receiver and property manager.</strong> When a hospitality, multi-family, or commercial asset is in distress, lenders and courts engage SUNdhm to take control quickly, secure the property, restore financial discipline, and protect collateral value. We've been on the operating side of distressed assets for decades — we know what to look for and how to fix it.</p>
         <h4>What we do as receiver</h4>
         <ul class="spec-list">
           <li>Take immediate possession and secure the property</li>
