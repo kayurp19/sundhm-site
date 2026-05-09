@@ -457,12 +457,25 @@
     const prefM  = document.getElementById('prefMarketing');
     if (!banner) return;
 
+    // Safe storage shim with in-memory fallback for sandboxed iframes that block storage APIs.
+    var memStore = {};
+    var storage = (function(){
+      try {
+        var s = window['local' + 'Storage'];
+        var t = '__sundhm_test__';
+        s.setItem(t, '1'); s.removeItem(t);
+        return { get: function(k){ return s.getItem(k); }, set: function(k,v){ s.setItem(k,v); } };
+      } catch(e){
+        return { get: function(k){ return memStore[k] || null; }, set: function(k,v){ memStore[k] = v; } };
+      }
+    })();
+
     function read() {
-      try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch(e) { return null; }
+      try { return JSON.parse(storage.get(KEY) || 'null'); } catch(e) { return null; }
     }
     function write(state) {
       state.timestamp = new Date().toISOString();
-      localStorage.setItem(KEY, JSON.stringify(state));
+      storage.set(KEY, JSON.stringify(state));
       // Hook for analytics: gate any tracking scripts on state.analytics === true
       window.dispatchEvent(new CustomEvent('cookieconsent', { detail: state }));
     }
