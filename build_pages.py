@@ -817,7 +817,7 @@ SERVICES_BODY = '''
     <div class="reveal" style="max-width: 760px; margin-bottom: 36px;">
       <p class="eyebrow">Case Studies</p>
       <h2 class="serif" style="margin-top: 12px;">Engagement snapshots.</h2>
-      <p class="lead" style="margin-top: 16px;">Representative engagements illustrating how SUNdhm operates across lender mandates, owner-retained management, and pre-foreclosure resolutions. Specific borrower, lender, brand, and asset identifiers have been generalized.</p>
+      <p class="lead" style="margin-top: 16px;">Engagements illustrating how SUNdhm operates across lender mandates, owner-retained management, and pre-foreclosure resolutions.</p>
     </div>
 
     <div class="grid grid-3 case-grid">
@@ -868,8 +868,6 @@ SERVICES_BODY = '''
       </a>
 
     </div>
-
-    <p class="case-disclaimer">Representative engagement profiles. Specific borrower, lender, brand, and asset identifiers have been generalized. Figures are illustrative of typical engagement performance and do not reflect any single client. SUNdhm is a New York State approved receiver and property manager.</p>
 
     <div style="margin-top: 28px;">
       <a class="btn btn--gold" href="./case-studies.html">View all case studies <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
@@ -1220,7 +1218,6 @@ CASE_HERO_TEMPLATE = '''
 CASE_FOOTER = '''
 <section class="section section--soft">
   <div class="container" style="max-width: 820px;">
-    <p class="case-disclaimer" style="margin: 0 0 32px;">Representative engagement profile. Specific borrower, lender, brand, and asset identifiers have been generalized. Figures are illustrative of typical engagement performance and do not reflect any single client. SUNdhm is a New York State approved receiver and property manager.</p>
     <div class="grid grid-2" style="gap: 16px;">
       <a class="btn btn--gold" href="./contact.html">Discuss a similar engagement <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
       <a class="btn btn--ghost" href="./case-studies.html">Back to all case studies</a>
@@ -1523,7 +1520,7 @@ CASE_HUB_BODY = '''
   <div class="container">
     <p class="eyebrow">Case Studies</p>
     <h1 class="serif">Engagement snapshots.</h1>
-    <p class="lead" style="max-width: 760px; margin-top: 16px;">Representative engagements illustrating how SUNdhm operates across lender mandates, owner-retained third-party management, and pre-foreclosure resolutions. Specific borrower, lender, brand, and asset identifiers have been generalized.</p>
+    <p class="lead" style="max-width: 760px; margin-top: 16px;">Engagements illustrating how SUNdhm operates across lender mandates, owner-retained third-party management, and pre-foreclosure resolutions.</p>
   </div>
 </section>
 
@@ -1578,7 +1575,6 @@ CASE_HUB_BODY = '''
 
     </div>
 
-    <p class="case-disclaimer">Representative engagement profiles. Specific borrower, lender, brand, and asset identifiers have been generalized. Figures are illustrative of typical engagement performance and do not reflect any single client. SUNdhm is a New York State approved receiver and property manager.</p>
   </div>
 </section>
 
