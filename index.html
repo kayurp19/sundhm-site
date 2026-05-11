@@ -65,20 +65,33 @@
       <a href="./contact.html">Contact</a>
     </nav>
     <a class="btn btn--gold sd-header__cta" href="./contact.html">Contact</a>
-    <button class="sd-header__menu-btn" aria-label="Open menu" id="menuBtn">
+    <button class="sd-header__menu-btn" aria-label="Open menu" id="menuBtn" aria-expanded="false" aria-controls="mobileNav">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
   </div>
-  <nav class="sd-mobile-nav" id="mobileNav" aria-label="Mobile">
+</header>
+
+<!-- Mobile nav drawer (sibling of header so position:fixed isn't contained by header's backdrop-filter) -->
+<nav class="sd-mobile-nav" id="mobileNav" aria-label="Mobile" aria-hidden="true">
+  <div class="sd-mobile-nav__top">
+    <a href="./index.html" class="sd-mobile-nav__logo" aria-label="SUNdhm home">
+      <img src="./assets/images/logo.png" alt="SUNdhm" width="100" height="58" />
+    </a>
     <button class="sd-mobile-nav__close" aria-label="Close menu" id="menuClose">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
+  </div>
+  <div class="sd-mobile-nav__links">
     <a href="./index.html">Home</a>
     <a href="./services.html">Services</a>
     <a href="./careers.html">Careers</a>
     <a href="./contact.html">Contact</a>
-  </nav>
-</header>
+  </div>
+  <div class="sd-mobile-nav__foot">
+    <a class="btn btn--gold" href="./contact.html">Get in touch</a>
+    <p class="sd-mobile-nav__meta"><a href="tel:+13157520155">(315) 752-0155</a><br/><a href="mailto:hello@sundhm.com">hello@sundhm.com</a></p>
+  </div>
+</nav>
 <main id="main" tabindex="-1">
 
 <!-- HERO -->
@@ -270,9 +283,22 @@
   const menuBtn = document.getElementById('menuBtn');
   const mobileNav = document.getElementById('mobileNav');
   const menuClose = document.getElementById('menuClose');
-  if (menuBtn) menuBtn.addEventListener('click', () => mobileNav.classList.add('is-open'));
-  if (menuClose) menuClose.addEventListener('click', () => mobileNav.classList.remove('is-open'));
-  document.querySelectorAll('.sd-mobile-nav a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('is-open')));
+  function openMobileNav() {
+    mobileNav.classList.add('is-open');
+    mobileNav.setAttribute('aria-hidden', 'false');
+    if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
+    document.documentElement.classList.add('nav-locked');
+  }
+  function closeMobileNav() {
+    mobileNav.classList.remove('is-open');
+    mobileNav.setAttribute('aria-hidden', 'true');
+    if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+    document.documentElement.classList.remove('nav-locked');
+  }
+  if (menuBtn) menuBtn.addEventListener('click', openMobileNav);
+  if (menuClose) menuClose.addEventListener('click', closeMobileNav);
+  document.querySelectorAll('.sd-mobile-nav a').forEach(a => a.addEventListener('click', closeMobileNav));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileNav.classList.contains('is-open')) closeMobileNav(); });
 
   const header = document.querySelector('.sd-header');
   const setHeaderState = () => {
