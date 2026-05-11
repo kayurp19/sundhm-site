@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /guest.html
 
-Sitemap: https://www.syracusegrand.com/sitemap.xml
+Sitemap: https://www.sundhm.com/sitemap.xml

@@ -4,7 +4,68 @@ import os, pathlib, time
 ROOT = pathlib.Path(__file__).parent
 BUILD_VERSION = str(int(time.time()))  # cache-buster appended to CSS url
 
-def head(title, desc, canonical_path):
+ORG_JSONLD = '''<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "RealEstateAgent"],
+  "@id": "https://www.sundhm.com/#organization",
+  "name": "SUNdhm",
+  "alternateName": "SUNdhm Hospitality & Real Estate",
+  "description": "Hospitality and real estate operator in Central New York. Hotel management, apartments and multi-family, Airbnb and short-term rentals, third-party property management, house flipping, banquet and catering, restoration services, and court-appointed receivership.",
+  "url": "https://www.sundhm.com",
+  "logo": "https://www.sundhm.com/assets/images/logo.png",
+  "image": "https://www.sundhm.com/assets/images/hero-hotel.jpg",
+  "email": "hello@sundhm.com",
+  "telephone": "+1-315-752-0155",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "250 Commerce Blvd",
+    "addressLocality": "Liverpool",
+    "addressRegion": "NY",
+    "postalCode": "13088",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 43.1062,
+    "longitude": -76.2177
+  },
+  "areaServed": [
+    { "@type": "State", "name": "New York" },
+    { "@type": "City", "name": "Syracuse" },
+    { "@type": "City", "name": "Liverpool" },
+    { "@type": "City", "name": "Cicero" },
+    { "@type": "AdministrativeArea", "name": "Onondaga County" },
+    { "@type": "AdministrativeArea", "name": "Central New York" },
+    { "@type": "AdministrativeArea", "name": "Upstate New York" }
+  ],
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+    "opens": "09:00",
+    "closes": "17:00"
+  }],
+  "sameAs": [],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "SUNdhm Services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Hotel Management", "url": "https://www.sundhm.com/services.html#hotel-management" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Apartments & Multi-Family Management", "url": "https://www.sundhm.com/services.html#apartments" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Airbnb & Short-Term Rental Operations", "url": "https://www.sundhm.com/services.html#str" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Third-Party Property Management", "url": "https://www.sundhm.com/services.html#property-management" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "House Flipping & Real Estate Development", "url": "https://www.sundhm.com/services.html#flipping" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Banquet & Catering", "url": "https://www.sundhm.com/services.html#banquet" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Restoration Services (PuroClean of Syracuse North)", "url": "https://www.sundhm.com/services.html#restoration" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Receivership & Special Assets", "url": "https://www.sundhm.com/services.html#receivership" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mortgage Dispute & Workout Guidance", "url": "https://www.sundhm.com/services.html#mortgage-disputes" } }
+    ]
+  }
+}
+</script>'''
+
+def head(title, desc, canonical_path, extra_jsonld="", og_image="/assets/images/hero-hotel.jpg"):
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -16,6 +77,8 @@ def head(title, desc, canonical_path):
 
 <meta name="geo.region" content="US-NY" />
 <meta name="geo.placename" content="Liverpool" />
+<meta name="author" content="SUNdhm" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="SUNdhm" />
@@ -23,12 +86,12 @@ def head(title, desc, canonical_path):
 <meta property="og:title" content="{title}" />
 <meta property="og:description" content="{desc}" />
 <meta property="og:url" content="https://www.sundhm.com{canonical_path}" />
-<meta property="og:image" content="https://www.sundhm.com/assets/images/hero-hotel.jpg" />
+<meta property="og:image" content="https://www.sundhm.com{og_image}" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="{title}" />
 <meta name="twitter:description" content="{desc}" />
-<meta name="twitter:image" content="https://www.sundhm.com/assets/images/hero-hotel.jpg" />
+<meta name="twitter:image" content="https://www.sundhm.com{og_image}" />
 
 <link rel="icon" href="./assets/images/favicon.ico" />
 <link rel="apple-touch-icon" href="./assets/images/logo-mark.png" />
@@ -37,26 +100,8 @@ def head(title, desc, canonical_path):
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="./style.css?v={BUILD_VERSION}" />
 
-<script type="application/ld+json">
-{{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "SUNdhm",
-  "url": "https://www.sundhm.com",
-  "logo": "https://www.sundhm.com/assets/images/logo.png",
-  "email": "hello@sundhm.com",
-  "telephone": "+1-315-752-0155",
-  "address": {{
-    "@type": "PostalAddress",
-    "streetAddress": "250 Commerce Blvd",
-    "addressLocality": "Liverpool",
-    "addressRegion": "NY",
-    "postalCode": "13088",
-    "addressCountry": "US"
-  }},
-  "areaServed": {{ "@type": "State", "name": "New York" }}
-}}
-</script>
+{ORG_JSONLD}
+{extra_jsonld}
 </head>'''
 
 def header(active, hero_overlap=False):
@@ -346,10 +391,42 @@ FOOTER = '''<footer class="sd-footer">
 </html>'''
 
 
-def write_page(path, title, desc, canonical, body_html, hero_overlap=False, active=""):
-    html = head(title, desc, canonical) + "\n" + header(active, hero_overlap=hero_overlap) + '<main id="main" tabindex="-1">\n' + body_html + "\n</main>\n" + FOOTER
+def write_page(path, title, desc, canonical, body_html, hero_overlap=False, active="", extra_jsonld=""):
+    html = head(title, desc, canonical, extra_jsonld=extra_jsonld) + "\n" + header(active, hero_overlap=hero_overlap) + '<main id="main" tabindex="-1">\n' + body_html + "\n</main>\n" + FOOTER
     (ROOT / path).write_text(html)
     print(f"  wrote {path}  ({len(html):,} bytes)")
+
+
+# ============ PAGE-LEVEL JSON-LD SCHEMAS ============
+SERVICES_JSONLD = '''<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "SUNdhm Services",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "item": { "@type": "Service", "name": "Hotel Management — Central New York", "description": "Full-service hotel management including revenue management, brand compliance, OTA strategy, sales and marketing, F&B, facilities, HR, and IT.", "provider": { "@id": "https://www.sundhm.com/#organization" }, "serviceType": "Hotel Management", "areaServed": "Central New York", "url": "https://www.sundhm.com/services.html#hotel-management" } },
+    { "@type": "ListItem", "position": 2, "item": { "@type": "Service", "name": "Apartments & Multi-Family Management", "description": "Long-term rental management — leasing, maintenance, tenant relations, and asset performance for apartments, multifamily, and condos.", "provider": { "@id": "https://www.sundhm.com/#organization" }, "serviceType": "Property Management", "areaServed": "Central New York", "url": "https://www.sundhm.com/services.html#apartments" } },
+    { "@type": "ListItem", "position": 3, "item": { "@type": "Service", "name": "Airbnb & Short-Term Rental Operations", "description": "Listing setup and optimization, dynamic pricing, channel management, guest support, cleaning coordination, and revenue reporting.", "provider": { "@id": "https://www.sundhm.com/#organization" }, "serviceType": "Short-Term Rental Management", "areaServed": "Central New York", "url": "https://www.sundhm.com/services.html#str" } },
+    { "@type": "ListItem", "position": 4, "item": { "@type": "Service", "name": "Third-Party Property Management", "description": "Full-service third-party management for hotels, multi-family, mixed-use, and commercial — transparent monthly reporting and a single point of contact.", "provider": { "@id": "https://www.sundhm.com/#organization" }, "serviceType": "Property Management", "areaServed": "Central New York", "url": "https://www.sundhm.com/services.html#property-management" } },
+    { "@type": "ListItem", "position": 5, "item": { "@type": "Service", "name": "House Flipping & Real Estate Development", "description": "Cash offers, fast closings on distressed and off-market homes. Full renovation and resale across Central New York.", "provider": { "@id": "https://www.sundhm.com/#organization" }, "serviceType": "Real Estate Investment", "areaServed": "Central New York", "url": "https://www.sundhm.com/services.html#flipping" } },
+    { "@type": "ListItem", "position": 6, "item": { "@type": "Service", "name": "Banquet & Catering", "description": "Wedding receptions, corporate events, private parties, and on-site catering at SUNdhm-managed venues.", "provider": { "@id": "https://www.sundhm.com/#organization" }, "serviceType": "Event Catering", "areaServed": "Central New York", "url": "https://www.sundhm.com/services.html#banquet" } },
+    { "@type": "ListItem", "position": 7, "item": { "@type": "Service", "name": "Restoration Services — PuroClean of Syracuse North", "description": "24/7 water damage, fire damage, mold remediation, and biohazard cleanup. IICRC-certified technicians.", "provider": { "@id": "https://www.sundhm.com/#organization" }, "serviceType": "Property Restoration", "areaServed": "Central New York", "url": "https://www.sundhm.com/services.html#restoration" } },
+    { "@type": "ListItem", "position": 8, "item": { "@type": "Service", "name": "Receivership & Special Assets", "description": "New York State approved receiver and property manager. Court-appointed receivership for distressed real estate.", "provider": { "@id": "https://www.sundhm.com/#organization" }, "serviceType": "Court-Appointed Receivership", "areaServed": "New York", "url": "https://www.sundhm.com/services.html#receivership" } },
+    { "@type": "ListItem", "position": 9, "item": { "@type": "Service", "name": "Mortgage Dispute & Workout Guidance", "description": "Confidential workout guidance for owners under lender pressure. Operating turnaround, lender communication, and resolution support.", "provider": { "@id": "https://www.sundhm.com/#organization" }, "serviceType": "Loan Workout Advisory", "areaServed": "New York", "url": "https://www.sundhm.com/services.html#mortgage-disputes" } }
+  ]
+}
+</script>'''
+
+def breadcrumb_jsonld(items):
+    """items: list of (name, url) tuples for the breadcrumb trail."""
+    list_items = ",\n    ".join([
+        '{ "@type": "ListItem", "position": ' + str(i+1) + ', "name": "' + name + '", "item": "' + url + '" }'
+        for i, (name, url) in enumerate(items)
+    ])
+    return '<script type="application/ld+json">\n{\n  "@context": "https://schema.org",\n  "@type": "BreadcrumbList",\n  "itemListElement": [\n    ' + list_items + '\n  ]\n}\n</script>'
+
+def case_study_jsonld(title, desc, url):
+    return '<script type="application/ld+json">\n{\n  "@context": "https://schema.org",\n  "@type": "Article",\n  "headline": "' + title + '",\n  "description": "' + desc + '",\n  "author": { "@id": "https://www.sundhm.com/#organization" },\n  "publisher": { "@id": "https://www.sundhm.com/#organization" },\n  "mainEntityOfPage": "' + url + '"\n}\n</script>'
 
 
 # ============ HOME ============
@@ -357,7 +434,7 @@ HOME_BODY = '''
 <!-- HERO -->
 <section class="sd-hero">
   <div class="sd-hero__bg">
-    <img src="./assets/images/hero-hotel.jpg" alt="" />
+    <img src="./assets/images/hero-hotel.jpg" alt="Hotel exterior — SUNdhm hospitality and real estate, Syracuse, NY" />
   </div>
   <div class="sd-hero__overlay"></div>
   <div class="container sd-hero__content">
@@ -461,7 +538,7 @@ SERVICES_BODY = '''
   <div class="container">
     <p class="eyebrow">What we do</p>
     <h1 class="serif">Services</h1>
-    <p class="lead" style="max-width: 720px; margin-top: 16px;">Seven lines of business under one roof — hospitality, residential, and special situations. Tap any service to expand the details.</p>
+    <p class="lead" style="max-width: 720px; margin-top: 16px;">Hotel management, property management, short-term rentals, house flipping, banquet &amp; catering, restoration, and receivership — all under one roof. Based in Syracuse, NY and serving Central and Upstate New York. Tap any service to expand the details.</p>
   </div>
 </section>
 
@@ -470,7 +547,7 @@ SERVICES_BODY = '''
     <div class="grid grid-3">
       <article class="svc-card reveal" id="hotel-management">
         <button class="svc-card__head" type="button" aria-expanded="false">
-          <div class="svc-card__media"><img src="./assets/images/service-hotel.jpg" alt="" loading="lazy" /></div>
+          <div class="svc-card__media"><img src="./assets/images/service-hotel.jpg" alt="Hotel management services — SUNdhm, Central New York" loading="lazy" /></div>
           <div class="svc-card__intro">
             <p class="card__meta">Hospitality</p>
             <h3 class="card__title">Hotel Management</h3>
@@ -514,7 +591,7 @@ SERVICES_BODY = '''
 
       <article class="svc-card reveal" id="apartments">
         <button class="svc-card__head" type="button" aria-expanded="false">
-          <div class="svc-card__media"><img src="./assets/images/service-apartments.jpg" alt="" loading="lazy" /></div>
+          <div class="svc-card__media"><img src="./assets/images/service-apartments.jpg" alt="Apartment and multi-family property management — SUNdhm" loading="lazy" /></div>
           <div class="svc-card__intro">
             <p class="card__meta">Residential</p>
             <h3 class="card__title">Apartments &amp; Multi-Family</h3>
@@ -538,7 +615,7 @@ SERVICES_BODY = '''
 
       <article class="svc-card reveal" id="str">
         <button class="svc-card__head" type="button" aria-expanded="false">
-          <div class="svc-card__media"><img src="./assets/images/service-strrental.jpg" alt="" loading="lazy" /></div>
+          <div class="svc-card__media"><img src="./assets/images/service-strrental.jpg" alt="Airbnb and short-term rental management — SUNdhm" loading="lazy" /></div>
           <div class="svc-card__intro">
             <p class="card__meta">Short-Term Rentals</p>
             <h3 class="card__title">Airbnb &amp; STR Operations</h3>
@@ -562,7 +639,7 @@ SERVICES_BODY = '''
 
       <article class="svc-card reveal" id="property-management">
         <button class="svc-card__head" type="button" aria-expanded="false">
-          <div class="svc-card__media"><img src="./assets/images/service-property.jpg" alt="" loading="lazy" /></div>
+          <div class="svc-card__media"><img src="./assets/images/service-property.jpg" alt="Third-party property management — SUNdhm, Syracuse NY" loading="lazy" /></div>
           <div class="svc-card__intro">
             <p class="card__meta">Third-Party</p>
             <h3 class="card__title">Property Management</h3>
@@ -589,7 +666,7 @@ SERVICES_BODY = '''
 
       <article class="svc-card reveal" id="flipping">
         <button class="svc-card__head" type="button" aria-expanded="false">
-          <div class="svc-card__media"><img src="./assets/images/service-flip.jpg" alt="" loading="lazy" /></div>
+          <div class="svc-card__media"><img src="./assets/images/service-flip.jpg" alt="House flipping and renovation — SUNdhm real estate" loading="lazy" /></div>
           <div class="svc-card__intro">
             <p class="card__meta">Development</p>
             <h3 class="card__title">House Flipping &amp; Development</h3>
@@ -613,7 +690,7 @@ SERVICES_BODY = '''
 
       <article class="svc-card reveal" id="banquet">
         <button class="svc-card__head" type="button" aria-expanded="false">
-          <div class="svc-card__media"><img src="./assets/images/service-banquet.jpg" alt="" loading="lazy" /></div>
+          <div class="svc-card__media"><img src="./assets/images/service-banquet.jpg" alt="Banquet and catering services — SUNdhm event venues" loading="lazy" /></div>
           <div class="svc-card__intro">
             <p class="card__meta">Events</p>
             <h3 class="card__title">Banquet &amp; Catering</h3>
@@ -641,7 +718,7 @@ SERVICES_BODY = '''
 
       <article class="svc-card reveal" id="restoration">
         <button class="svc-card__head" type="button" aria-expanded="false">
-          <div class="svc-card__media"><img src="./assets/images/service-property.jpg" alt="" loading="lazy" /></div>
+          <div class="svc-card__media"><img src="./assets/images/service-property.jpg" alt="Property restoration — PuroClean of Syracuse North, water/fire/mold remediation" loading="lazy" /></div>
           <div class="svc-card__intro">
             <p class="card__meta">Property Restoration &amp; Mitigation</p>
             <h3 class="card__title">Restoration Services</h3>
@@ -1520,55 +1597,78 @@ CASE_HUB_BODY = '''
 
 # ============ WRITE PAGES ============
 write_page("index.html",
-           "SUNdhm · Hospitality &amp; Real Estate",
-           "SUNdhm develops, manages, and markets hospitality and real estate properties — hotels, apartments, short-term rentals, property management, house flipping, banquet & catering, restoration, and receivership.",
+           "SUNdhm · Hotel Management, Property Management & Real Estate — Syracuse, NY",
+           "Syracuse-based hospitality and real estate operator. Hotel management, apartments and multi-family, Airbnb and short-term rentals, third-party property management, house flipping, banquet and catering, restoration (PuroClean of Syracuse North), and NY State approved receivership. Serving Central New York.",
            "/", HOME_BODY, hero_overlap=True, active="home")
 
 write_page("services.html",
-           "Services · SUNdhm",
-           "SUNdhm services: hotel management, apartments &amp; multi-family, Airbnb &amp; STR, third-party property management, house flipping, banquet &amp; catering, and special situations.",
-           "/services.html", SERVICES_BODY, hero_overlap=False, active="services")
+           "Services · Hotel & Property Management, STR, Restoration, Receivership · SUNdhm",
+           "SUNdhm services in Syracuse and Central New York: hotel management, apartments and multi-family, Airbnb and short-term rental management, third-party property management, house flipping, banquet and catering, restoration (PuroClean of Syracuse North), receivership, and mortgage workout guidance.",
+           "/services.html", SERVICES_BODY, hero_overlap=False, active="services",
+           extra_jsonld=SERVICES_JSONLD + "\n" + breadcrumb_jsonld([
+               ("Home", "https://www.sundhm.com/"),
+               ("Services", "https://www.sundhm.com/services.html")
+           ]))
 
 write_page("careers.html",
-           "Careers · SUNdhm",
-           "Join SUNdhm — a family-owned hotel and property management operator.",
-           "/careers.html", CAREERS_BODY, hero_overlap=False, active="careers")
+           "Careers at SUNdhm · Hospitality & Property Management Jobs · Syracuse, NY",
+           "Open roles at SUNdhm — a family-owned hotel, property management, and real estate operator in Syracuse and Central New York. Hotel operations, maintenance, leasing, and restoration positions.",
+           "/careers.html", CAREERS_BODY, hero_overlap=False, active="careers",
+           extra_jsonld=breadcrumb_jsonld([
+               ("Home", "https://www.sundhm.com/"),
+               ("Careers", "https://www.sundhm.com/careers.html")
+           ]))
 
 write_page("contact.html",
-           "Contact · SUNdhm · Liverpool, NY",
-           "Contact SUNdhm at 250 Commerce Blvd, Liverpool NY 13088. Phone (315) 752-0155 · hello@sundhm.com.",
-           "/contact.html", CONTACT_BODY, hero_overlap=False, active="contact")
+           "Contact SUNdhm · (315) 752-0155 · Liverpool, NY 13088",
+           "Contact SUNdhm — Syracuse-area hotel and property management, restoration, and receivership. 250 Commerce Blvd, Liverpool NY 13088. Phone (315) 752-0155 · sales (315) 715-7410 · hello@sundhm.com.",
+           "/contact.html", CONTACT_BODY, hero_overlap=False, active="contact",
+           extra_jsonld=breadcrumb_jsonld([
+               ("Home", "https://www.sundhm.com/"),
+               ("Contact", "https://www.sundhm.com/contact.html")
+           ]))
 
 # Case study sub-pages (linked from /services.html#case-studies)
 write_page("case-studies.html",
-           "Case Studies · SUNdhm",
-           "SUNdhm case studies: representative engagements across lender mandates, owner-retained third-party management, and borrower/lender pre-foreclosure resolutions.",
-           "/case-studies.html", CASE_HUB_BODY, hero_overlap=False, active="case-studies")
+           "Case Studies · Hotel & Real Estate Engagements · SUNdhm",
+           "SUNdhm case studies across hotel management, lender-engaged oversight, third-party property management, pre-foreclosure resolution, mixed-use restoration, and house flipping in Upstate New York.",
+           "/case-studies.html", CASE_HUB_BODY, hero_overlap=False, active="case-studies",
+           extra_jsonld=breadcrumb_jsonld([
+               ("Home", "https://www.sundhm.com/"),
+               ("Case Studies", "https://www.sundhm.com/case-studies.html")
+           ]))
+
+_case_crumbs_base = [("Home", "https://www.sundhm.com/"), ("Case Studies", "https://www.sundhm.com/case-studies.html")]
 
 write_page("case-lender.html",
-           "Case Study · Lender-Engaged Operating Oversight · SUNdhm",
-           "Representative SUNdhm engagement: lender-engaged operating oversight of a limited-service hotel during a workout — occupancy 38%→61%, ADR $72→$98, payroll 38%→24%, ~9 months to stabilization.",
-           "/case-lender.html", CASE_LENDER_BODY, hero_overlap=False, active="case-studies")
+           "Lender-Engaged Hotel Operating Oversight — Case Study · SUNdhm",
+           "Lender-engaged operating oversight of a limited-service hotel during workout — occupancy 38%→61%, ADR $72→$98, payroll 38%→24%, ~9 months to stabilization. Representative SUNdhm engagement in New York.",
+           "/case-lender.html", CASE_LENDER_BODY, hero_overlap=False, active="case-studies",
+           extra_jsonld=breadcrumb_jsonld(_case_crumbs_base + [("Lender Oversight", "https://www.sundhm.com/case-lender.html")]) + "\n" + case_study_jsonld("Lender-Engaged Hotel Operating Oversight", "Operating oversight of a limited-service hotel during a workout — stabilized cash flow, restored reporting, collateral value protected.", "https://www.sundhm.com/case-lender.html"))
 
 write_page("case-property-management.html",
-           "Case Study · Third-Party Property Management · SUNdhm",
-           "Representative SUNdhm engagement: owner-retained third-party management of a limited-service hotel — occupancy low 40s→mid 60s, ADR ~+30%, payroll ratio reduced ~10pp, transparent monthly reporting.",
-           "/case-property-management.html", CASE_PM_BODY, hero_overlap=False, active="case-studies")
+           "Third-Party Hotel Property Management — Case Study · SUNdhm",
+           "Owner-retained third-party hotel management — occupancy low 40s→mid 60s, ADR up ~30%, payroll ratio cut ~10pp, transparent monthly reporting. Representative SUNdhm engagement in New York.",
+           "/case-property-management.html", CASE_PM_BODY, hero_overlap=False, active="case-studies",
+           extra_jsonld=breadcrumb_jsonld(_case_crumbs_base + [("Property Management", "https://www.sundhm.com/case-property-management.html")]) + "\n" + case_study_jsonld("Third-Party Hotel Property Management", "Owner-retained third-party management of a limited-service hotel — occupancy, ADR, and payroll ratio improvements with transparent monthly reporting.", "https://www.sundhm.com/case-property-management.html"))
 
 write_page("case-resolution.html",
-           "Case Study · Borrower &amp; Lender Resolution · SUNdhm",
-           "Representative SUNdhm engagement: pre-foreclosure workout where SUNdhm served as neutral operator and resolution partner. Foreclosure discontinued, loan returned to performing status, borrower retained ownership.",
-           "/case-resolution.html", CASE_RESOLUTION_BODY, hero_overlap=False, active="case-studies")
+           "Borrower & Lender Pre-Foreclosure Resolution — Case Study · SUNdhm",
+           "SUNdhm as neutral operator and resolution partner in a pre-foreclosure hotel workout. Foreclosure discontinued, loan returned to performing status, borrower retained ownership.",
+           "/case-resolution.html", CASE_RESOLUTION_BODY, hero_overlap=False, active="case-studies",
+           extra_jsonld=breadcrumb_jsonld(_case_crumbs_base + [("Borrower & Lender Resolution", "https://www.sundhm.com/case-resolution.html")]) + "\n" + case_study_jsonld("Borrower & Lender Pre-Foreclosure Resolution", "Neutral operator and resolution partner during foreclosure proceedings. Loan returned to performing status, borrower retained ownership.", "https://www.sundhm.com/case-resolution.html"))
 
 write_page("case-mixed-use.html",
-           "Case Study · Abandoned Mixed-Use Commercial Restoration · SUNdhm",
-           "Representative SUNdhm engagement: operating takeover of an abandoned mixed-use commercial building in Upstate New York — 22 residential units, 3 retail bays, ~4 years vacant. Life-safety re-certified, residential occupancy 0%→73%, commercial occupancy 0%→67%, ~12 months to stabilized run-rate.",
-           "/case-mixed-use.html", CASE_MIXED_USE_BODY, hero_overlap=False, active="case-studies")
+           "Abandoned Mixed-Use Commercial Restoration — Case Study · SUNdhm",
+           "Operating takeover of a long-vacant mixed-use commercial building in Upstate New York — 22 apartments, 3 retail bays, ~4 years vacant. Residential occupancy 0%→73%, commercial 0%→67%, ~12 months to stabilized run-rate.",
+           "/case-mixed-use.html", CASE_MIXED_USE_BODY, hero_overlap=False, active="case-studies",
+           extra_jsonld=breadcrumb_jsonld(_case_crumbs_base + [("Mixed-Use Restoration", "https://www.sundhm.com/case-mixed-use.html")]) + "\n" + case_study_jsonld("Abandoned Mixed-Use Commercial Restoration", "Operating takeover and restoration of a long-vacant mixed-use building. Stabilized run-rate inside 12 months.", "https://www.sundhm.com/case-mixed-use.html"))
 
 write_page("case-house-flip.html",
-           "Case Study · Single-Family House Flip · SUNdhm",
-           "Representative SUNdhm engagement: distressed single-family acquisition, full renovation, and retail resale in Upstate New York — 3 bed, 2.5 bath, 0.80 acres. $49.5K purchase + $53.3K renovation → $229K sale, ~123% gross ROI on cost.",
-           "/case-house-flip.html", CASE_HOUSE_FLIP_BODY, hero_overlap=False, active="case-studies")
+           "Single-Family House Flip — Case Study · SUNdhm",
+           "Distressed single-family acquisition, full renovation, and retail resale in Upstate New York — 3 bed, 2.5 bath, 0.80 acres. $49.5K purchase + $53.3K renovation → $229K sale, ~123% gross ROI on cost.",
+           "/case-house-flip.html", CASE_HOUSE_FLIP_BODY, hero_overlap=False, active="case-studies",
+           extra_jsonld=breadcrumb_jsonld(_case_crumbs_base + [("House Flip", "https://www.sundhm.com/case-house-flip.html")]) + "\n" + case_study_jsonld("Single-Family House Flip", "Distressed acquisition, full renovation, retail resale. ~123% gross ROI on cost.", "https://www.sundhm.com/case-house-flip.html"))
 
 # ============ LEGAL PAGES ============
 # Reviewed and approved by counsel: May 9, 2026.
@@ -1806,5 +1906,31 @@ write_page("accessibility.html",
            "Accessibility Statement · SUNdhm",
            "SUNdhm's commitment to digital accessibility and conformance with WCAG 2.1 Level AA.",
            "/accessibility.html", ACCESSIBILITY_BODY, hero_overlap=False, active="")
+
+# ============ SITEMAP.XML ============
+from datetime import date
+_today = date.today().isoformat()
+_sitemap_entries = [
+    ("/",                            "1.0", "weekly"),
+    ("/services.html",               "0.9", "weekly"),
+    ("/case-studies.html",           "0.8", "monthly"),
+    ("/case-lender.html",            "0.7", "monthly"),
+    ("/case-property-management.html","0.7", "monthly"),
+    ("/case-resolution.html",        "0.7", "monthly"),
+    ("/case-mixed-use.html",         "0.7", "monthly"),
+    ("/case-house-flip.html",        "0.7", "monthly"),
+    ("/careers.html",                "0.6", "monthly"),
+    ("/contact.html",                "0.7", "monthly"),
+    ("/privacy.html",                "0.3", "yearly"),
+    ("/terms.html",                  "0.3", "yearly"),
+    ("/accessibility.html",          "0.3", "yearly"),
+]
+_urls_xml = "\n".join([
+    f'  <url>\n    <loc>https://www.sundhm.com{p}</loc>\n    <lastmod>{_today}</lastmod>\n    <changefreq>{cf}</changefreq>\n    <priority>{pr}</priority>\n  </url>'
+    for p, pr, cf in _sitemap_entries
+])
+_sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + _urls_xml + '\n</urlset>\n'
+(ROOT / "sitemap.xml").write_text(_sitemap)
+print(f"  wrote sitemap.xml  ({len(_sitemap):,} bytes, {len(_sitemap_entries)} urls)")
 
 print("Done.")
