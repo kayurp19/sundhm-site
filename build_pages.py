@@ -322,9 +322,9 @@ HOME_BODY = '''
   </div>
   <div class="sd-hero__overlay"></div>
   <div class="container sd-hero__content">
-    <p class="eyebrow" style="color: var(--gold-bright);">Upstate New York</p>
+    <p class="eyebrow" style="color: var(--gold-bright);">Hospitality &amp; Real Estate</p>
     <h1 class="serif">Building, managing, and growing <em>hospitality and real estate.</em></h1>
-    <p class="sd-hero__lead">SUNdhm is a family-owned operator with deep roots in Central New York. We own and manage hotels, apartments, short-term rentals, and commercial properties — and we partner with owners and lenders who want disciplined, hands-on stewardship of their assets.</p>
+    <p class="sd-hero__lead">SUNdhm is a family-owned operator. We own and manage hotels, apartments, short-term rentals, and commercial properties — and we partner with owners and lenders who want disciplined, hands-on stewardship of their assets.</p>
     <div class="sd-hero__cta">
       <a class="btn btn--gold" href="./services.html">Our services <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
       <a class="btn btn--ghost-light" href="./contact.html">Get in touch</a>
@@ -341,7 +341,7 @@ HOME_BODY = '''
         <h2 class="serif" style="margin-top: 16px;">A reputation built one property at a time.</h2>
       </div>
       <div class="reveal">
-        <p class="lead">With years of experience across Upstate New York, SUNdhm has solidified its reputation as an innovator in developing, managing, and marketing economically viable hotel and real estate properties. We pair hands-on ownership with disciplined operations — guest-first service, sharp financial controls, and modern digital marketing — so every property performs.</p>
+        <p class="lead">With years of hands-on experience, SUNdhm has solidified its reputation as an innovator in developing, managing, and marketing economically viable hotel and real estate properties. We pair hands-on ownership with disciplined operations — guest-first service, sharp financial controls, and modern digital marketing — so every property performs.</p>
         <p style="margin-top: 16px;">Our portfolio spans franchised and independent hotels, multi-family apartments, short-term rentals, banquet and catering venues, residential flips, and management contracts and receiverships for owners and lenders looking for accountable stewardship.</p>
       </div>
     </div>
@@ -365,7 +365,7 @@ HOME_BODY = '''
       <div class="reveal">
         <p class="eyebrow">What we do</p>
         <h2 class="serif" style="margin-top: 16px;">Seven lines of business. One team.</h2>
-        <p class="lead" style="margin-top: 20px;">Three decades of hands-on experience operating hotels and real estate across Central New York. Click any service to see how we deliver it.</p>
+        <p class="lead" style="margin-top: 20px;">Three decades of hands-on experience operating hotels and real estate. Click any service to see how we deliver it.</p>
         <a class="btn btn--gold" href="./services.html" style="margin-top: 28px;">All services in detail <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
       </div>
       <ul class="reveal svc-bullets">
@@ -583,7 +583,7 @@ SERVICES_BODY = '''
           </div>
         </button>
         <div class="svc-card__detail">
-          <p>Flexible event spaces and full-service catering at our Central New York hotels — built on the same operational discipline that runs our hotel F&amp;B programs.</p>
+          <p>Flexible event spaces and full-service catering at our hotels — built on the same operational discipline that runs our hotel F&amp;B programs.</p>
           <h4>What we host</h4>
           <ul class="spec-list">
             <li>Weddings &amp; receptions</li>
@@ -606,7 +606,7 @@ SERVICES_BODY = '''
           <div class="svc-card__intro">
             <p class="card__meta">Property Restoration &amp; Mitigation</p>
             <h3 class="card__title">Restoration Services</h3>
-            <p class="card__desc">PuroClean of Syracuse North &mdash; 24/7 emergency property restoration for water damage, fire and smoke, mold remediation, and biohazard cleanup across Central New York.</p>
+            <p class="card__desc">PuroClean of Syracuse North &mdash; 24/7 emergency property restoration for water damage, fire and smoke, mold remediation, and biohazard cleanup.</p>
             <span class="svc-card__more"><span class="lbl-more">Learn more</span><span class="lbl-less">Show less</span> <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
           </div>
         </button>
@@ -781,8 +781,8 @@ CAREERS_BODY = '''
 <section class="page-hero">
   <div class="container">
     <p class="eyebrow">Careers</p>
-    <h1 class="serif">Build your career with a local operator.</h1>
-    <p class="lead" style="max-width: 720px; margin-top: 16px;">We're always looking for great people — front desk, housekeeping, maintenance, sales, and management — across our hotel and hospitality properties in Central New York.</p>
+    <h1 class="serif">Build your career with a hands-on operator.</h1>
+    <p class="lead" style="max-width: 720px; margin-top: 16px;">We're always looking for great people — front desk, housekeeping, maintenance, sales, and management — across our hotel and hospitality properties.</p>
   </div>
 </section>
 
@@ -1026,8 +1026,8 @@ CONTACT_BODY = '''
 
 # ============ WRITE PAGES ============
 write_page("index.html",
-           "SUNdhm · Hospitality &amp; Real Estate · Upstate New York",
-           "SUNdhm develops, manages, and markets hospitality and real estate properties across Upstate New York — hotels, apartments, short-term rentals, property management, house flipping, banquet & catering, and receivership.",
+           "SUNdhm · Hospitality &amp; Real Estate",
+           "SUNdhm develops, manages, and markets hospitality and real estate properties — hotels, apartments, short-term rentals, property management, house flipping, banquet & catering, restoration, and receivership.",
            "/", HOME_BODY, hero_overlap=True, active="home")
 
 write_page("services.html",
@@ -1037,7 +1037,7 @@ write_page("services.html",
 
 write_page("careers.html",
            "Careers · SUNdhm",
-           "Join SUNdhm — a family-owned hotel and property management operator hiring across Central New York.",
+           "Join SUNdhm — a family-owned hotel and property management operator.",
            "/careers.html", CAREERS_BODY, hero_overlap=False, active="careers")
 
 write_page("contact.html",
