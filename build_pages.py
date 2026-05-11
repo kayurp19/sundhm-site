@@ -772,6 +772,15 @@ SERVICES_BODY = '''
         <p class="case-card__cta">Read full case study <span aria-hidden="true">&rarr;</span></p>
       </a>
 
+      <a class="case-card case-card--link reveal" href="./case-mixed-use.html">
+        <div class="case-card__num">04</div>
+        <p class="card__meta">Mixed-Use Restoration</p>
+        <h3 class="case-card__title">Mixed-Use Commercial — Upstate New York</h3>
+        <p class="case-card__sub">22 units &middot; 3 retail bays &middot; ~4 years vacant</p>
+        <p class="case-card__body">Operating takeover of an abandoned mixed-use building. Life-safety re-certified, original architectural character preserved, residential and commercial space brought back online over a 12-month lease-up.</p>
+        <p class="case-card__cta">Read full case study <span aria-hidden="true">&rarr;</span></p>
+      </a>
+
     </div>
 
     <p class="case-disclaimer">Representative engagement profiles. Specific borrower, lender, brand, and asset identifiers have been generalized. Figures are illustrative of typical engagement performance and do not reflect any single client. SUNdhm is a New York State approved receiver and property manager.</p>
@@ -1303,6 +1312,89 @@ CASE_RESOLUTION_BODY = CASE_HERO_TEMPLATE.format(
 </section>
 ''' + CASE_FOOTER
 
+# Narrative-style case study (reflective prose, abandoned mixed-use commercial)
+CASE_MIXED_USE_BODY = CASE_HERO_TEMPLATE.format(
+    title="What the Building Was Waiting For",
+    lead="A reflective case study from a takeover of an abandoned mixed-use commercial property in Upstate New York — five floors, twenty-two apartments, three storefronts, and four years of vacancy. What we found, what we kept, and what came back online."
+) + '''
+<section class="section">
+  <div class="container" style="max-width: 760px;">
+
+    <div class="case-detail__grid">
+      <div class="case-detail__meta-block">
+        <p class="card__meta">Asset Type</p>
+        <p class="case-detail__meta-val">Mixed-Use Commercial — Upstate New York</p>
+      </div>
+      <div class="case-detail__meta-block">
+        <p class="card__meta">Configuration</p>
+        <p class="case-detail__meta-val">22 residential units · 3 ground-floor retail bays</p>
+      </div>
+      <div class="case-detail__meta-block">
+        <p class="card__meta">Condition at Takeover</p>
+        <p class="case-detail__meta-val">~4 years vacant · fully shuttered</p>
+      </div>
+      <div class="case-detail__meta-block">
+        <p class="card__meta">SUNdhm Role</p>
+        <p class="case-detail__meta-val">Operating takeover, restoration &amp; lease-up</p>
+      </div>
+    </div>
+
+    <div class="case-narrative">
+      <p>The first thing I noticed was the silence.</p>
+
+      <p>Not the comfortable hush of a closed shop after hours, but the heavier kind — the silence of a building that had stopped expecting anyone. The street-level storefronts were papered over from the inside, the paper itself sun-faded to a uniform tobacco color where it met the glass. A laminated &ldquo;For Lease&rdquo; sign curled at the corners in one of the windows, the broker&rsquo;s phone number belonging to an agency that, when I called it later, had been out of business for three years. Above the storefronts, four floors of apartments looked down on the sidewalk with the particular blankness that vacant residential windows acquire — no curtains, no plants, no light, just the reflection of the building across the street.</p>
+
+      <p>This was a mixed-use commercial property on a secondary main street in Upstate New York — a building we won&rsquo;t name out of respect for the families who once lived above its shops and the lender who had quietly carried it for longer than they should have. Ground floor: three retail bays, a former diner on the corner, and a narrow vestibule with a tiled stair leading up. Floors two through five: twenty-two apartments, a mix of studios and one-bedrooms, the kind of housing stock that small cities used to take for granted and now, belatedly, are trying to remember how to build. By the time we walked the property, the last tenant had been gone for almost four years. The diner had closed before that. The taxes were current — barely — and the roof, miraculously, was still doing its job.</p>
+
+      <p>I think a lot about how buildings die. Not all at once — almost never all at once. They die in small surrenders. A burst pipe on the third floor that nobody hears because nobody lives below it anymore. A boiler that runs one winter too long without service and finally seizes in March, when no one is around to notice. A back door that gets propped open one night and never quite gets locked again. Each one, on its own, is forgivable. Stacked together over enough months, they become the building&rsquo;s posture — the way it greets you when you finally walk through the door.</p>
+
+      <p>What struck me, walking the floors that first afternoon, was how recoverable it all was.</p>
+
+      <p>The bones were good. The masonry was sound, the cornice intact, the original tin ceiling in the corner diner still in place under two generations of dropped acoustic tile. The stair treads, oak under decades of paint, were solid. Most of the apartments had been emptied carefully rather than abandoned violently — a distinction that matters more than it should. There was water damage on the third floor, where a supply line had let go sometime during the second winter of vacancy, and the unit below it would need to be taken back to the studs. But the rest of the building had simply been waiting. The real damage wasn&rsquo;t structural. It was civic, operational, and emotional — three things that don&rsquo;t show up on a Phase I report but determine, almost entirely, whether a building like this ever opens its doors again.</p>
+
+      <p>We started, as we usually do, with the things you can see from the sidewalk. Storefront paper down. Windows washed. Sign band repainted a single quiet color so the building stopped advertising its own vacancy. None of this fixes a building. All of it tells the neighborhood — and, just as importantly, the contractors we were trying to schedule — that something is happening here again. That the property has been chosen.</p>
+
+      <p>Inside, we worked in a sequence that&rsquo;s become muscle memory across the takeovers we&rsquo;ve done: life-safety first, then envelope and mechanicals, then the residential floors, then the commercial spaces. Fire panel tested and re-certified. Sprinkler riser drained, inspected, and brought back online with the local AHJ present, because trust, in a building like this, has to be rebuilt with the inspector first. Boiler replaced — that one was not salvageable — and the steam risers pressure-tested floor by floor. The roof, which had been carrying the building on its own for years, got the flashing repair it had been quietly asking for.</p>
+
+      <p>The harder work was with the apartments.</p>
+
+      <p>There is a temptation, when you take over a building like this, to gut everything. To treat the vacancy as a blank slate and deliver twenty-two identical units with the same luxury vinyl plank and the same quartz-look laminate and the same matte-black fixtures that every renovated apartment in every secondary city now seems to share. We didn&rsquo;t do that, partly out of conviction and partly out of arithmetic. The plaster walls were straight. The original window casings were intact in eighteen of the twenty-two units. The wide-plank pine floors, once the carpet came up, needed sanding and sealing but not replacement. Keeping what was already good cost less than removing it and was, not incidentally, the right thing to do.</p>
+
+      <p>The commercial bays were a different problem. The former diner, we leased to an operator who had been looking for a corner space in that neighborhood for two years and didn&rsquo;t know this one existed until we called. The middle bay went to a barber who had been working out of a chair in someone else&rsquo;s salon. The third bay, we held back — partly because we hadn&rsquo;t found the right tenant, and partly because an empty, clean, well-lit storefront is a better neighbor than a wrong one. It&rsquo;s still empty as of this writing. We are, on most days, at peace with that.</p>
+
+      <p>We want to be careful here, because there is a version of this story that flatters us, and that&rsquo;s not the story we&rsquo;re trying to tell. We did not save this building. The building was, structurally, already savable. What we did was much smaller and much more ordinary: we showed up, we paid the invoices, we made the phone calls that had been deferred for four years, and we treated the property like it was worth the trouble. After a while, it started to behave like a property worth the trouble.</p>
+
+      <p>Two hundred and forty days after we took possession, the first tenant moved into a second-floor one-bedroom facing the street. We remember the day because she asked, standing in the doorway with a box in her arms, whether the radiators were going to work. We said yes. She said, &ldquo;people kept telling me this building was never going to open again.&rdquo; We didn&rsquo;t know what to say to that, so we said the radiators were going to work, which was the only part we could promise.</p>
+    </div>
+
+    <h2 class="serif case-detail__h2">KPIs at the One-Year Mark</h2>
+    <ul class="case-card__metrics" style="margin-top: 8px;">
+      <li><strong>Residential occupancy:</strong> 0% → 73% (16 of 22 units leased)</li>
+      <li><strong>Average residential rent:</strong> repositioned to mid-market for the submarket</li>
+      <li><strong>Commercial occupancy:</strong> 0% → 67% (2 of 3 bays leased; third held strategic)</li>
+      <li><strong>Effective gross income:</strong> $0 → stabilized run-rate at the one-year mark</li>
+      <li><strong>Operating expense ratio:</strong> stabilized in the low 40s of EGI</li>
+      <li><strong>Time from possession to first tenant move-in:</strong> ~240 days</li>
+      <li><strong>Time to lease-up trajectory (residential):</strong> ~12 months</li>
+      <li><strong>Code &amp; life-safety items at takeover:</strong> resolved &amp; re-certified (fire panel, sprinkler, boiler, roof flashing)</li>
+      <li><strong>Original architectural elements preserved:</strong> tin ceiling, oak stair, pine floors, window casings (18 of 22 units)</li>
+    </ul>
+
+    <div class="case-narrative">
+      <p>We think about that building often, especially when we drive past other properties that look the way it looked the day we walked in. There are more of them than people realize. Not ruins — that would almost be easier. Just buildings that have stopped expecting anyone. Buildings that have been quietly carried, past the point at which they should have stopped, by lenders and owners who have run out of moves but haven&rsquo;t yet run out of patience.</p>
+
+      <p>Most of those buildings are recoverable. The bones, more often than not, are good. What they&rsquo;re waiting for, usually, is not a wrecking ball or a miracle. They&rsquo;re waiting for someone to take the paper down from the windows, repair the flashing, call the inspector back, and treat the property — for a while, anyway — like it has been chosen.</p>
+
+      <p>That&rsquo;s most of the work. The rest is just time.</p>
+    </div>
+
+    <h2 class="serif case-detail__h2">Relevance to Distressed &amp; Transitional Assets</h2>
+    <p>This engagement illustrates SUNdhm&rsquo;s approach to neglected mixed-use commercial properties: hands-on operating takeover, disciplined sequencing of life-safety and mechanical restoration, preservation of original building character where it carries economic and civic value, and patient, deliberate lease-up across both residential and commercial components. The pattern is broadly applicable to small-format commercial buildings in secondary markets that have lapsed into vacancy but remain structurally sound.</p>
+
+  </div>
+</section>
+''' + CASE_FOOTER
+
 # Case Studies hub/index page
 CASE_HUB_BODY = '''
 <section class="page-hero">
@@ -1341,6 +1433,15 @@ CASE_HUB_BODY = '''
         <h3 class="case-card__title">Limited-Service Hotel — New York</h3>
         <p class="case-card__sub">Regional bank · pre-foreclosure workout</p>
         <p class="case-card__body">Neutral operator and resolution partner during foreclosure proceedings. Foreclosure discontinued, loan returned to performing status, and the borrower retained ownership.</p>
+        <p class="case-card__cta">Read full case study <span aria-hidden="true">&rarr;</span></p>
+      </a>
+
+      <a class="case-card case-card--link reveal" href="./case-mixed-use.html">
+        <div class="case-card__num">04</div>
+        <p class="card__meta">Mixed-Use Restoration</p>
+        <h3 class="case-card__title">Mixed-Use Commercial — Upstate New York</h3>
+        <p class="case-card__sub">22 units &middot; 3 retail bays &middot; ~4 years vacant</p>
+        <p class="case-card__body">Operating takeover of an abandoned mixed-use building. Life-safety re-certified, original architectural character preserved, residential and commercial space brought back online over a 12-month lease-up.</p>
         <p class="case-card__cta">Read full case study <span aria-hidden="true">&rarr;</span></p>
       </a>
 
@@ -1404,6 +1505,11 @@ write_page("case-resolution.html",
            "Case Study · Borrower &amp; Lender Resolution · SUNdhm",
            "Representative SUNdhm engagement: pre-foreclosure workout where SUNdhm served as neutral operator and resolution partner. Foreclosure discontinued, loan returned to performing status, borrower retained ownership.",
            "/case-resolution.html", CASE_RESOLUTION_BODY, hero_overlap=False, active="case-studies")
+
+write_page("case-mixed-use.html",
+           "Case Study · Mixed-Use Commercial Restoration · SUNdhm",
+           "Representative SUNdhm engagement: operating takeover of an abandoned mixed-use commercial building in Upstate New York — 22 residential units, 3 retail bays, ~4 years vacant. Life-safety re-certified, residential occupancy 0%→73%, commercial occupancy 0%→67% over a 12-month lease-up.",
+           "/case-mixed-use.html", CASE_MIXED_USE_BODY, hero_overlap=False, active="case-studies")
 
 # ============ LEGAL PAGES ============
 # Reviewed and approved by counsel: May 9, 2026.

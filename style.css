@@ -1527,3 +1527,33 @@ main[tabindex="-1"]:focus { outline: none; }
     padding: 20px 22px;
   }
 }
+
+/* ====== NARRATIVE CASE STUDY PROSE ====== */
+.case-narrative {
+  font-family: var(--sans, 'Inter', system-ui, sans-serif);
+  font-size: 17.5px;
+  line-height: 1.75;
+  color: var(--ink, #21304a);
+  margin: 0 0 24px;
+}
+.case-narrative p {
+  margin: 0 0 1.15em;
+}
+.case-narrative p:last-child { margin-bottom: 0; }
+.case-narrative p:first-of-type::first-letter {
+  font-family: var(--serif, 'Playfair Display', Georgia, serif);
+  font-weight: 700;
+  color: var(--navy-deep, #122749);
+  float: left;
+  font-size: 3.4em;
+  line-height: .9;
+  padding: 4px 10px 0 0;
+  margin-top: 4px;
+}
+@media (max-width: 640px) {
+  .case-narrative { font-size: 16.5px; line-height: 1.7; }
+  .case-narrative p:first-of-type::first-letter {
+    font-size: 2.8em;
+    padding: 2px 8px 0 0;
+  }
+}
