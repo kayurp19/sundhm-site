@@ -76,6 +76,7 @@ def header(active, hero_overlap=False):
     <nav class="sd-header__nav" aria-label="Primary">
 {link("index.html","Home","home")}
 {link("services.html","Services","services")}
+{link("case-studies.html","Case Studies","case-studies")}
 {link("careers.html","Careers","careers")}
 {link("contact.html","Contact","contact")}
     </nav>
@@ -100,6 +101,7 @@ def header(active, hero_overlap=False):
   <div class="sd-mobile-nav__links">
     <a href="./index.html">Home</a>
     <a href="./services.html">Services</a>
+    <a href="./case-studies.html">Case Studies</a>
     <a href="./careers.html">Careers</a>
     <a href="./contact.html">Contact</a>
   </div>
@@ -119,6 +121,7 @@ FOOTER = '''<footer class="sd-footer">
       <nav class="sd-footer__nav" aria-label="Footer">
         <a href="./index.html">Home</a>
         <a href="./services.html">Services</a>
+        <a href="./case-studies.html">Case Studies</a>
         <a href="./careers.html">Careers</a>
         <a href="./contact.html">Contact</a>
       </nav>
@@ -772,6 +775,10 @@ SERVICES_BODY = '''
     </div>
 
     <p class="case-disclaimer">Representative engagement profiles. Specific borrower, lender, brand, and asset identifiers have been generalized. Figures are illustrative of typical engagement performance and do not reflect any single client. SUNdhm is a New York State approved receiver and property manager.</p>
+
+    <div style="margin-top: 28px;">
+      <a class="btn btn--gold" href="./case-studies.html">View all case studies <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+    </div>
   </div>
 </section>
 '''
@@ -1108,7 +1115,7 @@ CONTACT_BODY = '''
 CASE_HERO_TEMPLATE = '''
 <section class="page-hero">
   <div class="container">
-    <p class="eyebrow"><a href="./services.html#case-studies" style="color: inherit; text-decoration: none;">← Case Studies</a></p>
+    <p class="eyebrow"><a href="./case-studies.html" style="color: inherit; text-decoration: none;">← Case Studies</a></p>
     <h1 class="serif">{title}</h1>
     <p class="lead" style="max-width: 760px; margin-top: 16px;">{lead}</p>
   </div>
@@ -1121,7 +1128,7 @@ CASE_FOOTER = '''
     <p class="case-disclaimer" style="margin: 0 0 32px;">Representative engagement profile. Specific borrower, lender, brand, and asset identifiers have been generalized. Figures are illustrative of typical engagement performance and do not reflect any single client. SUNdhm is a New York State approved receiver and property manager.</p>
     <div class="grid grid-2" style="gap: 16px;">
       <a class="btn btn--gold" href="./contact.html">Discuss a similar engagement <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
-      <a class="btn btn--ghost" href="./services.html#case-studies">Back to all case studies</a>
+      <a class="btn btn--ghost" href="./case-studies.html">Back to all case studies</a>
     </div>
   </div>
 </section>
@@ -1296,6 +1303,65 @@ CASE_RESOLUTION_BODY = CASE_HERO_TEMPLATE.format(
 </section>
 ''' + CASE_FOOTER
 
+# Case Studies hub/index page
+CASE_HUB_BODY = '''
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Case Studies</p>
+    <h1 class="serif">Engagement snapshots.</h1>
+    <p class="lead" style="max-width: 760px; margin-top: 16px;">Representative engagements illustrating how SUNdhm operates across lender mandates, owner-retained third-party management, and pre-foreclosure resolutions. Specific borrower, lender, brand, and asset identifiers have been generalized.</p>
+  </div>
+</section>
+
+<section class="section" style="background: var(--cream);">
+  <div class="container">
+    <div class="grid grid-3 case-grid">
+
+      <a class="case-card case-card--link reveal" href="./case-lender.html">
+        <div class="case-card__num">01</div>
+        <p class="card__meta">Lender Engagement</p>
+        <h3 class="case-card__title">Limited-Service Hotel — New York</h3>
+        <p class="case-card__sub">~80 keys · Regional bank, conventional CRE loan</p>
+        <p class="case-card__body">Lender-engaged operating oversight after borrower default. Restored reporting transparency, stabilized cash flow, and protected collateral value through the workout period.</p>
+        <p class="case-card__cta">Read full case study <span aria-hidden="true">&rarr;</span></p>
+      </a>
+
+      <a class="case-card case-card--link reveal" href="./case-property-management.html">
+        <div class="case-card__num">02</div>
+        <p class="card__meta">Property Management</p>
+        <h3 class="case-card__title">Limited-Service Hotel — New York</h3>
+        <p class="case-card__sub">Owner-retained third-party management</p>
+        <p class="case-card__body">Owner engaged SUNdhm under a third-party management agreement to professionalize operations. Day-to-day management, brand compliance, revenue management, and transparent monthly reporting.</p>
+        <p class="case-card__cta">Read full case study <span aria-hidden="true">&rarr;</span></p>
+      </a>
+
+      <a class="case-card case-card--link reveal" href="./case-resolution.html">
+        <div class="case-card__num">03</div>
+        <p class="card__meta">Borrower &amp; Lender Resolution</p>
+        <h3 class="case-card__title">Limited-Service Hotel — New York</h3>
+        <p class="case-card__sub">Regional bank · pre-foreclosure workout</p>
+        <p class="case-card__body">Neutral operator and resolution partner during foreclosure proceedings. Foreclosure discontinued, loan returned to performing status, and the borrower retained ownership.</p>
+        <p class="case-card__cta">Read full case study <span aria-hidden="true">&rarr;</span></p>
+      </a>
+
+    </div>
+
+    <p class="case-disclaimer">Representative engagement profiles. Specific borrower, lender, brand, and asset identifiers have been generalized. Figures are illustrative of typical engagement performance and do not reflect any single client. SUNdhm is a New York State approved receiver and property manager.</p>
+  </div>
+</section>
+
+<section class="section section--soft">
+  <div class="container" style="max-width: 820px; text-align: center;">
+    <p class="eyebrow">Engage SUNdhm</p>
+    <h2 class="serif" style="margin-top: 12px;">Have a similar situation?</h2>
+    <p class="lead" style="margin-top: 16px;">Whether you’re a lender, an owner, or a borrower working through a workout, we can step in quickly, stabilize operations, and restore reporting transparency.</p>
+    <div style="margin-top: 28px;">
+      <a class="btn btn--gold" href="./contact.html">Discuss an engagement <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</section>
+'''
+
 
 # ============ WRITE PAGES ============
 write_page("index.html",
@@ -1319,20 +1385,25 @@ write_page("contact.html",
            "/contact.html", CONTACT_BODY, hero_overlap=False, active="contact")
 
 # Case study sub-pages (linked from /services.html#case-studies)
+write_page("case-studies.html",
+           "Case Studies · SUNdhm",
+           "SUNdhm case studies: representative engagements across lender mandates, owner-retained third-party management, and borrower/lender pre-foreclosure resolutions.",
+           "/case-studies.html", CASE_HUB_BODY, hero_overlap=False, active="case-studies")
+
 write_page("case-lender.html",
            "Case Study · Lender-Engaged Operating Oversight · SUNdhm",
            "Representative SUNdhm engagement: lender-engaged operating oversight of a limited-service hotel during a workout — occupancy 38%→61%, ADR $72→$98, payroll 38%→24%, ~9 months to stabilization.",
-           "/case-lender.html", CASE_LENDER_BODY, hero_overlap=False, active="services")
+           "/case-lender.html", CASE_LENDER_BODY, hero_overlap=False, active="case-studies")
 
 write_page("case-property-management.html",
            "Case Study · Third-Party Property Management · SUNdhm",
            "Representative SUNdhm engagement: owner-retained third-party management of a limited-service hotel — occupancy low 40s→mid 60s, ADR ~+30%, payroll ratio reduced ~10pp, transparent monthly reporting.",
-           "/case-property-management.html", CASE_PM_BODY, hero_overlap=False, active="services")
+           "/case-property-management.html", CASE_PM_BODY, hero_overlap=False, active="case-studies")
 
 write_page("case-resolution.html",
            "Case Study · Borrower &amp; Lender Resolution · SUNdhm",
            "Representative SUNdhm engagement: pre-foreclosure workout where SUNdhm served as neutral operator and resolution partner. Foreclosure discontinued, loan returned to performing status, borrower retained ownership.",
-           "/case-resolution.html", CASE_RESOLUTION_BODY, hero_overlap=False, active="services")
+           "/case-resolution.html", CASE_RESOLUTION_BODY, hero_overlap=False, active="case-studies")
 
 # ============ LEGAL PAGES ============
 # Reviewed and approved by counsel: May 9, 2026.
