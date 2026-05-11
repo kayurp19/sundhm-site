@@ -781,6 +781,15 @@ SERVICES_BODY = '''
         <p class="case-card__cta">Read full case study <span aria-hidden="true">&rarr;</span></p>
       </a>
 
+      <a class="case-card case-card--link reveal" href="./case-house-flip.html">
+        <div class="case-card__num">05</div>
+        <p class="card__meta">House Flip</p>
+        <h3 class="case-card__title">Single-Family Residential — Upstate New York</h3>
+        <p class="case-card__sub">3 bed &middot; 2.5 bath &middot; 0.80 acres</p>
+        <p class="case-card__body">Distressed acquisition, full renovation, retail resale. $102.8K all-in to $229K sale &mdash; ~123% gross ROI on cost.</p>
+        <p class="case-card__cta">Read full case study <span aria-hidden="true">&rarr;</span></p>
+      </a>
+
     </div>
 
     <p class="case-disclaimer">Representative engagement profiles. Specific borrower, lender, brand, and asset identifiers have been generalized. Figures are illustrative of typical engagement performance and do not reflect any single client. SUNdhm is a New York State approved receiver and property manager.</p>
@@ -1372,6 +1381,65 @@ CASE_MIXED_USE_BODY = CASE_HERO_TEMPLATE.format(
 </section>
 ''' + CASE_FOOTER
 
+# Structured case study — single-family house flip
+CASE_HOUSE_FLIP_BODY = CASE_HERO_TEMPLATE.format(
+    title="Single-Family House Flip",
+    lead="Acquired distressed, fully renovated, sold at retail. 3 bed / 2.5 bath on 0.80 acres. ~2.2× cost basis at sale."
+) + '''
+<section class="section">
+  <div class="container" style="max-width: 820px;">
+
+    <div class="case-detail__grid">
+      <div class="case-detail__meta-block">
+        <p class="card__meta">Asset Type</p>
+        <p class="case-detail__meta-val">Single-Family Residential &mdash; Upstate New York</p>
+      </div>
+      <div class="case-detail__meta-block">
+        <p class="card__meta">Configuration</p>
+        <p class="case-detail__meta-val">3 bed &middot; 2.5 bath &middot; 0.80 acres</p>
+      </div>
+      <div class="case-detail__meta-block">
+        <p class="card__meta">Condition at Acquisition</p>
+        <p class="case-detail__meta-val">Distressed &middot; full renovation required</p>
+      </div>
+      <div class="case-detail__meta-block">
+        <p class="card__meta">SUNdhm Role</p>
+        <p class="case-detail__meta-val">Acquisition, renovation &amp; resale</p>
+      </div>
+    </div>
+
+    <h2 class="serif case-detail__h2">Situation</h2>
+    <p>Distressed single-family home, off-market acquisition. Sound bones, dated finishes, deferred maintenance throughout. Strong submarket comps supported a full retail repositioning.</p>
+
+    <h2 class="serif case-detail__h2">Strategic Interventions</h2>
+    <ul class="spec-list">
+      <li><strong>Disciplined acquisition.</strong> Closed at $49,500 — well below comp-supported ARV.</li>
+      <li><strong>Full renovation.</strong> Kitchen, baths, flooring, paint, mechanicals, exterior &mdash; $53,300 scope, fixed budget.</li>
+      <li><strong>Retail-grade finish.</strong> Spec aligned to buyer expectations in the price band, not investor-grade.</li>
+      <li><strong>Tight project control.</strong> Single GM, weekly draws, no scope creep.</li>
+      <li><strong>Listing strategy.</strong> Professional photos, staged key rooms, priced to comps.</li>
+    </ul>
+
+    <h2 class="serif case-detail__h2">Results</h2>
+    <ul class="case-card__metrics" style="margin-top: 8px;">
+      <li><strong>Purchase price:</strong> $49,500</li>
+      <li><strong>Renovation cost:</strong> $53,300</li>
+      <li><strong>All-in basis:</strong> $102,800</li>
+      <li><strong>Sale price:</strong> $229,000</li>
+      <li><strong>Gross profit:</strong> $126,200</li>
+      <li><strong>Gross ROI on cost:</strong> ~123%</li>
+    </ul>
+
+    <h2 class="serif case-detail__h2">Outcome</h2>
+    <p>Acquired, renovated, and sold at retail. Returned ~2.2&times; the all-in basis. Well above national flip ROI benchmarks (typically high-20s percent gross).</p>
+
+    <h2 class="serif case-detail__h2">Relevance</h2>
+    <p>Applicable to distressed single-family acquisitions in secondary markets where disciplined underwriting, fixed-scope renovation, and retail-grade finish drive outsized spreads at exit.</p>
+
+  </div>
+</section>
+''' + CASE_FOOTER
+
 # Case Studies hub/index page
 CASE_HUB_BODY = '''
 <section class="page-hero">
@@ -1419,6 +1487,15 @@ CASE_HUB_BODY = '''
         <h3 class="case-card__title">Mixed-Use Commercial — Upstate New York</h3>
         <p class="case-card__sub">22 units &middot; 3 retail bays &middot; ~4 years vacant</p>
         <p class="case-card__body">Operating takeover of an abandoned mixed-use building. Life-safety re-certified, original character preserved, stabilized run-rate in 12 months.</p>
+        <p class="case-card__cta">Read full case study <span aria-hidden="true">&rarr;</span></p>
+      </a>
+
+      <a class="case-card case-card--link reveal" href="./case-house-flip.html">
+        <div class="case-card__num">05</div>
+        <p class="card__meta">House Flip</p>
+        <h3 class="case-card__title">Single-Family Residential — Upstate New York</h3>
+        <p class="case-card__sub">3 bed &middot; 2.5 bath &middot; 0.80 acres</p>
+        <p class="case-card__body">Distressed acquisition, full renovation, retail resale. $102.8K all-in to $229K sale &mdash; ~123% gross ROI on cost.</p>
         <p class="case-card__cta">Read full case study <span aria-hidden="true">&rarr;</span></p>
       </a>
 
@@ -1487,6 +1564,11 @@ write_page("case-mixed-use.html",
            "Case Study · Abandoned Mixed-Use Commercial Restoration · SUNdhm",
            "Representative SUNdhm engagement: operating takeover of an abandoned mixed-use commercial building in Upstate New York — 22 residential units, 3 retail bays, ~4 years vacant. Life-safety re-certified, residential occupancy 0%→73%, commercial occupancy 0%→67%, ~12 months to stabilized run-rate.",
            "/case-mixed-use.html", CASE_MIXED_USE_BODY, hero_overlap=False, active="case-studies")
+
+write_page("case-house-flip.html",
+           "Case Study · Single-Family House Flip · SUNdhm",
+           "Representative SUNdhm engagement: distressed single-family acquisition, full renovation, and retail resale in Upstate New York — 3 bed, 2.5 bath, 0.80 acres. $49.5K purchase + $53.3K renovation → $229K sale, ~123% gross ROI on cost.",
+           "/case-house-flip.html", CASE_HOUSE_FLIP_BODY, hero_overlap=False, active="case-studies")
 
 # ============ LEGAL PAGES ============
 # Reviewed and approved by counsel: May 9, 2026.
