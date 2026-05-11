@@ -695,6 +695,67 @@ SERVICES_BODY = '''
     </article>
   </div>
 </section>
+
+<section class="section" id="case-studies" style="background: var(--cream);">
+  <div class="container">
+    <div class="reveal" style="max-width: 760px; margin-bottom: 36px;">
+      <p class="eyebrow">Case Studies</p>
+      <h2 class="serif" style="margin-top: 12px;">Engagement snapshots.</h2>
+      <p class="lead" style="margin-top: 16px;">Representative engagements illustrating how SUNdhm operates across lender mandates, owner-retained management, and pre-foreclosure resolutions. Specific borrower, lender, brand, and asset identifiers have been generalized.</p>
+    </div>
+
+    <div class="grid grid-3 case-grid">
+
+      <article class="case-card reveal">
+        <div class="case-card__num">01</div>
+        <p class="card__meta">Lender Engagement</p>
+        <h3 class="case-card__title">Limited-Service Hotel — New York</h3>
+        <p class="case-card__sub">~80 keys · Regional bank, conventional CRE loan</p>
+        <p class="case-card__body">After borrower default and a filed foreclosure action, the lender retained SUNdhm to take independent operating oversight, restore reporting transparency, and protect collateral value during the workout period.</p>
+        <ul class="case-card__metrics">
+          <li><strong>Occupancy:</strong> 38% → 61%</li>
+          <li><strong>ADR:</strong> $72 → $98</li>
+          <li><strong>Payroll:</strong> 38% → 24% of revenue</li>
+          <li><strong>Timeline:</strong> ~9 months to stabilization</li>
+        </ul>
+        <p class="case-card__role"><strong>Role:</strong> Lender-introduced operator &amp; workout advisor.<br/><strong>Outcome:</strong> Performing cash flow restored; collateral value protected; structured path to resolution.</p>
+      </article>
+
+      <article class="case-card reveal">
+        <div class="case-card__num">02</div>
+        <p class="card__meta">Property Management</p>
+        <h3 class="case-card__title">Limited-Service Hotel — New York</h3>
+        <p class="case-card__sub">Owner-retained third-party management</p>
+        <p class="case-card__body">A hotel owner engaged SUNdhm under a third-party management agreement to professionalize operations after a period of underperformance. SUNdhm took over day-to-day management, brand compliance, revenue management, and financial reporting.</p>
+        <ul class="case-card__metrics">
+          <li><strong>Occupancy:</strong> low 40s → mid 60s</li>
+          <li><strong>ADR:</strong> repositioned within competitive set (~+30%)</li>
+          <li><strong>Payroll ratio:</strong> reduced ~10 percentage points</li>
+          <li><strong>Reporting:</strong> Monthly P&amp;L, daily revenue, KPI dashboards to ownership</li>
+        </ul>
+        <p class="case-card__role"><strong>Role:</strong> Third-party hotel management on behalf of owner.<br/><strong>Outcome:</strong> NOI growth, restored brand compliance, and asset-level cash flow sufficient to support refinance and reinvestment decisions.</p>
+      </article>
+
+      <article class="case-card reveal">
+        <div class="case-card__num">03</div>
+        <p class="card__meta">Borrower &amp; Lender Resolution</p>
+        <h3 class="case-card__title">Limited-Service Hotel — New York</h3>
+        <p class="case-card__sub">Regional bank · pre-foreclosure workout</p>
+        <p class="case-card__body">With foreclosure proceedings underway and the borrower committed to retaining the asset, SUNdhm was engaged as a neutral operator and resolution partner — taking interim operational control, restoring transparent reporting, and working alongside counsel on a structured cure.</p>
+        <ul class="case-card__metrics">
+          <li><strong>Action:</strong> Foreclosure discontinued</li>
+          <li><strong>Loan:</strong> Returned to performing status</li>
+          <li><strong>Arrears, default interest, legal fees:</strong> Cured</li>
+          <li><strong>Borrower:</strong> Retained ownership</li>
+        </ul>
+        <p class="case-card__role"><strong>Role:</strong> Interim operator &amp; workout facilitator.<br/><strong>Outcome:</strong> Foreclosure action discontinued; loan returned to performing status; borrower retained ownership of the property.</p>
+      </article>
+
+    </div>
+
+    <p class="case-disclaimer">Representative engagement profiles. Specific borrower, lender, brand, and asset identifiers have been generalized. Figures are illustrative of typical engagement performance and do not reflect any single client. SUNdhm is a New York State approved receiver and property manager.</p>
+  </div>
+</section>
 '''
 
 # ============ HIRE US PAGE ============

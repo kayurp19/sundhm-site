@@ -1227,3 +1227,99 @@ main[tabindex="-1"]:focus { outline: none; }
 @media (max-width: 640px) {
   .applicant-notice { padding: 22px 18px; }
 }
+
+/* ====== CASE STUDIES ====== */
+.case-grid { gap: 28px; align-items: stretch; }
+.case-card {
+  background: #fff;
+  border: 1px solid rgba(15, 30, 60, .08);
+  border-radius: var(--radius-lg, 14px);
+  padding: 32px 28px 28px;
+  box-shadow: 0 1px 3px rgba(15,30,60,.04), 0 8px 28px rgba(15,30,60,.06);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform .2s ease, box-shadow .25s ease;
+}
+.case-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(15,30,60,.08), 0 14px 40px rgba(15,30,60,.10);
+}
+.case-card__num {
+  font-family: var(--serif, 'Playfair Display', Georgia, serif);
+  font-size: 42px;
+  font-weight: 600;
+  color: var(--gold-bright, #F39200);
+  line-height: 1;
+  letter-spacing: -.02em;
+  margin-bottom: 14px;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+.case-card .card__meta {
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold-text);
+  margin: 0 0 8px;
+}
+.case-card__title {
+  font-family: var(--serif, 'Playfair Display', Georgia, serif);
+  font-size: clamp(22px, 1.9vw, 26px);
+  line-height: 1.2;
+  color: var(--navy-deep, #122749);
+  margin: 0 0 6px;
+}
+.case-card__sub {
+  font-size: 13px;
+  color: var(--ink-soft, #475569);
+  margin: 0 0 16px;
+  font-weight: 500;
+}
+.case-card__body {
+  color: var(--ink-soft, #475569);
+  line-height: 1.6;
+  margin: 0 0 18px;
+  font-size: 15px;
+}
+.case-card__metrics {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+  border-top: 1px solid rgba(15, 30, 60, .08);
+  border-bottom: 1px solid rgba(15, 30, 60, .08);
+  padding: 14px 0;
+}
+.case-card__metrics li {
+  font-size: 14px;
+  line-height: 1.55;
+  padding: 4px 0;
+  color: var(--ink, #1A1A1A);
+}
+.case-card__metrics li strong {
+  color: var(--navy-deep, #122749);
+  font-weight: 600;
+}
+.case-card__role {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-soft, #475569);
+  margin: 0;
+  margin-top: auto;
+}
+.case-card__role strong {
+  color: var(--navy-deep, #122749);
+  font-weight: 700;
+}
+.case-disclaimer {
+  margin-top: 36px;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--ink-soft, #475569);
+  max-width: 920px;
+  font-style: italic;
+}
+@media (max-width: 900px) {
+  .case-grid { grid-template-columns: 1fr; }
+  .case-card { padding: 28px 24px 24px; }
+}
