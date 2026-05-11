@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="./style.css" />
+<link rel="stylesheet" href="./style.css?v=1778460747" />
 
 <script type="application/ld+json">
 {
@@ -71,7 +71,8 @@
   </div>
 </header>
 
-<!-- Mobile nav drawer (sibling of header so position:fixed isn't contained by header's backdrop-filter) -->
+<!-- Mobile nav: scrim + half-popout drawer (sibling of header so position:fixed isn't contained by header's backdrop-filter) -->
+<div class="sd-mobile-nav__scrim" id="mobileNavScrim" aria-hidden="true"></div>
 <nav class="sd-mobile-nav" id="mobileNav" aria-label="Mobile" aria-hidden="true">
   <div class="sd-mobile-nav__top">
     <a href="./index.html" class="sd-mobile-nav__logo" aria-label="SUNdhm home">
@@ -382,50 +383,32 @@
 
     <div class="grid grid-3 case-grid">
 
-      <article class="case-card reveal">
+      <a class="case-card case-card--link reveal" href="./case-lender.html">
         <div class="case-card__num">01</div>
         <p class="card__meta">Lender Engagement</p>
         <h3 class="case-card__title">Limited-Service Hotel — New York</h3>
         <p class="case-card__sub">~80 keys · Regional bank, conventional CRE loan</p>
-        <p class="case-card__body">After borrower default and a filed foreclosure action, the lender retained SUNdhm to take independent operating oversight, restore reporting transparency, and protect collateral value during the workout period.</p>
-        <ul class="case-card__metrics">
-          <li><strong>Occupancy:</strong> 38% → 61%</li>
-          <li><strong>ADR:</strong> $72 → $98</li>
-          <li><strong>Payroll:</strong> 38% → 24% of revenue</li>
-          <li><strong>Timeline:</strong> ~9 months to stabilization</li>
-        </ul>
-        <p class="case-card__role"><strong>Role:</strong> Lender-introduced operator &amp; workout advisor.<br/><strong>Outcome:</strong> Performing cash flow restored; collateral value protected; structured path to resolution.</p>
-      </article>
+        <p class="case-card__body">Lender-engaged operating oversight after borrower default. Restored reporting transparency, stabilized cash flow, and protected collateral value through the workout period.</p>
+        <p class="case-card__cta">Read full case study <span aria-hidden="true">&rarr;</span></p>
+      </a>
 
-      <article class="case-card reveal">
+      <a class="case-card case-card--link reveal" href="./case-property-management.html">
         <div class="case-card__num">02</div>
         <p class="card__meta">Property Management</p>
         <h3 class="case-card__title">Limited-Service Hotel — New York</h3>
         <p class="case-card__sub">Owner-retained third-party management</p>
-        <p class="case-card__body">A hotel owner engaged SUNdhm under a third-party management agreement to professionalize operations after a period of underperformance. SUNdhm took over day-to-day management, brand compliance, revenue management, and financial reporting.</p>
-        <ul class="case-card__metrics">
-          <li><strong>Occupancy:</strong> low 40s → mid 60s</li>
-          <li><strong>ADR:</strong> repositioned within competitive set (~+30%)</li>
-          <li><strong>Payroll ratio:</strong> reduced ~10 percentage points</li>
-          <li><strong>Reporting:</strong> Monthly P&amp;L, daily revenue, KPI dashboards to ownership</li>
-        </ul>
-        <p class="case-card__role"><strong>Role:</strong> Third-party hotel management on behalf of owner.<br/><strong>Outcome:</strong> NOI growth, restored brand compliance, and asset-level cash flow sufficient to support refinance and reinvestment decisions.</p>
-      </article>
+        <p class="case-card__body">Owner engaged SUNdhm under a third-party management agreement to professionalize operations. Day-to-day management, brand compliance, revenue management, and transparent monthly reporting.</p>
+        <p class="case-card__cta">Read full case study <span aria-hidden="true">&rarr;</span></p>
+      </a>
 
-      <article class="case-card reveal">
+      <a class="case-card case-card--link reveal" href="./case-resolution.html">
         <div class="case-card__num">03</div>
         <p class="card__meta">Borrower &amp; Lender Resolution</p>
         <h3 class="case-card__title">Limited-Service Hotel — New York</h3>
         <p class="case-card__sub">Regional bank · pre-foreclosure workout</p>
-        <p class="case-card__body">With foreclosure proceedings underway and the borrower committed to retaining the asset, SUNdhm was engaged as a neutral operator and resolution partner — taking interim operational control, restoring transparent reporting, and working alongside counsel on a structured cure.</p>
-        <ul class="case-card__metrics">
-          <li><strong>Action:</strong> Foreclosure discontinued</li>
-          <li><strong>Loan:</strong> Returned to performing status</li>
-          <li><strong>Arrears, default interest, legal fees:</strong> Cured</li>
-          <li><strong>Borrower:</strong> Retained ownership</li>
-        </ul>
-        <p class="case-card__role"><strong>Role:</strong> Interim operator &amp; workout facilitator.<br/><strong>Outcome:</strong> Foreclosure action discontinued; loan returned to performing status; borrower retained ownership of the property.</p>
-      </article>
+        <p class="case-card__body">Neutral operator and resolution partner during foreclosure proceedings. Foreclosure discontinued, loan returned to performing status, and the borrower retained ownership.</p>
+        <p class="case-card__cta">Read full case study <span aria-hidden="true">&rarr;</span></p>
+      </a>
 
     </div>
 
@@ -522,22 +505,30 @@
   const menuBtn = document.getElementById('menuBtn');
   const mobileNav = document.getElementById('mobileNav');
   const menuClose = document.getElementById('menuClose');
+  const scrim = document.getElementById('mobileNavScrim');
   function openMobileNav() {
-    mobileNav.classList.add('is-open');
-    mobileNav.setAttribute('aria-hidden', 'false');
+    if (mobileNav) {
+      mobileNav.classList.add('is-open');
+      mobileNav.setAttribute('aria-hidden', 'false');
+    }
+    if (scrim) scrim.classList.add('is-open');
     if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
     document.documentElement.classList.add('nav-locked');
   }
   function closeMobileNav() {
-    mobileNav.classList.remove('is-open');
-    mobileNav.setAttribute('aria-hidden', 'true');
+    if (mobileNav) {
+      mobileNav.classList.remove('is-open');
+      mobileNav.setAttribute('aria-hidden', 'true');
+    }
+    if (scrim) scrim.classList.remove('is-open');
     if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
     document.documentElement.classList.remove('nav-locked');
   }
   if (menuBtn) menuBtn.addEventListener('click', openMobileNav);
   if (menuClose) menuClose.addEventListener('click', closeMobileNav);
+  if (scrim) scrim.addEventListener('click', closeMobileNav);
   document.querySelectorAll('.sd-mobile-nav a').forEach(a => a.addEventListener('click', closeMobileNav));
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileNav.classList.contains('is-open')) closeMobileNav(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileNav && mobileNav.classList.contains('is-open')) closeMobileNav(); });
 
   const header = document.querySelector('.sd-header');
   const setHeaderState = () => {

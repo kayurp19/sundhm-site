@@ -1,7 +1,8 @@
 """Generate the multi-page SUNdhm site from shared partials."""
-import os, pathlib
+import os, pathlib, time
 
 ROOT = pathlib.Path(__file__).parent
+BUILD_VERSION = str(int(time.time()))  # cache-buster appended to CSS url
 
 def head(title, desc, canonical_path):
     return f'''<!doctype html>
@@ -34,7 +35,7 @@ def head(title, desc, canonical_path):
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="./style.css" />
+<link rel="stylesheet" href="./style.css?v={BUILD_VERSION}" />
 
 <script type="application/ld+json">
 {{
@@ -85,7 +86,8 @@ def header(active, hero_overlap=False):
   </div>
 </header>
 
-<!-- Mobile nav drawer (sibling of header so position:fixed isn't contained by header's backdrop-filter) -->
+<!-- Mobile nav: scrim + half-popout drawer (sibling of header so position:fixed isn't contained by header's backdrop-filter) -->
+<div class="sd-mobile-nav__scrim" id="mobileNavScrim" aria-hidden="true"></div>
 <nav class="sd-mobile-nav" id="mobileNav" aria-label="Mobile" aria-hidden="true">
   <div class="sd-mobile-nav__top">
     <a href="./index.html" class="sd-mobile-nav__logo" aria-label="SUNdhm home">
@@ -196,22 +198,30 @@ FOOTER = '''<footer class="sd-footer">
   const menuBtn = document.getElementById('menuBtn');
   const mobileNav = document.getElementById('mobileNav');
   const menuClose = document.getElementById('menuClose');
+  const scrim = document.getElementById('mobileNavScrim');
   function openMobileNav() {
-    mobileNav.classList.add('is-open');
-    mobileNav.setAttribute('aria-hidden', 'false');
+    if (mobileNav) {
+      mobileNav.classList.add('is-open');
+      mobileNav.setAttribute('aria-hidden', 'false');
+    }
+    if (scrim) scrim.classList.add('is-open');
     if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
     document.documentElement.classList.add('nav-locked');
   }
   function closeMobileNav() {
-    mobileNav.classList.remove('is-open');
-    mobileNav.setAttribute('aria-hidden', 'true');
+    if (mobileNav) {
+      mobileNav.classList.remove('is-open');
+      mobileNav.setAttribute('aria-hidden', 'true');
+    }
+    if (scrim) scrim.classList.remove('is-open');
     if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
     document.documentElement.classList.remove('nav-locked');
   }
   if (menuBtn) menuBtn.addEventListener('click', openMobileNav);
   if (menuClose) menuClose.addEventListener('click', closeMobileNav);
+  if (scrim) scrim.addEventListener('click', closeMobileNav);
   document.querySelectorAll('.sd-mobile-nav a').forEach(a => a.addEventListener('click', closeMobileNav));
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileNav.classList.contains('is-open')) closeMobileNav(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileNav && mobileNav.classList.contains('is-open')) closeMobileNav(); });
 
   const header = document.querySelector('.sd-header');
   const setHeaderState = () => {
@@ -732,50 +742,32 @@ SERVICES_BODY = '''
 
     <div class="grid grid-3 case-grid">
 
-      <article class="case-card reveal">
+      <a class="case-card case-card--link reveal" href="./case-lender.html">
         <div class="case-card__num">01</div>
         <p class="card__meta">Lender Engagement</p>
         <h3 class="case-card__title">Limited-Service Hotel — New York</h3>
         <p class="case-card__sub">~80 keys · Regional bank, conventional CRE loan</p>
-        <p class="case-card__body">After borrower default and a filed foreclosure action, the lender retained SUNdhm to take independent operating oversight, restore reporting transparency, and protect collateral value during the workout period.</p>
-        <ul class="case-card__metrics">
-          <li><strong>Occupancy:</strong> 38% → 61%</li>
-          <li><strong>ADR:</strong> $72 → $98</li>
-          <li><strong>Payroll:</strong> 38% → 24% of revenue</li>
-          <li><strong>Timeline:</strong> ~9 months to stabilization</li>
-        </ul>
-        <p class="case-card__role"><strong>Role:</strong> Lender-introduced operator &amp; workout advisor.<br/><strong>Outcome:</strong> Performing cash flow restored; collateral value protected; structured path to resolution.</p>
-      </article>
+        <p class="case-card__body">Lender-engaged operating oversight after borrower default. Restored reporting transparency, stabilized cash flow, and protected collateral value through the workout period.</p>
+        <p class="case-card__cta">Read full case study <span aria-hidden="true">&rarr;</span></p>
+      </a>
 
-      <article class="case-card reveal">
+      <a class="case-card case-card--link reveal" href="./case-property-management.html">
         <div class="case-card__num">02</div>
         <p class="card__meta">Property Management</p>
         <h3 class="case-card__title">Limited-Service Hotel — New York</h3>
         <p class="case-card__sub">Owner-retained third-party management</p>
-        <p class="case-card__body">A hotel owner engaged SUNdhm under a third-party management agreement to professionalize operations after a period of underperformance. SUNdhm took over day-to-day management, brand compliance, revenue management, and financial reporting.</p>
-        <ul class="case-card__metrics">
-          <li><strong>Occupancy:</strong> low 40s → mid 60s</li>
-          <li><strong>ADR:</strong> repositioned within competitive set (~+30%)</li>
-          <li><strong>Payroll ratio:</strong> reduced ~10 percentage points</li>
-          <li><strong>Reporting:</strong> Monthly P&amp;L, daily revenue, KPI dashboards to ownership</li>
-        </ul>
-        <p class="case-card__role"><strong>Role:</strong> Third-party hotel management on behalf of owner.<br/><strong>Outcome:</strong> NOI growth, restored brand compliance, and asset-level cash flow sufficient to support refinance and reinvestment decisions.</p>
-      </article>
+        <p class="case-card__body">Owner engaged SUNdhm under a third-party management agreement to professionalize operations. Day-to-day management, brand compliance, revenue management, and transparent monthly reporting.</p>
+        <p class="case-card__cta">Read full case study <span aria-hidden="true">&rarr;</span></p>
+      </a>
 
-      <article class="case-card reveal">
+      <a class="case-card case-card--link reveal" href="./case-resolution.html">
         <div class="case-card__num">03</div>
         <p class="card__meta">Borrower &amp; Lender Resolution</p>
         <h3 class="case-card__title">Limited-Service Hotel — New York</h3>
         <p class="case-card__sub">Regional bank · pre-foreclosure workout</p>
-        <p class="case-card__body">With foreclosure proceedings underway and the borrower committed to retaining the asset, SUNdhm was engaged as a neutral operator and resolution partner — taking interim operational control, restoring transparent reporting, and working alongside counsel on a structured cure.</p>
-        <ul class="case-card__metrics">
-          <li><strong>Action:</strong> Foreclosure discontinued</li>
-          <li><strong>Loan:</strong> Returned to performing status</li>
-          <li><strong>Arrears, default interest, legal fees:</strong> Cured</li>
-          <li><strong>Borrower:</strong> Retained ownership</li>
-        </ul>
-        <p class="case-card__role"><strong>Role:</strong> Interim operator &amp; workout facilitator.<br/><strong>Outcome:</strong> Foreclosure action discontinued; loan returned to performing status; borrower retained ownership of the property.</p>
-      </article>
+        <p class="case-card__body">Neutral operator and resolution partner during foreclosure proceedings. Foreclosure discontinued, loan returned to performing status, and the borrower retained ownership.</p>
+        <p class="case-card__cta">Read full case study <span aria-hidden="true">&rarr;</span></p>
+      </a>
 
     </div>
 
@@ -1111,6 +1103,200 @@ CONTACT_BODY = '''
 '''
 
 
+# ============ CASE STUDY PAGES ============
+
+CASE_HERO_TEMPLATE = '''
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow"><a href="./services.html#case-studies" style="color: inherit; text-decoration: none;">← Case Studies</a></p>
+    <h1 class="serif">{title}</h1>
+    <p class="lead" style="max-width: 760px; margin-top: 16px;">{lead}</p>
+  </div>
+</section>
+'''
+
+CASE_FOOTER = '''
+<section class="section section--soft">
+  <div class="container" style="max-width: 820px;">
+    <p class="case-disclaimer" style="margin: 0 0 32px;">Representative engagement profile. Specific borrower, lender, brand, and asset identifiers have been generalized. Figures are illustrative of typical engagement performance and do not reflect any single client. SUNdhm is a New York State approved receiver and property manager.</p>
+    <div class="grid grid-2" style="gap: 16px;">
+      <a class="btn btn--gold" href="./contact.html">Discuss a similar engagement <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      <a class="btn btn--ghost" href="./services.html#case-studies">Back to all case studies</a>
+    </div>
+  </div>
+</section>
+'''
+
+CASE_LENDER_BODY = CASE_HERO_TEMPLATE.format(
+    title="Lender-Engaged Operating Oversight",
+    lead="After borrower default and a filed foreclosure action, a regional bank engaged SUNdhm to take independent operating oversight of a limited-service hotel — restoring reporting transparency, stabilizing cash flow, and protecting collateral value through the workout period."
+) + '''
+<section class="section">
+  <div class="container" style="max-width: 820px;">
+
+    <div class="case-detail__grid">
+      <div class="case-detail__meta-block">
+        <p class="card__meta">Asset Type</p>
+        <p class="case-detail__meta-val">Limited-Service Hotel — New York</p>
+      </div>
+      <div class="case-detail__meta-block">
+        <p class="card__meta">Approx. Keys</p>
+        <p class="case-detail__meta-val">~80</p>
+      </div>
+      <div class="case-detail__meta-block">
+        <p class="card__meta">Lender Profile</p>
+        <p class="case-detail__meta-val">Regional bank, conventional CRE loan</p>
+      </div>
+      <div class="case-detail__meta-block">
+        <p class="card__meta">SUNdhm Role</p>
+        <p class="case-detail__meta-val">Lender-introduced operator &amp; workout advisor</p>
+      </div>
+    </div>
+
+    <h2 class="serif case-detail__h2">Situation at Engagement</h2>
+    <p>The borrower had fallen materially behind on debt service and the lender had initiated foreclosure proceedings on a stabilized-but-underperforming limited-service hotel. Operations were drifting: reservations leakage, payroll creep, inconsistent franchise compliance, and incomplete monthly reporting made it difficult for the lender to assess collateral value or chart a workout path.</p>
+    <p>SUNdhm was retained directly by the lender to step in as the operating party of record, stabilize the asset on a defined timeline, and produce the financial and operational transparency required for the bank to weigh resolution options — cure, sale, deed-in-lieu, or judicial foreclosure.</p>
+
+    <h2 class="serif case-detail__h2">Strategic Interventions</h2>
+    <ul class="spec-list">
+      <li><strong>Operating control &amp; cash management.</strong> Took possession of day-to-day operations, established a clean operating bank account with controlled disbursements, and rebuilt a defensible weekly cash forecast for the lender.</li>
+      <li><strong>Revenue management reset.</strong> Re-platformed rate strategy, OTA distribution, and brand-channel positioning. Tightened length-of-stay and segment controls; reopened distressed channels with corrected content.</li>
+      <li><strong>Payroll &amp; expense discipline.</strong> Right-sized labor schedules to occupancy, renegotiated key vendor terms, and eliminated non-essential overhead inherited from the prior operator.</li>
+      <li><strong>Franchise &amp; compliance cleanup.</strong> Closed open brand-compliance items, restored loyalty-program standing, and brought guest scores back into acceptable bands.</li>
+      <li><strong>Lender reporting cadence.</strong> Delivered monthly P&amp;L, STR/competitive set commentary, and a capex/working-capital outlook in a format underwriting and special-assets teams could action.</li>
+    </ul>
+
+    <h2 class="serif case-detail__h2">Results at Stabilization</h2>
+    <ul class="case-card__metrics" style="margin-top: 8px;">
+      <li><strong>Occupancy:</strong> 38% → 61%</li>
+      <li><strong>ADR:</strong> $72 → $98</li>
+      <li><strong>Payroll:</strong> 38% → 24% of revenue</li>
+      <li><strong>Stabilization Timeline:</strong> ~9 months</li>
+    </ul>
+
+    <h2 class="serif case-detail__h2">Outcome</h2>
+    <p>Performing cash flow was restored, collateral value was protected, and the lender held a stabilized asset with audit-grade reporting and a clear set of resolution options. SUNdhm continued in an operating-of-record capacity through the resolution process, coordinating with counsel, special servicing, and prospective transaction parties as required.</p>
+
+    <h2 class="serif case-detail__h2">Relevance to Distressed &amp; Transitional Assets</h2>
+    <p>This engagement illustrates a pattern SUNdhm sees repeatedly with regional bank and special-servicer portfolios: hospitality and mixed-use assets where the underlying property is fundamentally viable, but operating drift, weak reporting, and franchise erosion have created the appearance of a deeper problem. Hands-on operating control, disciplined financial reporting, and brand-compliance recovery typically reveal that the asset is recoverable on a 6–12 month horizon.</p>
+
+  </div>
+</section>
+''' + CASE_FOOTER
+
+CASE_PM_BODY = CASE_HERO_TEMPLATE.format(
+    title="Third-Party Property Management",
+    lead="A hotel owner engaged SUNdhm under a third-party management agreement to professionalize operations after a period of underperformance — day-to-day operations, brand compliance, revenue management, and transparent monthly reporting back to ownership."
+) + '''
+<section class="section">
+  <div class="container" style="max-width: 820px;">
+
+    <div class="case-detail__grid">
+      <div class="case-detail__meta-block">
+        <p class="card__meta">Asset Type</p>
+        <p class="case-detail__meta-val">Limited-Service Hotel — New York</p>
+      </div>
+      <div class="case-detail__meta-block">
+        <p class="card__meta">Engagement</p>
+        <p class="case-detail__meta-val">Owner-retained third-party management</p>
+      </div>
+      <div class="case-detail__meta-block">
+        <p class="card__meta">Brand</p>
+        <p class="case-detail__meta-val">National franchise system</p>
+      </div>
+      <div class="case-detail__meta-block">
+        <p class="card__meta">SUNdhm Role</p>
+        <p class="case-detail__meta-val">Third-party hotel management on behalf of owner</p>
+      </div>
+    </div>
+
+    <h2 class="serif case-detail__h2">Situation at Engagement</h2>
+    <p>The owner had operated the property through a mix of in-house management and prior third-party engagements that had not delivered consistent results. Topline was soft against the competitive set, payroll was high as a percentage of revenue, brand compliance items were accumulating, and ownership lacked clear visibility into where dollars were leaking. The owner wanted to retain the asset — not sell it — and needed a professional operating partner who would treat the property like an owned one.</p>
+
+    <h2 class="serif case-detail__h2">Strategic Interventions</h2>
+    <ul class="spec-list">
+      <li><strong>Operating takeover.</strong> Assumed full day-to-day management responsibility: front office, housekeeping, maintenance, brand audits, guest experience, and team leadership.</li>
+      <li><strong>Revenue management.</strong> Rebuilt pricing strategy across brand.com, OTA, GDS, and direct channels. Implemented disciplined yield management around demand events, length-of-stay controls, and segment mix.</li>
+      <li><strong>Cost structure reset.</strong> Re-engineered labor schedules to demand, retendered key recurring contracts, and tightened controllable expenses without compromising brand standards.</li>
+      <li><strong>Franchise &amp; brand compliance.</strong> Closed open brand-compliance items, restored loyalty-program standing, and rebuilt guest-satisfaction scores into the acceptable band for the flag.</li>
+      <li><strong>Owner reporting.</strong> Established monthly P&amp;L, daily revenue updates, and a KPI dashboard delivered directly to ownership, so they could see how the asset was performing in real time.</li>
+    </ul>
+
+    <h2 class="serif case-detail__h2">Results</h2>
+    <ul class="case-card__metrics" style="margin-top: 8px;">
+      <li><strong>Occupancy:</strong> low 40s → mid 60s</li>
+      <li><strong>ADR:</strong> repositioned within competitive set (~+30%)</li>
+      <li><strong>Payroll ratio:</strong> reduced ~10 percentage points</li>
+      <li><strong>Reporting:</strong> Monthly P&amp;L, daily revenue, KPI dashboards to ownership</li>
+    </ul>
+
+    <h2 class="serif case-detail__h2">Outcome</h2>
+    <p>NOI growth, restored brand compliance, and asset-level cash flow sufficient to support refinance and reinvestment decisions. Ownership now operates with a clear monthly read on the asset and a single point of accountability for every operating decision.</p>
+
+    <h2 class="serif case-detail__h2">Relevance to Owner-Operators</h2>
+    <p>This engagement reflects what SUNdhm does for owners who want to keep an asset but no longer want to run it themselves — or who have outgrown the operator they had. We treat third-party assignments like owned properties: hands-on management, sharp financial controls, modern revenue and digital marketing, and the transparent reporting an owner deserves.</p>
+
+  </div>
+</section>
+''' + CASE_FOOTER
+
+CASE_RESOLUTION_BODY = CASE_HERO_TEMPLATE.format(
+    title="Borrower &amp; Lender Resolution",
+    lead="With foreclosure proceedings underway and the borrower committed to retaining the asset, SUNdhm was engaged as a neutral operator and resolution partner — restoring transparent reporting and working alongside counsel on a structured cure. Foreclosure was discontinued and the borrower retained ownership."
+) + '''
+<section class="section">
+  <div class="container" style="max-width: 820px;">
+
+    <div class="case-detail__grid">
+      <div class="case-detail__meta-block">
+        <p class="card__meta">Asset Type</p>
+        <p class="case-detail__meta-val">Limited-Service Hotel — New York</p>
+      </div>
+      <div class="case-detail__meta-block">
+        <p class="card__meta">Lender Profile</p>
+        <p class="case-detail__meta-val">Regional bank · pre-foreclosure</p>
+      </div>
+      <div class="case-detail__meta-block">
+        <p class="card__meta">Borrower Intent</p>
+        <p class="case-detail__meta-val">Retain ownership of the asset</p>
+      </div>
+      <div class="case-detail__meta-block">
+        <p class="card__meta">SUNdhm Role</p>
+        <p class="case-detail__meta-val">Interim operator &amp; workout facilitator</p>
+      </div>
+    </div>
+
+    <h2 class="serif case-detail__h2">Situation at Engagement</h2>
+    <p>The lender had filed foreclosure on a limited-service hotel after repeated debt-service shortfalls, accumulated default interest, and unpaid legal fees. The borrower wanted to retain the asset but had lost operational and reporting credibility with the bank. The situation needed a neutral, capable operator who could stand in front of the lender, take operating control, and demonstrate a credible cure path — fast enough to halt the foreclosure clock.</p>
+
+    <h2 class="serif case-detail__h2">Strategic Interventions</h2>
+    <ul class="spec-list">
+      <li><strong>Interim operating control.</strong> SUNdhm took operating control of the property and the operating account on terms acceptable to both borrower and lender, providing the bank with a known, accountable operator of record.</li>
+      <li><strong>Reporting restoration.</strong> Stood up monthly P&amp;L, weekly cash forecast, and operational KPIs in a format the special-assets group could act on. Closed the reporting gap that had eroded lender confidence.</li>
+      <li><strong>Operational stabilization.</strong> Reset revenue management, tightened payroll and controllable expenses, restored brand and franchise compliance, and brought guest-satisfaction scores back into acceptable bands.</li>
+      <li><strong>Structured cure with counsel.</strong> Worked with borrower’s counsel and the lender’s workout team on a structured cure that addressed arrears, default interest, and legal fees on a defined schedule.</li>
+      <li><strong>Continuous lender communication.</strong> Maintained a transparent line of communication with the bank throughout, so that every operating and financial decision was visible.</li>
+    </ul>
+
+    <h2 class="serif case-detail__h2">Results at Exit</h2>
+    <ul class="case-card__metrics" style="margin-top: 8px;">
+      <li><strong>Action:</strong> Foreclosure discontinued</li>
+      <li><strong>Loan:</strong> Returned to performing status</li>
+      <li><strong>Arrears, default interest, legal fees:</strong> Cured</li>
+      <li><strong>Borrower:</strong> Retained ownership of the property</li>
+    </ul>
+
+    <h2 class="serif case-detail__h2">Outcome</h2>
+    <p>The foreclosure action was discontinued, the loan was returned to performing status, and the borrower retained ownership of the property. The lender ended the engagement with a performing loan against a stabilized asset and a documented record of how stabilization was achieved.</p>
+
+    <h2 class="serif case-detail__h2">Relevance to Distressed &amp; Transitional Assets</h2>
+    <p>This engagement illustrates an outcome that is often available when a borrower has genuine intent and capacity to retain an asset, but has lost operating and reporting credibility with the lender. With a neutral operator restoring control, transparency, and performance, foreclosure is frequently not the only path — and often not the best one for either side.</p>
+
+  </div>
+</section>
+''' + CASE_FOOTER
+
+
 # ============ WRITE PAGES ============
 write_page("index.html",
            "SUNdhm · Hospitality &amp; Real Estate",
@@ -1131,6 +1317,22 @@ write_page("contact.html",
            "Contact · SUNdhm · Liverpool, NY",
            "Contact SUNdhm at 250 Commerce Blvd, Liverpool NY 13088. Phone (315) 752-0155 · hello@sundhm.com.",
            "/contact.html", CONTACT_BODY, hero_overlap=False, active="contact")
+
+# Case study sub-pages (linked from /services.html#case-studies)
+write_page("case-lender.html",
+           "Case Study · Lender-Engaged Operating Oversight · SUNdhm",
+           "Representative SUNdhm engagement: lender-engaged operating oversight of a limited-service hotel during a workout — occupancy 38%→61%, ADR $72→$98, payroll 38%→24%, ~9 months to stabilization.",
+           "/case-lender.html", CASE_LENDER_BODY, hero_overlap=False, active="services")
+
+write_page("case-property-management.html",
+           "Case Study · Third-Party Property Management · SUNdhm",
+           "Representative SUNdhm engagement: owner-retained third-party management of a limited-service hotel — occupancy low 40s→mid 60s, ADR ~+30%, payroll ratio reduced ~10pp, transparent monthly reporting.",
+           "/case-property-management.html", CASE_PM_BODY, hero_overlap=False, active="services")
+
+write_page("case-resolution.html",
+           "Case Study · Borrower &amp; Lender Resolution · SUNdhm",
+           "Representative SUNdhm engagement: pre-foreclosure workout where SUNdhm served as neutral operator and resolution partner. Foreclosure discontinued, loan returned to performing status, borrower retained ownership.",
+           "/case-resolution.html", CASE_RESOLUTION_BODY, hero_overlap=False, active="services")
 
 # ============ LEGAL PAGES ============
 # Reviewed and approved by counsel: May 9, 2026.
